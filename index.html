@@ -1,128 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Data Science Portfolio</title>
-  <style>
-    :root {
-      --primary: #4f46e5;
-      --secondary: #06b6d4;
-      --bg: #f8fafc;
-      --text: #0f172a;
-      --card: #ffffff;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Churn Prediction Project – Leprince Dongmo</title>
+
+<style>
     body {
-      margin: 0;
-      padding: 0;
-      background: var(--bg);
-      font-family: Arial, sans-serif;
-      color: var(--text);
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f4f6f9;
+        color: #333;
     }
+
     header {
-      padding: 2rem;
-      background: var(--primary);
-      color: white;
-      text-align: center;
+        background: #003366;
+        color: white;
+        padding: 40px 20px;
+        text-align: center;
     }
+
+    header h1 {
+        margin: 0;
+        font-size: 36px;
+    }
+
+    header p {
+        margin-top: 10px;
+        font-size: 18px;
+        font-style: italic;
+    }
+
     .container {
-      width: 90%;
-      max-width: 900px;
-      margin: auto;
-      padding: 2rem 0;
+        max-width: 900px;
+        margin: auto;
+        padding: 20px;
+        background: white;
+        margin-top: -30px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        border-radius: 10px;
     }
-    .card {
-      background: var(--card);
-      padding: 1.5rem;
-      border-radius: 1rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-    }
-    .photo {
-      width: 160px;
-      height: 160px;
-      background: #ccc;
-      border-radius: 50%;
-      margin: auto;
-    }
+
     h2 {
-      margin-top: 0;
+        color: #003366;
+        border-left: 4px solid #0066cc;
+        padding-left: 10px;
     }
-    .timeline-item {
-      margin-bottom: 1rem;
-    }
-    canvas {
-      width: 100%;
-      height: 300px;
-    }
+
     a {
-      color: var(--secondary);
-      font-weight: bold;
-      text-decoration: none;
+        color: #0066cc;
     }
-  </style>
+
+    .button {
+        display: inline-block;
+        background: #0066cc;
+        color: white;
+        padding: 12px 20px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+        margin-top: 10px;
+        transition: 0.3s;
+    }
+
+    .button:hover {
+        background: #004c99;
+    }
+
+    footer {
+        text-align: center;
+        padding: 20px;
+        background: #003366;
+        color: white;
+        margin-top: 30px;
+    }
+</style>
 </head>
+
 <body>
-  <header>
-    <h1>Data Science Portfolio</h1>
-  </header>
 
-  <div class="container">
+<header>
+    <h1>Customer Churn Prediction Project</h1>
+    <p>Built by <strong>Leprince Dongmo</strong> — Machine Learning for Business Decision-Making</p>
+</header>
 
-    <div class="card" id="profile">
-      <div class="photo"> <!-- Replace with real image --> </div>
-      <h2>Your Name</h2>
-      <p>Data Scientist • Machine Learning • Analytics</p>
-    </div>
+<div class="container">
 
-    <div class="card">
-      <h2>Project Timeline</h2>
-      <div class="timeline-item"><strong>2023:</strong> Built forecasting models for retail demand.</div>
-      <div class="timeline-item"><strong>2024:</strong> NLP pipeline for customer sentiment analysis.</div>
-      <div class="timeline-item"><strong>2025:</strong> GenAI automation + LLM analytics tooling.</div>
-    </div>
+    <h2>📌 Project Overview</h2>
+    <p>
+        Customer churn is a major challenge for subscription-based or service-based businesses.
+        The goal of this project is to create a predictive model that estimates the probability
+        that a customer will churn, using demographic, behavioral, and usage-related variables.
+    </p>
 
-    <div class="card">
-      <h2>Featured Charts</h2>
-      <canvas id="chart1"></canvas>
-      <canvas id="chart2"></canvas>
-    </div>
+    <h2>🎯 Objectives</h2>
+    <ul>
+        <li>Analyze customer data to understand churn patterns.</li>
+        <li>Build and evaluate multiple machine-learning models.</li>
+        <li>Identify the best-performing model.</li>
+        <li>Generate churn probabilities for business teams.</li>
+        <li>Deploy a user-friendly prediction interface with Streamlit.</li>
+    </ul>
 
-    <div class="card">
-      <h2>Resources</h2>
-      <p><a href="#">📥 Download Model</a></p>
-      <p><a href="#">📥 Open Notebook</a></p>
-    </div>
+    <h2>🧠 Machine Learning Pipeline</h2>
+    <ol>
+        <li>Data preprocessing & cleaning</li>
+        <li>Feature engineering</li>
+        <li>Train/test split</li>
+        <li>Model training (Logistic Regression, Random Forest, XGBoost...)</li>
+        <li>Model selection (Logistic Regression was best)</li>
+        <li>Final model export (.pkl)</li>
+    </ol>
 
-    <div class="card">
-      <h2>Deployment</h2>
-      <pre>
-# Automatic Deployment
-pip install -r requirements.txt
-python build.py
-vercel deploy --prod
-      </pre>
-    </div>
+    <h2>📈 Best Model: Logistic Regression</h2>
+    <p>
+        Logistic Regression achieved the most stable and interpretable performance,
+        making it suitable for operational use and business interpretation.
+        The model generates churn probabilities for each customer, which can be used in
+        CRM systems and Power BI dashboards.
+    </p>
 
-  </div>
+    <a href="model/churn_model.pkl" class="button" download>Download Model (PKL)</a>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script>
-    new Chart(document.getElementById('chart1'), {
-      type: 'line',
-      data: {
-        labels: ['Jan','Feb','Mar','Apr','May','Jun'],
-        datasets: [{ label: 'Forecast Accuracy', data: [70,75,78,82,85,89] }]
-      }
-    });
+    <h2>🖥️ Live Demo (Streamlit App)</h2>
+    <p>Try the interactive churn prediction app:</p>
 
-    new Chart(document.getElementById('chart2'), {
-      type: 'bar',
-      data: {
-        labels: ['NLP','Vision','Time Series','LLMs'],
-        datasets: [{ label: 'Project Count', data: [4,2,5,3] }]
-      }
-    });
-  </script>
+    <a href="https://churnprobaapps-ftuk5k4wd7umfmm5angxsk.streamlit.app/" 
+       class="button" target="_blank">
+       Launch Streamlit App
+    </a>
+
+    <h2>📊 Power BI Integration</h2>
+    <p>
+        The generated churn CSV files can be imported directly into Power BI
+        for dashboard creation and customer-risk monitoring.
+    </p>
+
+    <h2>📁 GitHub Repository</h2>
+    <p>Access the complete source code of the project:</p>
+
+    <a href="https://github.com/ldongmon/churn_proba_apps" class="button" target="_blank">
+        View on GitHub
+    </a>
+
+    <h2>📞 Contact</h2>
+    <p>
+        Created by <strong>Leprince Dongmo</strong>.  
+        For questions or collaboration, feel free to reach out.
+    </p>
+
+</div>
+
+<footer>
+    © 2025 — Churn Prediction Project by Leprince Dongmo
+</footer>
+
 </body>
 </html>
