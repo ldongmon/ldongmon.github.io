@@ -6,75 +6,15 @@
 <title>Customer Churn Prediction Project – Leprince Dongmo</title>
 
 <style>
-    body {
-        font-family: Arial, Helvetica, sans-serif;
-        margin: 0;
-        padding: 0;
-        background: #f4f6f9;
-        color: #333;
-    }
-
-    header {
-        background: #003366;
-        color: white;
-        padding: 40px 20px;
-        text-align: center;
-    }
-
-    header h1 {
-        margin: 0;
-        font-size: 36px;
-    }
-
-    header p {
-        margin-top: 10px;
-        font-size: 18px;
-        font-style: italic;
-    }
-
-    .container {
-        max-width: 900px;
-        margin: auto;
-        padding: 20px;
-        background: white;
-        margin-top: -30px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        border-radius: 10px;
-    }
-
-    h2 {
-        color: #003366;
-        border-left: 4px solid #0066cc;
-        padding-left: 10px;
-    }
-
-    a {
-        color: #0066cc;
-    }
-
-    .button {
-        display: inline-block;
-        background: #0066cc;
-        color: white;
-        padding: 12px 20px;
-        border-radius: 6px;
-        text-decoration: none;
-        font-weight: bold;
-        margin-top: 10px;
-        transition: 0.3s;
-    }
-
-    .button:hover {
-        background: #004c99;
-    }
-
-    footer {
-        text-align: center;
-        padding: 20px;
-        background: #003366;
-        color: white;
-        margin-top: 30px;
-    }
+    body { font-family: Arial, Helvetica, sans-serif; margin: 0; padding: 0; background: #f4f6f9; color: #333; }
+    header { background: #003366; color: white; padding: 40px 20px; text-align: center; }
+    header h1 { margin: 0; font-size: 36px; }
+    header p { margin-top: 10px; font-size: 18px; font-style: italic; }
+    .container { max-width: 900px; margin: auto; padding: 20px; background: white; margin-top: -30px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); border-radius: 10px; }
+    h2 { color: #003366; border-left: 4px solid #0066cc; padding-left: 10px; }
+    .button { display: inline-block; background: #0066cc; color: white; padding: 12px 20px; border-radius: 6px; text-decoration: none; font-weight: bold; margin-top: 10px; }
+    .button:hover { background: #004c99; }
+    footer { text-align: center; padding: 20px; background: #003366; color: white; margin-top: 30px; }
 </style>
 </head>
 
@@ -82,264 +22,122 @@
 
 <header>
     <h1>Customer Churn Prediction Project</h1>
-    <p>Built by <strong>Leprince Dongmo</strong> — Machine Learning for Business Decision-Making</p>
+    <p>Designed by <strong>Leprince Dongmo</strong> — End-to-end Data Science Solution</p>
 </header>
 
 <div class="container">
 
     <h2>📌 Project Overview</h2>
-    <p>
-        Customer churn is a major challenge for subscription-based or service-based businesses.
-        The goal of this project is to create a predictive model that estimates the probability
-        that a customer will churn, using demographic, behavioral, and usage-related variables.
-    </p>
+    <p>This project predicts customer churn using demographic, product usage, and behavioral data. The model calculates the churn probability of each client and helps business teams take preventative actions.</p>
 
     <h2>🎯 Objectives</h2>
     <ul>
-        <li>Analyze customer data to understand churn patterns.</li>
-        <li>Build and evaluate multiple machine-learning models.</li>
-        <li>Identify the best-performing model.</li>
-        <li>Generate churn probabilities for business teams.</li>
-        <li>Deploy a user-friendly prediction interface with Streamlit.</li>
+        <li>Understand churn drivers</li>
+        <li>Train ML models: Logistic Regression, Random Forest, XGBoost</li>
+        <li>Select the best performing model</li>
+        <li>Deploy a prediction interface (Streamlit)</li>
+        <li>Design analytics dashboards (Power BI)</li>
     </ul>
 
-    <h2>🧠 Machine Learning Pipeline</h2>
-    <ol>
-        <li>Data preprocessing & cleaning</li>
-        <li>Feature engineering</li>
-        <li>Train/test split</li>
-        <li>Model training (Logistic Regression, Random Forest, XGBoost...)</li>
-        <li>Model selection (Logistic Regression was best)</li>
-        <li>Final model export (.pkl)</li>
-    </ol>
-
     <h2>📈 Best Model: Logistic Regression</h2>
-    <p>
-        Logistic Regression achieved the most stable and interpretable performance,
-        making it suitable for operational use and business interpretation.
-        The model generates churn probabilities for each customer, which can be used in
-        CRM systems and Power BI dashboards.
-    </p>
+    <p>The logistic regression model delivered the best performance with strong interpretability and stability for real-world deployment.</p>
 
     <a href="model/churn_model.pkl" class="button" download>Download Model (PKL)</a>
 
-    <h2>🔬 Complete Jupyter Notebook Analysis</h2>
-    <p>Explore the full machine learning workflow with code, visualizations, and results:</p>
-    
-    <div style="width: 100%; height: 700px; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-        <iframe 
-            src="https://nbviewer.org/github/ldongmon/ldongmon.github.io/blob/main/CHURN%20MODELING_REPORT.ipynb" 
-            width="100%" 
-            height="100%" 
-            frameborder="0"
-            style="border: none;"
-            title="Churn Prediction Jupyter Notebook">
-        </iframe>
-    </div>
-    
-    <div style="text-align: center; margin-top: 15px; color: #666;">
-        <p><strong>Interactive Notebook Features:</strong></p>
-        <ul style="display: inline-block; text-align: left; margin: 0;">
-            <li>View all Python code and outputs</li>
-            <li>See data visualizations and charts</li>
-            <li>Read detailed analysis and explanations</li>
-            <li>Download the notebook file</li>
-        </ul>
+    <h2>📊 Key Performance Indicators (KPIs)</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; margin: 25px 0;">
+
+        <div style="text-align: center; background: #003366; color: white; padding: 15px; border-radius: 8px;">
+            <div style="font-size: 26px; font-weight: bold;">2,000+</div>
+            <div style="font-size: 13px;">Total Customers</div>
+        </div>
+
+        <div style="text-align: center; background: #28a745; color: white; padding: 15px; border-radius: 8px;">
+            <div style="font-size: 26px; font-weight: bold;">48.9%</div>
+            <div style="font-size: 13px;">Avg Churn Probability</div>
+        </div>
+
+        <div style="text-align: center; background: #6f42c1; color: white; padding: 15px; border-radius: 8px;">
+            <div style="font-size: 26px; font-weight: bold;">540</div>
+            <div style="font-size: 13px;">Accounts</div>
+        </div>
+
+        <div style="text-align: center; background: #fd7e14; color: white; padding: 15px; border-radius: 8px;">
+            <div style="font-size: 26px; font-weight: bold;">18,400+</div>
+            <div style="font-size: 13px;">Transactions</div>
+        </div>
+
+        <div style="text-align: center; background: #dc3545; color: white; padding: 15px; border-radius: 8px;">
+            <div style="font-size: 26px; font-weight: bold;">420</div>
+            <div style="font-size: 13px;">Customers at Risk</div>
+        </div>
+
+        <div style="text-align: center; background: #17a2b8; color: white; padding: 15px; border-radius: 8px;">
+            <div style="font-size: 26px; font-weight: bold;">$55,400</div>
+            <div style="font-size: 13px;">Avg Annual Income</div>
+        </div>
+
     </div>
 
-    <div style="text-align: center; margin-top: 20px;">
+    <h2>🔬 Full Machine Learning Notebook</h2>
+    <p>Explore all code, charts, modeling, and explanations:</p>
+
+    <iframe 
+        src="https://nbviewer.org/github/ldongmon/ldongmon.github.io/blob/main/CHURN%20MODELING_REPORT.ipynb"
+        width="100%" height="700px" frameborder="0">
+    </iframe>
+
+    <div style="text-align:center;">
         <a href="https://github.com/ldongmon/ldongmon.github.io/blob/main/CHURN%20MODELING_REPORT.ipynb" 
-           class="button" 
-           target="_blank"
-           style="display: inline-block; margin: 5px;">
-            📁 View Raw Notebook on GitHub
-        </a>
+           class="button" target="_blank">📁 Raw Notebook</a>
+
         <a href="https://nbviewer.org/github/ldongmon/ldongmon.github.io/blob/main/CHURN%20MODELING_REPORT.ipynb" 
-           class="button" 
-           target="_blank"
-           style="display: inline-block; margin: 5px; background: #28a745;">
-            🔍 Open in nbviewer
-        </a>
+           class="button" target="_blank" style="background:#28a745;">🔍 Open in nbviewer</a>
     </div>
 
-    <h2>🖥️ Live Demo (Streamlit App)</h2>
-    <p>Try the interactive churn prediction app:</p>
-
-    <a href="https://churnprobaapps-ftuk5k4wd7umfmm5angxsk.streamlit.app/" 
-       class="button" target="_blank">
-       Launch Streamlit App
+    <h2>🖥️ Live Streamlit App</h2>
+    <p>Try the real-time churn probability calculator:</p>
+    <a href="https://churnprobaapps-ftuk5k4wd7umfmm5angxsk.streamlit.app/" class="button" target="_blank">
+        Launch Streamlit App
     </a>
 
-    <h2>📊 Power BI Customer Churn & Portfolio Intelligence Dashboard</h2>
-<p>
-    This Power BI dashboard transforms raw customer, account, transaction, and product data 
-    into actionable insights for customer retention, portfolio management, and churn-risk prediction.  
-    The dashboard is fully integrated with the machine-learning churn model built in Python and deployed via Streamlit.
-</p>
+    <h2>📊 Power BI Interactive Dashboard</h2>
+    <p>This dashboard includes segmentation, churn risk, and financial analytics.</p>
 
-<!-- Dashboard Preview Section -->
-<div style="text-align: center; margin: 30px 0;">
-    <div style="position: relative; display: inline-block; max-width: 100%;">
-        <img src="images/powerbi-dashboard-preview.png" 
-             alt="Power BI Customer Analytics Dashboard" 
-             style="max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
-        <div style="position: absolute; top: 20px; left: 20px; background: rgba(0,102,204,0.9); color: white; padding: 10px 15px; border-radius: 5px; font-weight: bold;">
-            📊 Customer Intelligence Dashboard
-        </div>
-    </div>
-</div>
+    <!-- Dashboard image preview -->
+    <img src="images/powerbi-dashboard-preview.png" 
+         style="width:100%; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.15);">
 
-<!-- Key Insights Grid -->
-<div style="background: #f8f9fa; padding: 25px; border-radius: 8px; margin: 20px 0;">
-    <h3 style="color: #003366; margin-top: 0; text-align: center;">Key Analytical Features</h3>
-    
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 20px;">
-
-        <div style="background: white; padding: 20px; border-radius: 6px; border-left: 4px solid #0066cc; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-            <h4 style="color: #0066cc; margin: 0 0 10px 0;">🧮 Churn Probability Integration</h4>
-            <p style="margin: 0; font-size: 14px; color: #555;">
-                The Logistic Regression churn model (Python) is embedded for risk scoring, enabling automated 
-                customer-level churn probabilities synced from generated CSVs.
-            </p>
-        </div>
-
-        <div style="background: white; padding: 20px; border-radius: 6px; border-left: 4px solid #28a745; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-            <h4 style="color: #28a745; margin: 0 0 10px 0;">🎯 Customer Segmentation (K-Means)</h4>
-            <p style="margin: 0; font-size: 14px; color: #555;">
-                Automated clustering based on income, credit score, tenure, product ownership, 
-                and transaction behavior — resulting in 4 distinct customer personas.
-            </p>
-        </div>
-
-        <div style="background: white; padding: 20px; border-radius: 6px; border-left: 4px solid #6f42c1; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-            <h4 style="color: #6f42c1; margin: 0 0 10px 0;">📉 Churn Risk Heatmaps</h4>
-            <p style="margin: 0; font-size: 14px; color: #555;">
-                Data-driven heatmaps show the distribution of high-risk customers by income, segment, 
-                geography, product usage, and account type.
-            </p>
-        </div>
-
-        <div style="background: white; padding: 20px; border-radius: 6px; border-left: 4px solid #fd7e14; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-            <h4 style="color: #fd7e14; margin: 0 0 10px 0;">💳 Product Penetration & Cross-Sell</h4>
-            <p style="margin: 0; font-size: 14px; color: #555;">
-                Identify which customer segments have the highest potential for upgrading products 
-                (loans, cards, investments), based on tenure & transaction frequency.
-            </p>
-        </div>
-
-        <div style="background: white; padding: 20px; border-radius: 6px; border-left: 4px solid #17a2b8; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-            <h4 style="color: #17a2b8; margin: 0 0 10px 0;">📁 RM Portfolio Performance</h4>
-            <p style="margin: 0; font-size: 14px; color: #555;">
-                Track Relationship Manager portfolios, churn-risk exposure, product ownership, 
-                and customer profitability using dynamic DAX measures.
-            </p>
-        </div>
-    </div>
-</div>
-
-<!-- Data Model Overview -->
-<div style="background: #e8f4fd; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px solid #b3d9ff;">
-    <h3 style="color: #003366; margin-top: 0;">🔗 Data Model (Star Schema)</h3>
-    <p style="margin: 0 0 15px 0; color: #555;">
-        The dashboard uses a clean star schema optimized for DAX performance and relationship management:
-    </p>
-
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; text-align: center;">
-
-        <!-- Customers -->
-        <div>
-            <div style="background: #0066cc; color: white; padding: 10px; border-radius: 5px; font-weight: bold;">
-                Customers
-            </div>
-            <p style="margin: 8px 0 0 0; font-size: 12px; color: #666;">
-                Demographics, Income, Segments, Churn Probability
-            </p>
-        </div>
-
-        <div style="display: flex; align-items: center; justify-content: center;">
-            ➡️
-        </div>
-
-        <!-- Accounts -->
-        <div>
-            <div style="background: #28a745; color: white; padding: 10px; border-radius: 5px; font-weight: bold;">
-                Accounts
-            </div>
-            <p style="margin: 8px 0 0 0; font-size: 12px; color: #666;">
-                Balances, Credit Scores, Account Types
-            </p>
-        </div>
-
-        <div style="display: flex; align-items: center; justify-content: center;">
-            ➡️
-        </div>
-
-        <!-- Transactions -->
-        <div>
-            <div style="background: #6f42c1; color: white; padding: 10px; border-radius: 5px; font-weight: bold;">
-                Transactions
-            </div>
-            <p style="margin: 8px 0 0 0; font-size: 12px; color: #666;">
-                Monthly activity, deposits, withdrawals, payments
-            </p>
-        </div>
-
-        <div style="display: flex; align-items: center; justify-content: center;">
-            🔄
-        </div>
-
-        <!-- Products -->
-        <div>
-            <div style="background: #fd7e14; color: white; padding: 10px; border-radius: 5px; font-weight: bold;">
-                Products
-            </div>
-            <p style="margin: 8px 0 0 0; font-size: 12px; color: #666;">
-                Loans, Cards, Investments, Savings
-            </p>
-        </div>
-    </div>
-</div>
-
-<!-- Action Buttons -->
-<div style="text-align: center; margin-top: 30px;">
-    <a href="YOUR_POWER_BI_DASHBOARD_LINK" 
-       class="button" target="_blank" 
-       style="margin: 5px; padding: 15px 25px; font-size: 16px;">
-        🚀 Open Interactive Power BI Dashboard
+    <h3>📥 Downloads</h3>
+    <a href="downloads/customer_analytics_dashboard.pbix" class="button" download>
+        📊 Download PBIX Dashboard
     </a>
 
-    <a href="downloads/customer_analytics_dashboard.pbix" 
-       class="button" download 
-       style="margin: 5px; padding: 15px 25px; font-size: 16px; background: #28a745;">
-        📥 Download PBIX File
+    <a href="downloads/documentation.pdf" class="button" style="background:#6f42c1;" target="_blank">
+        📄 View Documentation PDF
     </a>
 
-    <a href="documentation/powerbi-documentation.pdf" 
-       class="button" target="_blank" 
-       style="margin: 5px; padding: 15px 25px; font-size: 16px; background: #6f42c1;">
-        📘 View Documentation (PDF)
-    </a>
-</div>
+    <h3>▶ Embedded Interactive Power BI Dashboard</h3>
+    <p>Paste your Power BI embed link inside the iframe below.</p>
 
+    <iframe 
+        width="100%" 
+        height="600" 
+        src="YOUR_POWER_BI_EMBED_URL_HERE"
+        frameborder="0" 
+        allowFullScreen="true">
+    </iframe>
 
     <h2>📁 GitHub Repository</h2>
-    <p>Access the complete source code of the project:</p>
-
     <a href="https://github.com/ldongmon/churn_proba_apps" class="button" target="_blank">
         View on GitHub
     </a>
 
     <h2>📞 Contact</h2>
-    <p>
-        Created by <strong>Leprince Dongmo</strong>.  
-        For questions or collaboration, feel free to reach out.
-    </p>
+    <p>Created by <strong>Leprince Dongmo</strong>. For collaborations, feel free to reach out.</p>
 
 </div>
 
-<footer>
-    © 2025 — Churn Prediction Project by Leprince Dongmo
-</footer>
-
+<footer>© 2025 — Churn Prediction Project by Leprince Dongmo</footer>
 </body>
 </html>
