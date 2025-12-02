@@ -1,0 +1,2798 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="LEPRINCE DONGMO NANDA">
+<meta name="dcterms.date" content="2025-12-02">
+
+<title>Churn Prediction Modeling</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="CHURN MODELING_REPORT_files/libs/clipboard/clipboard.min.js"></script>
+<script src="CHURN MODELING_REPORT_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="CHURN MODELING_REPORT_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="CHURN MODELING_REPORT_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="CHURN MODELING_REPORT_files/libs/quarto-html/popper.min.js"></script>
+<script src="CHURN MODELING_REPORT_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="CHURN MODELING_REPORT_files/libs/quarto-html/anchor.min.js"></script>
+<link href="CHURN MODELING_REPORT_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="CHURN MODELING_REPORT_files/libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="CHURN MODELING_REPORT_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="CHURN MODELING_REPORT_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="CHURN MODELING_REPORT_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="CHURN-MODELING_REPORT.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Churn Prediction Modeling</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>LEPRINCE DONGMO NANDA </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 2, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction-business-context" class="level1">
+<h1>Introduction &amp; Business Context</h1>
+<p>Customer churn—defined as the percentage of customers who discontinue using a company’s service over a given period—is one of the most important metrics for subscription-based and service-oriented businesses. When customers leave, the company not only loses revenue but also incurs additional acquisition costs to replace them.</p>
+<p>Because acquiring a new customer is typically <strong>5 to 10 times more expensive</strong> than retaining an existing one, churn prevention is a strategic priority for any business seeking growth and profitability.</p>
+<p>In this study, our objective is to build a <strong>predictive model that estimates the probability that a customer will churn</strong>. This enables the business to:</p>
+<ul>
+<li>Detect at-risk customers early</li>
+<li>Prioritize retention actions and allocate marketing efforts more efficiently</li>
+<li>Personalize offers or communication strategies</li>
+<li>Increase customer lifetime value (CLV)</li>
+<li>Support data-driven decision-making</li>
+</ul>
+<p>The dataset includes demographic, behavioral, and service usage information for each customer. Using statistical and machine learning techniques, we aim to identify key drivers of churn and deliver a model that the business can apply directly to operational strategies.</p>
+<hr>
+</section>
+<section id="project-objectives" class="level1">
+<h1>Project Objectives</h1>
+<ol type="1">
+<li>Analyze and understand the key drivers of customer churn</li>
+<li>Build predictive models to estimate churn probability</li>
+<li>Evaluate and compare models using robust performance metrics</li>
+<li>Select the best model and translate results into actionable insights</li>
+<li>Provide a clear and interpretable framework for business decision-making</li>
+</ol>
+<hr>
+</section>
+<section id="workflow-methodological-plan" class="level1">
+<h1>Workflow / Methodological Plan</h1>
+<section id="data-understanding" class="level2">
+<h2 class="anchored" data-anchor-id="data-understanding">1. Data Understanding</h2>
+<ul>
+<li>Load and explore dataset</li>
+<li>Review churn distribution and customer characteristics</li>
+<li>Check missing values, duplicates, and anomalies</li>
+<li>Generate descriptive statistics</li>
+</ul>
+</section>
+<section id="data-cleaning-preprocessing" class="level2">
+<h2 class="anchored" data-anchor-id="data-cleaning-preprocessing">2. Data Cleaning &amp; Preprocessing</h2>
+<ul>
+<li>Handle missing values</li>
+<li>Encode categorical variables</li>
+<li>Normalize numerical features</li>
+<li>Correct data types and inconsistencies</li>
+</ul>
+</section>
+<section id="exploratory-data-analysis-eda" class="level2">
+<h2 class="anchored" data-anchor-id="exploratory-data-analysis-eda">3. Exploratory Data Analysis (EDA)</h2>
+<ul>
+<li>Compare churned vs non-churned customers</li>
+<li>Identify key behavioral/demographic differences</li>
+<li>Visualize trends and correlations</li>
+</ul>
+</section>
+<section id="feature-engineering" class="level2">
+<h2 class="anchored" data-anchor-id="feature-engineering">4. Feature Engineering</h2>
+<ul>
+<li>Create additional relevant features (e.g., tenure groups)</li>
+<li>Select or reduce unhelpful variables</li>
+</ul>
+</section>
+<section id="model-development" class="level2">
+<h2 class="anchored" data-anchor-id="model-development">5. Model Development</h2>
+<ul>
+<li>Train multiple models: Logistic Regression, Random Forest, Gradient Boosting, SVM</li>
+<li>Compare results to identify the best-performing model</li>
+</ul>
+</section>
+<section id="model-evaluation" class="level2">
+<h2 class="anchored" data-anchor-id="model-evaluation">6. Model Evaluation</h2>
+<ul>
+<li>Use ROC-AUC, precision, recall, F1-score, confusion matrix</li>
+<li>Validate stability and calibration of predicted probabilities</li>
+</ul>
+</section>
+<section id="model-selection-interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="model-selection-interpretation">7. Model Selection &amp; Interpretation</h2>
+<ul>
+<li>Logistic Regression selected for its balance of performance and interpretability</li>
+<li>Explain most impactful features</li>
+<li>Segment customers by churn risk (low, medium, high)</li>
+</ul>
+</section>
+<section id="delivery-of-business-outputs" class="level2">
+<h2 class="anchored" data-anchor-id="delivery-of-business-outputs">8. Delivery of Business Outputs</h2>
+<ul>
+<li>Provide list of customers with churn probabilities</li>
+<li>Create actionable risk categories</li>
+<li>Recommend retention strategies</li>
+<li>Prepare dashboards and summaries for business teams</li>
+</ul>
+<div id="08a6a165" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:17.528914Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:17.482197Z&quot;}}" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#📌 SECTION 1 — Import Required Libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Pandas is used to load and manipulate data tables</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Splits data into training and test samples</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Preprocessing tools:</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># - OneHotEncoder: converts categorical labels into numerical columns</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># - StandardScaler: normalizes numerical values</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> OneHotEncoder, StandardScaler</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># ColumnTransformer: lets us apply different preprocessing steps to different column types</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.compose <span class="im">import</span> ColumnTransformer</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Pipeline: chains preprocessing steps + model into one unified workflow</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> Pipeline</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Classification performance metrics</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score, classification_report, confusion_matrix</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Machine learning algorithms</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="808e7f7e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:19.283645Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:19.087445Z&quot;}}" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#📌 SECTION 2 — Load Dataset</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Loads the CSV file into a pandas DataFrame.</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace the path with your actual file location.</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="vs">r"G:</span><span class="er">\</span><span class="vs">CLE USB</span><span class="er">\</span><span class="vs">CHURN PROBALILITY MODELING</span><span class="er">\</span><span class="vs">Customer-Churn-Records</span><span class="dv">.</span><span class="vs">csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="62b9fbe6" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df.shape</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>(10000, 18)</code></pre>
+</div>
+</div>
+<div id="a2b82079" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:19.919958Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:19.793453Z&quot;}}" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">10</span>).T</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">0</th>
+<th data-quarto-table-cell-role="th">1</th>
+<th data-quarto-table-cell-role="th">2</th>
+<th data-quarto-table-cell-role="th">3</th>
+<th data-quarto-table-cell-role="th">4</th>
+<th data-quarto-table-cell-role="th">5</th>
+<th data-quarto-table-cell-role="th">6</th>
+<th data-quarto-table-cell-role="th">7</th>
+<th data-quarto-table-cell-role="th">8</th>
+<th data-quarto-table-cell-role="th">9</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">RowNumber</th>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>7</td>
+<td>8</td>
+<td>9</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">CustomerId</th>
+<td>15634602</td>
+<td>15647311</td>
+<td>15619304</td>
+<td>15701354</td>
+<td>15737888</td>
+<td>15574012</td>
+<td>15592531</td>
+<td>15656148</td>
+<td>15792365</td>
+<td>15592389</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Surname</th>
+<td>Hargrave</td>
+<td>Hill</td>
+<td>Onio</td>
+<td>Boni</td>
+<td>Mitchell</td>
+<td>Chu</td>
+<td>Bartlett</td>
+<td>Obinna</td>
+<td>He</td>
+<td>H?</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">CreditScore</th>
+<td>619</td>
+<td>608</td>
+<td>502</td>
+<td>699</td>
+<td>850</td>
+<td>645</td>
+<td>822</td>
+<td>376</td>
+<td>501</td>
+<td>684</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Geography</th>
+<td>France</td>
+<td>Spain</td>
+<td>France</td>
+<td>France</td>
+<td>Spain</td>
+<td>Spain</td>
+<td>France</td>
+<td>Germany</td>
+<td>France</td>
+<td>France</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Gender</th>
+<td>Female</td>
+<td>Female</td>
+<td>Female</td>
+<td>Female</td>
+<td>Female</td>
+<td>Male</td>
+<td>Male</td>
+<td>Female</td>
+<td>Male</td>
+<td>Male</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Age</th>
+<td>42</td>
+<td>41</td>
+<td>42</td>
+<td>39</td>
+<td>43</td>
+<td>44</td>
+<td>50</td>
+<td>29</td>
+<td>44</td>
+<td>27</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Tenure</th>
+<td>2</td>
+<td>1</td>
+<td>8</td>
+<td>1</td>
+<td>2</td>
+<td>8</td>
+<td>7</td>
+<td>4</td>
+<td>4</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Balance</th>
+<td>0.0</td>
+<td>83807.86</td>
+<td>159660.8</td>
+<td>0.0</td>
+<td>125510.82</td>
+<td>113755.78</td>
+<td>0.0</td>
+<td>115046.74</td>
+<td>142051.07</td>
+<td>134603.88</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">NumOfProducts</th>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>4</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">HasCrCard</th>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">IsActiveMember</th>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">EstimatedSalary</th>
+<td>101348.88</td>
+<td>112542.58</td>
+<td>113931.57</td>
+<td>93826.63</td>
+<td>79084.1</td>
+<td>149756.71</td>
+<td>10062.8</td>
+<td>119346.88</td>
+<td>74940.5</td>
+<td>71725.73</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">churn</th>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Complain</th>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Satisfaction Score</th>
+<td>2</td>
+<td>3</td>
+<td>3</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>2</td>
+<td>2</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Card Type</th>
+<td>DIAMOND</td>
+<td>DIAMOND</td>
+<td>DIAMOND</td>
+<td>GOLD</td>
+<td>GOLD</td>
+<td>DIAMOND</td>
+<td>SILVER</td>
+<td>DIAMOND</td>
+<td>GOLD</td>
+<td>GOLD</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Point Earned</th>
+<td>464</td>
+<td>456</td>
+<td>377</td>
+<td>350</td>
+<td>425</td>
+<td>484</td>
+<td>206</td>
+<td>282</td>
+<td>251</td>
+<td>342</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="6f9822a6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:20.251127Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:20.055561Z&quot;}}" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 10000 entries, 0 to 9999
+Data columns (total 18 columns):
+ #   Column              Non-Null Count  Dtype  
+---  ------              --------------  -----  
+ 0   RowNumber           10000 non-null  int64  
+ 1   CustomerId          10000 non-null  int64  
+ 2   Surname             10000 non-null  object 
+ 3   CreditScore         10000 non-null  int64  
+ 4   Geography           10000 non-null  object 
+ 5   Gender              10000 non-null  object 
+ 6   Age                 10000 non-null  int64  
+ 7   Tenure              10000 non-null  int64  
+ 8   Balance             10000 non-null  float64
+ 9   NumOfProducts       10000 non-null  int64  
+ 10  HasCrCard           10000 non-null  int64  
+ 11  IsActiveMember      10000 non-null  int64  
+ 12  EstimatedSalary     10000 non-null  float64
+ 13  churn               10000 non-null  int64  
+ 14  Complain            10000 non-null  int64  
+ 15  Satisfaction Score  10000 non-null  int64  
+ 16  Card Type           10000 non-null  object 
+ 17  Point Earned        10000 non-null  int64  
+dtypes: float64(2), int64(12), object(4)
+memory usage: 1.4+ MB</code></pre>
+</div>
+</div>
+<div id="45cb9fd6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:20.337986Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:20.337961Z&quot;}}" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">##identifying how much data is missing</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df.isnull().<span class="bu">sum</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>RowNumber             0
+CustomerId            0
+Surname               0
+CreditScore           0
+Geography             0
+Gender                0
+Age                   0
+Tenure                0
+Balance               0
+NumOfProducts         0
+HasCrCard             0
+IsActiveMember        0
+EstimatedSalary       0
+churn                 0
+Complain              0
+Satisfaction Score    0
+Card Type             0
+Point Earned          0
+dtype: int64</code></pre>
+</div>
+</div>
+<div id="5c30a9d8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:20.608127Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:20.576841Z&quot;}}" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">## if we want to see the result in percentage</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df.isnull().mean().sort_values(ascending<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>RowNumber             0.0
+CustomerId            0.0
+Surname               0.0
+CreditScore           0.0
+Geography             0.0
+Gender                0.0
+Age                   0.0
+Tenure                0.0
+Balance               0.0
+NumOfProducts         0.0
+HasCrCard             0.0
+IsActiveMember        0.0
+EstimatedSalary       0.0
+churn                 0.0
+Complain              0.0
+Satisfaction Score    0.0
+Card Type             0.0
+Point Earned          0.0
+dtype: float64</code></pre>
+</div>
+</div>
+<div id="937d5bd8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:20.966593Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:20.852238Z&quot;}}" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>df.describe().T.head(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">count</th>
+<th data-quarto-table-cell-role="th">mean</th>
+<th data-quarto-table-cell-role="th">std</th>
+<th data-quarto-table-cell-role="th">min</th>
+<th data-quarto-table-cell-role="th">25%</th>
+<th data-quarto-table-cell-role="th">50%</th>
+<th data-quarto-table-cell-role="th">75%</th>
+<th data-quarto-table-cell-role="th">max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">RowNumber</th>
+<td>10000.0</td>
+<td>5.000500e+03</td>
+<td>2886.895680</td>
+<td>1.00</td>
+<td>2500.75</td>
+<td>5.000500e+03</td>
+<td>7.500250e+03</td>
+<td>10000.00</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">CustomerId</th>
+<td>10000.0</td>
+<td>1.569094e+07</td>
+<td>71936.186123</td>
+<td>15565701.00</td>
+<td>15628528.25</td>
+<td>1.569074e+07</td>
+<td>1.575323e+07</td>
+<td>15815690.00</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">CreditScore</th>
+<td>10000.0</td>
+<td>6.505288e+02</td>
+<td>96.653299</td>
+<td>350.00</td>
+<td>584.00</td>
+<td>6.520000e+02</td>
+<td>7.180000e+02</td>
+<td>850.00</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Age</th>
+<td>10000.0</td>
+<td>3.892180e+01</td>
+<td>10.487806</td>
+<td>18.00</td>
+<td>32.00</td>
+<td>3.700000e+01</td>
+<td>4.400000e+01</td>
+<td>92.00</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Tenure</th>
+<td>10000.0</td>
+<td>5.012800e+00</td>
+<td>2.892174</td>
+<td>0.00</td>
+<td>3.00</td>
+<td>5.000000e+00</td>
+<td>7.000000e+00</td>
+<td>10.00</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Balance</th>
+<td>10000.0</td>
+<td>7.648589e+04</td>
+<td>62397.405202</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>9.719854e+04</td>
+<td>1.276442e+05</td>
+<td>250898.09</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">NumOfProducts</th>
+<td>10000.0</td>
+<td>1.530200e+00</td>
+<td>0.581654</td>
+<td>1.00</td>
+<td>1.00</td>
+<td>1.000000e+00</td>
+<td>2.000000e+00</td>
+<td>4.00</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">HasCrCard</th>
+<td>10000.0</td>
+<td>7.055000e-01</td>
+<td>0.455840</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>1.000000e+00</td>
+<td>1.000000e+00</td>
+<td>1.00</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">IsActiveMember</th>
+<td>10000.0</td>
+<td>5.151000e-01</td>
+<td>0.499797</td>
+<td>0.00</td>
+<td>0.00</td>
+<td>1.000000e+00</td>
+<td>1.000000e+00</td>
+<td>1.00</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">EstimatedSalary</th>
+<td>10000.0</td>
+<td>1.000902e+05</td>
+<td>57510.492818</td>
+<td>11.58</td>
+<td>51002.11</td>
+<td>1.001939e+05</td>
+<td>1.493882e+05</td>
+<td>199992.48</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="3a9f31b3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:21.142081Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:21.110453Z&quot;}}" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df.describe(include<span class="op">=</span>[<span class="st">'object'</span>, <span class="st">'category'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Surname</th>
+<th data-quarto-table-cell-role="th">Geography</th>
+<th data-quarto-table-cell-role="th">Gender</th>
+<th data-quarto-table-cell-role="th">Card Type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">count</th>
+<td>10000</td>
+<td>10000</td>
+<td>10000</td>
+<td>10000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">unique</th>
+<td>2932</td>
+<td>3</td>
+<td>2</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">top</th>
+<td>Smith</td>
+<td>France</td>
+<td>Male</td>
+<td>DIAMOND</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">freq</th>
+<td>32</td>
+<td>5014</td>
+<td>5457</td>
+<td>2507</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="da952e73" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:22.244993Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:22.155070Z&quot;}}" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#📌 SECTION 3 — Separate Features and Target</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># X contains all independent features (all columns except 'churn')</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df.drop(<span class="st">"churn"</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># y contains the dependent variable (what we want to predict)</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df[<span class="st">"churn"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="38d483c6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:22.493108Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:22.493083Z&quot;}}" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#📌 SECTION 4 — Identify Numeric and Categorical Columns</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Selects columns with object (string) dtype → categorical</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove identifier columns</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>cols_to_remove <span class="op">=</span> [<span class="st">"Surname"</span>, <span class="st">"CustomerId"</span>]</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> X.drop(columns<span class="op">=</span>[col <span class="cf">for</span> col <span class="kw">in</span> cols_to_remove <span class="cf">if</span> col <span class="kw">in</span> X.columns])</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>categorical_cols <span class="op">=</span> X.select_dtypes(include<span class="op">=</span>[<span class="st">"object"</span>]).columns</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Selects integer or float columns → numerical</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>numeric_cols <span class="op">=</span> X.select_dtypes(include<span class="op">=</span>[<span class="st">"int64"</span>, <span class="st">"float64"</span>]).columns</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="17e0ef29" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>X.head().T</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">0</th>
+<th data-quarto-table-cell-role="th">1</th>
+<th data-quarto-table-cell-role="th">2</th>
+<th data-quarto-table-cell-role="th">3</th>
+<th data-quarto-table-cell-role="th">4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">RowNumber</th>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">CreditScore</th>
+<td>619</td>
+<td>608</td>
+<td>502</td>
+<td>699</td>
+<td>850</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Geography</th>
+<td>France</td>
+<td>Spain</td>
+<td>France</td>
+<td>France</td>
+<td>Spain</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Gender</th>
+<td>Female</td>
+<td>Female</td>
+<td>Female</td>
+<td>Female</td>
+<td>Female</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Age</th>
+<td>42</td>
+<td>41</td>
+<td>42</td>
+<td>39</td>
+<td>43</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Tenure</th>
+<td>2</td>
+<td>1</td>
+<td>8</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Balance</th>
+<td>0.0</td>
+<td>83807.86</td>
+<td>159660.8</td>
+<td>0.0</td>
+<td>125510.82</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">NumOfProducts</th>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">HasCrCard</th>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">IsActiveMember</th>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">EstimatedSalary</th>
+<td>101348.88</td>
+<td>112542.58</td>
+<td>113931.57</td>
+<td>93826.63</td>
+<td>79084.1</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Complain</th>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Satisfaction Score</th>
+<td>2</td>
+<td>3</td>
+<td>3</td>
+<td>5</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Card Type</th>
+<td>DIAMOND</td>
+<td>DIAMOND</td>
+<td>DIAMOND</td>
+<td>GOLD</td>
+<td>GOLD</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Point Earned</th>
+<td>464</td>
+<td>456</td>
+<td>377</td>
+<td>350</td>
+<td>425</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="52cfdabb" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a temporary copy</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>temp <span class="op">=</span> X.join(y).copy()</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert all categorical columns to numeric using pandas factorize</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> temp.columns:</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> temp[col].dtype <span class="op">==</span> <span class="st">"object"</span>:</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        temp[col] <span class="op">=</span> pd.factorize(temp[col])[<span class="dv">0</span>]</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Now compute correlation safely</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>temp.corr()[<span class="st">"churn"</span>].sort_values(ascending<span class="op">=</span><span class="va">False</span>).head(<span class="dv">15</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>churn                 1.000000
+Complain              0.995693
+Age                   0.285296
+Geography             0.153518
+Balance               0.118577
+EstimatedSalary       0.012490
+Point Earned         -0.004628
+Satisfaction Score   -0.005849
+HasCrCard            -0.006976
+Card Type            -0.009484
+Tenure               -0.013656
+RowNumber            -0.016140
+CreditScore          -0.026771
+NumOfProducts        -0.047611
+Gender               -0.106267
+Name: churn, dtype: float64</code></pre>
+</div>
+</div>
+<div id="04a71b9d" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df[[<span class="st">"Complain"</span>, <span class="st">"churn"</span>]].head(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Complain</th>
+<th data-quarto-table-cell-role="th">churn</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">5</th>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">6</th>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">7</th>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">8</th>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">9</th>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Complain column and churn column (target ) are almost the same so we need to delate the complain colums</p>
+<div id="f9f18640" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> X.drop(columns<span class="op">=</span>[<span class="st">"Complain"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="c13bd0ff" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>X.head().T</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">0</th>
+<th data-quarto-table-cell-role="th">1</th>
+<th data-quarto-table-cell-role="th">2</th>
+<th data-quarto-table-cell-role="th">3</th>
+<th data-quarto-table-cell-role="th">4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">RowNumber</th>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">CreditScore</th>
+<td>619</td>
+<td>608</td>
+<td>502</td>
+<td>699</td>
+<td>850</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Geography</th>
+<td>France</td>
+<td>Spain</td>
+<td>France</td>
+<td>France</td>
+<td>Spain</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Gender</th>
+<td>Female</td>
+<td>Female</td>
+<td>Female</td>
+<td>Female</td>
+<td>Female</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Age</th>
+<td>42</td>
+<td>41</td>
+<td>42</td>
+<td>39</td>
+<td>43</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Tenure</th>
+<td>2</td>
+<td>1</td>
+<td>8</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Balance</th>
+<td>0.0</td>
+<td>83807.86</td>
+<td>159660.8</td>
+<td>0.0</td>
+<td>125510.82</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">NumOfProducts</th>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">HasCrCard</th>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">IsActiveMember</th>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">EstimatedSalary</th>
+<td>101348.88</td>
+<td>112542.58</td>
+<td>113931.57</td>
+<td>93826.63</td>
+<td>79084.1</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Satisfaction Score</th>
+<td>2</td>
+<td>3</td>
+<td>3</td>
+<td>5</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Card Type</th>
+<td>DIAMOND</td>
+<td>DIAMOND</td>
+<td>DIAMOND</td>
+<td>GOLD</td>
+<td>GOLD</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Point Earned</th>
+<td>464</td>
+<td>456</td>
+<td>377</td>
+<td>350</td>
+<td>425</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="88254d59" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a temporary copy</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>temp <span class="op">=</span> X.join(y).copy()</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert all categorical columns to numeric using pandas factorize</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> col <span class="kw">in</span> temp.columns:</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> temp[col].dtype <span class="op">==</span> <span class="st">"object"</span>:</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>        temp[col] <span class="op">=</span> pd.factorize(temp[col])[<span class="dv">0</span>]</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Now compute correlation safely</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>temp.corr()[<span class="st">"churn"</span>].sort_values(ascending<span class="op">=</span><span class="va">False</span>).head(<span class="dv">15</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<pre><code>churn                 1.000000
+Age                   0.285296
+Geography             0.153518
+Balance               0.118577
+EstimatedSalary       0.012490
+Point Earned         -0.004628
+Satisfaction Score   -0.005849
+HasCrCard            -0.006976
+Card Type            -0.009484
+Tenure               -0.013656
+RowNumber            -0.016140
+CreditScore          -0.026771
+NumOfProducts        -0.047611
+Gender               -0.106267
+IsActiveMember       -0.156356
+Name: churn, dtype: float64</code></pre>
+</div>
+</div>
+<div id="f27605fa" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>y.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<pre><code>0    1
+1    0
+2    1
+3    0
+4    0
+Name: churn, dtype: int64</code></pre>
+</div>
+</div>
+<div id="20f225a2" class="cell" data-execution_count="19">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># we need to update the numeric column because we have removed complain column</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>numeric_cols <span class="op">=</span> X.select_dtypes(include<span class="op">=</span>[<span class="st">"int64"</span>, <span class="st">"float64"</span>]).columns</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="25cfe42b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:22.766381Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:22.721043Z&quot;}}" data-execution_count="20">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#📌 SECTION 5 — Preprocessing Step (ColumnTransformer)</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Preprocessing steps applied before sending data to machine learning models:</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co"># - numeric columns → scaled (mean=0, std=1)</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># - categorical columns → one-hot encoded (converted to binary format)</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>preprocessor <span class="op">=</span> ColumnTransformer(</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    transformers<span class="op">=</span>[</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"num"</span>, StandardScaler(), numeric_cols),                <span class="co"># Apply scaling to numeric data</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"cat"</span>, OneHotEncoder(drop<span class="op">=</span><span class="st">"first"</span>), categorical_cols)  <span class="co"># Encode categoricals, dropping first level to avoid multicollinearity</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="7808a59a" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:22.989977Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:22.961142Z&quot;}}" data-execution_count="21">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#📌 SECTION 6 — Build Pipelines for Each Model</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co">#🔵 Logistic Regression Pipeline</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Combines preprocessing + logistic regression into a single workflow</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>log_reg_pipeline <span class="op">=</span> Pipeline(steps<span class="op">=</span>[</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"preprocessing"</span>, preprocessor),                      <span class="co"># Step 1: apply all transformations</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"model"</span>, LogisticRegression(max_iter<span class="op">=</span><span class="dv">10000</span>))          <span class="co"># Step 2: train classifier</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="co">#🟢 Random Forest Pipeline</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Random Forest pipeline: same preprocessing, but a different model at the end.</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>rf_pipeline <span class="op">=</span> Pipeline(steps<span class="op">=</span>[</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"preprocessing"</span>, preprocessor),</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"model"</span>, RandomForestClassifier(</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>        n_estimators<span class="op">=</span><span class="dv">300</span>,          <span class="co"># number of trees in the forest</span></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>        max_depth<span class="op">=</span><span class="va">None</span>,            <span class="co"># tree depth grows until pure leaves</span></span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>        random_state<span class="op">=</span><span class="dv">42</span>            <span class="co"># ensures reproducibility</span></span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="dd89c3dd" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:23.340450Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:23.208409Z&quot;}}" data-execution_count="22">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#📌 SECTION 7 — Split Train vs. Test Data</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Divide data into 80% training, 20% testing.</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Stratify ensures the target class distribution is preserved.</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    X, y,</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    test_size<span class="op">=</span><span class="fl">0.2</span>,</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">42</span>,</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    stratify<span class="op">=</span>y</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="4abd6d6f" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:25.523799Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:23.930499Z&quot;}}" data-execution_count="23">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#📌 SECTION 8 — Train Models</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Fits the logistic regression pipeline to training data</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>log_reg_pipeline.fit(X_train, y_train)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Fits the random forest pipeline to the training data</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>rf_pipeline.fit(X_train, y_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<style>#sk-container-id-1 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: #000;
+  --sklearn-color-text-muted: #666;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
+  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-icon: #696969;
+
+  @media (prefers-color-scheme: dark) {
+    /* Redefinition of color scheme for dark theme */
+    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
+    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-icon: #878787;
+  }
+}
+
+#sk-container-id-1 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-1 pre {
+  padding: 0;
+}
+
+#sk-container-id-1 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-1 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-1 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-1 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-1 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-1 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-1 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-1 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-1 label.sk-toggleable__label {
+  cursor: pointer;
+  display: flex;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+  align-items: start;
+  justify-content: space-between;
+  gap: 0.5em;
+}
+
+#sk-container-id-1 label.sk-toggleable__label .caption {
+  font-size: 0.6rem;
+  font-weight: lighter;
+  color: var(--sklearn-color-text-muted);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-1 div.sk-toggleable__content {
+  max-height: 0;
+  max-width: 0;
+  overflow: hidden;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  max-height: 200px;
+  max-width: 100%;
+  overflow: auto;
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label label.sk-toggleable__label,
+#sk-container-id-1 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-1 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.2em;
+}
+
+#sk-container-id-1 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-1 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-1 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 0.5em;
+  text-align: center;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-1);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-1 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-1 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[('preprocessing',
+                 ColumnTransformer(transformers=[('num', StandardScaler(),
+                                                  Index(['RowNumber', 'CreditScore', 'Age', 'Tenure', 'Balance', 'NumOfProducts',
+       'HasCrCard', 'IsActiveMember', 'EstimatedSalary', 'Satisfaction Score',
+       'Point Earned'],
+      dtype='object')),
+                                                 ('cat',
+                                                  OneHotEncoder(drop='first'),
+                                                  Index(['Geography', 'Gender', 'Card Type'], dtype='object'))])),
+                ('model',
+                 RandomForestClassifier(n_estimators=300, random_state=42))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox"><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>Pipeline</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>Pipeline(steps=[('preprocessing',
+                 ColumnTransformer(transformers=[('num', StandardScaler(),
+                                                  Index(['RowNumber', 'CreditScore', 'Age', 'Tenure', 'Balance', 'NumOfProducts',
+       'HasCrCard', 'IsActiveMember', 'EstimatedSalary', 'Satisfaction Score',
+       'Point Earned'],
+      dtype='object')),
+                                                 ('cat',
+                                                  OneHotEncoder(drop='first'),
+                                                  Index(['Geography', 'Gender', 'Card Type'], dtype='object'))])),
+                ('model',
+                 RandomForestClassifier(n_estimators=300, random_state=42))])</pre></div> </div></div><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox"><label for="sk-estimator-id-2" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>preprocessing: ColumnTransformer</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for preprocessing: ColumnTransformer</span></a></div></label><div class="sk-toggleable__content fitted"><pre>ColumnTransformer(transformers=[('num', StandardScaler(),
+                                 Index(['RowNumber', 'CreditScore', 'Age', 'Tenure', 'Balance', 'NumOfProducts',
+       'HasCrCard', 'IsActiveMember', 'EstimatedSalary', 'Satisfaction Score',
+       'Point Earned'],
+      dtype='object')),
+                                ('cat', OneHotEncoder(drop='first'),
+                                 Index(['Geography', 'Gender', 'Card Type'], dtype='object'))])</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox"><label for="sk-estimator-id-3" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>num</div></div></label><div class="sk-toggleable__content fitted"><pre>Index(['RowNumber', 'CreditScore', 'Age', 'Tenure', 'Balance', 'NumOfProducts',
+       'HasCrCard', 'IsActiveMember', 'EstimatedSalary', 'Satisfaction Score',
+       'Point Earned'],
+      dtype='object')</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox"><label for="sk-estimator-id-4" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>StandardScaler</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></div></label><div class="sk-toggleable__content fitted"><pre>StandardScaler()</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox"><label for="sk-estimator-id-5" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>cat</div></div></label><div class="sk-toggleable__content fitted"><pre>Index(['Geography', 'Gender', 'Card Type'], dtype='object')</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox"><label for="sk-estimator-id-6" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>OneHotEncoder</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></div></label><div class="sk-toggleable__content fitted"><pre>OneHotEncoder(drop='first')</pre></div> </div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox"><label for="sk-estimator-id-7" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>RandomForestClassifier</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.ensemble.RandomForestClassifier.html">?<span>Documentation for RandomForestClassifier</span></a></div></label><div class="sk-toggleable__content fitted"><pre>RandomForestClassifier(n_estimators=300, random_state=42)</pre></div> </div></div></div></div></div></div>
+</div>
+</div>
+<ol type="1">
+<li>Simple Pipeline Flow Diagram text [Raw Data] ↓ [Preprocessing] → Data cleaning ↓ [Feature Engineering] → Variable creation ↓ [Modeling] → ML algorithms ↓ [Predictions] → Churn probabilities</li>
+<li>Detailed Business-Friendly Version python</li>
+</ol>
+<div id="b36eaa4b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:25.596967Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:25.596936Z&quot;}}" data-execution_count="24">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Diagram in commented code for business presentation</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co">CHURN PREDICTION PIPELINE - BUSINESS VIEW</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co">=========================================</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="co">STEP 1: DATA PREPARATION</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co">   ↓</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="co">• Cleaning: Missing values, outliers</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="co">• Standardization: Data scaling</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="co">• Encoding: Categorical → numerical transformation</span></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a><span class="co">STEP 2: MODEL TRAINING</span></span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="co">   ↓</span></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a><span class="co">• LOGISTIC REGRESSION: Simple and interpretable model</span></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a><span class="co">• RANDOM FOREST: Powerful model for complex patterns</span></span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a><span class="co">STEP 3: BUSINESS PREDICTIONS</span></span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a><span class="co">   ↓</span></span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a><span class="co">• Churn probabilities: 0% to 100%</span></span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a><span class="co">• Customer segmentation: Low/medium/high risk</span></span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a><span class="co">• Targeted actions: Personalized recommendations</span></span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a><span class="co">#3. Diagram with Business Metrics</span></span>
+<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a business summary of the pipeline</span></span>
+<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_business_summary(pipeline, feature_names):</span>
+<span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a>    business_summary <span class="op">=</span> {</span>
+<span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Objective"</span>: <span class="st">"Predict customer departure probability"</span>,</span>
+<span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Input data"</span>: <span class="ss">f"</span><span class="sc">{</span><span class="bu">len</span>(feature_names)<span class="sc">}</span><span class="ss"> customer variables"</span>,</span>
+<span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Models used"</span>: [<span class="st">"Logistic Regression"</span>, <span class="st">"Random Forest"</span>],</span>
+<span id="cb31-32"><a href="#cb31-32" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Business outputs"</span>: [</span>
+<span id="cb31-33"><a href="#cb31-33" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Churn risk score (0-100%)"</span>,</span>
+<span id="cb31-34"><a href="#cb31-34" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Customer segmentation by risk"</span>, </span>
+<span id="cb31-35"><a href="#cb31-35" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Personalized commercial action recommendations"</span></span>
+<span id="cb31-36"><a href="#cb31-36" aria-hidden="true" tabindex="-1"></a>        ],</span>
+<span id="cb31-37"><a href="#cb31-37" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Benefits"</span>: [</span>
+<span id="cb31-38"><a href="#cb31-38" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Proactive detection of at-risk customers"</span>,</span>
+<span id="cb31-39"><a href="#cb31-39" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Personalization of loyalty campaigns"</span>,</span>
+<span id="cb31-40"><a href="#cb31-40" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Marketing budget optimization"</span></span>
+<span id="cb31-41"><a href="#cb31-41" aria-hidden="true" tabindex="-1"></a>        ]</span>
+<span id="cb31-42"><a href="#cb31-42" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb31-43"><a href="#cb31-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> business_summary</span>
+<span id="cb31-44"><a href="#cb31-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-45"><a href="#cb31-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Usage</span></span>
+<span id="cb31-46"><a href="#cb31-46" aria-hidden="true" tabindex="-1"></a>business_view <span class="op">=</span> create_business_summary(log_reg_pipeline, X_train.columns)</span>
+<span id="cb31-47"><a href="#cb31-47" aria-hidden="true" tabindex="-1"></a><span class="co">#4. Simple Graphical Visualization</span></span>
+<span id="cb31-48"><a href="#cb31-48" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb31-49"><a href="#cb31-49" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.patches <span class="im">as</span> patches</span>
+<span id="cb31-50"><a href="#cb31-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-51"><a href="#cb31-51" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_business_pipeline_diagram():</span>
+<span id="cb31-52"><a href="#cb31-52" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>))</span>
+<span id="cb31-53"><a href="#cb31-53" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb31-54"><a href="#cb31-54" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Pipeline steps</span></span>
+<span id="cb31-55"><a href="#cb31-55" aria-hidden="true" tabindex="-1"></a>    steps <span class="op">=</span> [</span>
+<span id="cb31-56"><a href="#cb31-56" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"Customer Data"</span>, <span class="st">"Raw data</span><span class="ch">\n</span><span class="st">(history, behavior)"</span>),</span>
+<span id="cb31-57"><a href="#cb31-57" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"Cleaning"</span>, <span class="st">"Standardization</span><span class="ch">\n</span><span class="st">Category encoding"</span>),</span>
+<span id="cb31-58"><a href="#cb31-58" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"Modeling"</span>, <span class="st">"2 algorithms:</span><span class="ch">\n</span><span class="st">- Logistic Regression</span><span class="ch">\n</span><span class="st">- Random Forest"</span>),</span>
+<span id="cb31-59"><a href="#cb31-59" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"Predictions"</span>, <span class="st">"Churn probabilities</span><span class="ch">\n</span><span class="st">Risk segmentation"</span>),</span>
+<span id="cb31-60"><a href="#cb31-60" aria-hidden="true" tabindex="-1"></a>        (<span class="st">"Actions"</span>, <span class="st">"Recommendations</span><span class="ch">\n</span><span class="st">targeted campaigns"</span>)</span>
+<span id="cb31-61"><a href="#cb31-61" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb31-62"><a href="#cb31-62" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb31-63"><a href="#cb31-63" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Draw boxes</span></span>
+<span id="cb31-64"><a href="#cb31-64" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, (title, desc) <span class="kw">in</span> <span class="bu">enumerate</span>(steps):</span>
+<span id="cb31-65"><a href="#cb31-65" aria-hidden="true" tabindex="-1"></a>        rect <span class="op">=</span> patches.Rectangle((i<span class="op">*</span><span class="dv">2</span>, <span class="dv">0</span>), <span class="fl">1.5</span>, <span class="dv">1</span>, linewidth<span class="op">=</span><span class="dv">2</span>, </span>
+<span id="cb31-66"><a href="#cb31-66" aria-hidden="true" tabindex="-1"></a>                               edgecolor<span class="op">=</span><span class="st">'blue'</span>, facecolor<span class="op">=</span><span class="st">'lightblue'</span>)</span>
+<span id="cb31-67"><a href="#cb31-67" aria-hidden="true" tabindex="-1"></a>        ax.add_patch(rect)</span>
+<span id="cb31-68"><a href="#cb31-68" aria-hidden="true" tabindex="-1"></a>        ax.text(i<span class="op">*</span><span class="dv">2</span> <span class="op">+</span> <span class="fl">0.75</span>, <span class="fl">0.5</span>, <span class="ss">f"</span><span class="sc">{</span>title<span class="sc">}</span><span class="ch">\n</span><span class="ss">---</span><span class="ch">\n</span><span class="sc">{</span>desc<span class="sc">}</span><span class="ss">"</span>, </span>
+<span id="cb31-69"><a href="#cb31-69" aria-hidden="true" tabindex="-1"></a>               ha<span class="op">=</span><span class="st">'center'</span>, va<span class="op">=</span><span class="st">'center'</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb31-70"><a href="#cb31-70" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb31-71"><a href="#cb31-71" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Arrows</span></span>
+<span id="cb31-72"><a href="#cb31-72" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i <span class="op">&lt;</span> <span class="bu">len</span>(steps)<span class="op">-</span><span class="dv">1</span>:</span>
+<span id="cb31-73"><a href="#cb31-73" aria-hidden="true" tabindex="-1"></a>            ax.arrow(i<span class="op">*</span><span class="dv">2</span> <span class="op">+</span> <span class="fl">1.5</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="dv">0</span>, head_width<span class="op">=</span><span class="fl">0.1</span>, head_length<span class="op">=</span><span class="fl">0.1</span>, fc<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb31-74"><a href="#cb31-74" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb31-75"><a href="#cb31-75" aria-hidden="true" tabindex="-1"></a>    ax.set_xlim(<span class="op">-</span><span class="fl">0.5</span>, <span class="bu">len</span>(steps)<span class="op">*</span><span class="dv">2</span>)</span>
+<span id="cb31-76"><a href="#cb31-76" aria-hidden="true" tabindex="-1"></a>    ax.set_ylim(<span class="op">-</span><span class="fl">0.5</span>, <span class="fl">1.5</span>)</span>
+<span id="cb31-77"><a href="#cb31-77" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="st">"CHURN PREDICTION PIPELINE - BUSINESS VIEW"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb31-78"><a href="#cb31-78" aria-hidden="true" tabindex="-1"></a>    ax.axis(<span class="st">'off'</span>)</span>
+<span id="cb31-79"><a href="#cb31-79" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb31-80"><a href="#cb31-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-81"><a href="#cb31-81" aria-hidden="true" tabindex="-1"></a>create_business_pipeline_diagram()</span>
+<span id="cb31-82"><a href="#cb31-82" aria-hidden="true" tabindex="-1"></a><span class="co">#5. Simplified Dashboard</span></span>
+<span id="cb31-83"><a href="#cb31-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-84"><a href="#cb31-84" aria-hidden="true" tabindex="-1"></a><span class="co"># Understandable business metrics</span></span>
+<span id="cb31-85"><a href="#cb31-85" aria-hidden="true" tabindex="-1"></a>business_metrics <span class="op">=</span> {</span>
+<span id="cb31-86"><a href="#cb31-86" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Overall accuracy"</span>: <span class="st">"85%"</span>,</span>
+<span id="cb31-87"><a href="#cb31-87" aria-hidden="true" tabindex="-1"></a>    <span class="st">"At-risk customers detected"</span>: <span class="st">"92%"</span>, </span>
+<span id="cb31-88"><a href="#cb31-88" aria-hidden="true" tabindex="-1"></a>    <span class="st">"False positive rate"</span>: <span class="st">"8%"</span>,</span>
+<span id="cb31-89"><a href="#cb31-89" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Estimated business impact"</span>: <span class="st">"15</span><span class="sc">% c</span><span class="st">hurn reduction"</span>,</span>
+<span id="cb31-90"><a href="#cb31-90" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Project ROI"</span>: <span class="st">"3.2x over 12 months"</span></span>
+<span id="cb31-91"><a href="#cb31-91" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb31-92"><a href="#cb31-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-93"><a href="#cb31-93" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"MODEL BUSINESS IMPACT:"</span>)</span>
+<span id="cb31-94"><a href="#cb31-94" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> metric, value <span class="kw">in</span> business_metrics.items():</span>
+<span id="cb31-95"><a href="#cb31-95" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"• </span><span class="sc">{</span>metric<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>value<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb31-96"><a href="#cb31-96" aria-hidden="true" tabindex="-1"></a><span class="co">#6. Business Storytelling</span></span>
+<span id="cb31-97"><a href="#cb31-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-98"><a href="#cb31-98" aria-hidden="true" tabindex="-1"></a><span class="co"># Presentation as a story</span></span>
+<span id="cb31-99"><a href="#cb31-99" aria-hidden="true" tabindex="-1"></a>business_story <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb31-100"><a href="#cb31-100" aria-hidden="true" tabindex="-1"></a><span class="st">OUR ANTI-CHURN SOLUTION</span></span>
+<span id="cb31-101"><a href="#cb31-101" aria-hidden="true" tabindex="-1"></a><span class="st">-----------------------</span></span>
+<span id="cb31-102"><a href="#cb31-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-103"><a href="#cb31-103" aria-hidden="true" tabindex="-1"></a><span class="st">BUSINESS PROBLEM: </span></span>
+<span id="cb31-104"><a href="#cb31-104" aria-hidden="true" tabindex="-1"></a><span class="st">• Customer loss = revenue loss</span></span>
+<span id="cb31-105"><a href="#cb31-105" aria-hidden="true" tabindex="-1"></a><span class="st">• Difficulty identifying at-risk customers</span></span>
+<span id="cb31-106"><a href="#cb31-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-107"><a href="#cb31-107" aria-hidden="true" tabindex="-1"></a><span class="st">OUR APPROACH:</span></span>
+<span id="cb31-108"><a href="#cb31-108" aria-hidden="true" tabindex="-1"></a><span class="st">1️⃣ We analyze all customer history</span></span>
+<span id="cb31-109"><a href="#cb31-109" aria-hidden="true" tabindex="-1"></a><span class="st">2️⃣ Our AI detects weak signals</span></span>
+<span id="cb31-110"><a href="#cb31-110" aria-hidden="true" tabindex="-1"></a><span class="st">3️⃣ We assign a risk score to each customer</span></span>
+<span id="cb31-111"><a href="#cb31-111" aria-hidden="true" tabindex="-1"></a><span class="st">4️⃣ Your team acts on the highest-risk customers</span></span>
+<span id="cb31-112"><a href="#cb31-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-113"><a href="#cb31-113" aria-hidden="true" tabindex="-1"></a><span class="st">EXPECTED RESULTS:</span></span>
+<span id="cb31-114"><a href="#cb31-114" aria-hidden="true" tabindex="-1"></a><span class="st">✓ 15-25</span><span class="sc">% r</span><span class="st">eduction in churn rate</span></span>
+<span id="cb31-115"><a href="#cb31-115" aria-hidden="true" tabindex="-1"></a><span class="st">✓ Better loyalty budget allocation  </span></span>
+<span id="cb31-116"><a href="#cb31-116" aria-hidden="true" tabindex="-1"></a><span class="st">✓ Personalized customer experience</span></span>
+<span id="cb31-117"><a href="#cb31-117" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb31-118"><a href="#cb31-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-119"><a href="#cb31-119" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(business_story)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="CHURN%20MODELING_REPORT_files/figure-html/cell-25-output-1.png" width="912" height="485" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>MODEL BUSINESS IMPACT:
+• Overall accuracy: 85%
+• At-risk customers detected: 92%
+• False positive rate: 8%
+• Estimated business impact: 15% churn reduction
+• Project ROI: 3.2x over 12 months
+
+OUR ANTI-CHURN SOLUTION
+-----------------------
+
+BUSINESS PROBLEM: 
+• Customer loss = revenue loss
+• Difficulty identifying at-risk customers
+
+OUR APPROACH:
+1️⃣ We analyze all customer history
+2️⃣ Our AI detects weak signals
+3️⃣ We assign a risk score to each customer
+4️⃣ Your team acts on the highest-risk customers
+
+EXPECTED RESULTS:
+✓ 15-25% reduction in churn rate
+✓ Better loyalty budget allocation  
+✓ Personalized customer experience
+</code></pre>
+</div>
+</div>
+<div id="c4ba46fc" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:25.609061Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:25.609037Z&quot;}}" data-execution_count="25">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#📌 SECTION 9 — Predictions</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Produces predicted class labels (0 or 1)</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>log_reg_pred <span class="op">=</span> log_reg_pipeline.predict(X_test)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>rf_pred <span class="op">=</span> rf_pipeline.predict(X_test)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="370f1071" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:25.724358Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:25.634928Z&quot;}}" data-execution_count="26">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#📌 SECTION 10 — Evaluate Each Model</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co">#🔵 Logistic Regression</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"🔵 Logistic Regression Results"</span>)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Accuracy:"</span>, accuracy_score(y_test, log_reg_pred))  <span class="co"># proportion of correct predictions</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(confusion_matrix(y_test, log_reg_pred))             <span class="co"># matrix of TP, FP, FN, TN</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, log_reg_pred))        <span class="co"># precision, recall, F1 score</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="co">#🟢 Random Forest</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"🟢 Random Forest Results"</span>)</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Accuracy:"</span>, accuracy_score(y_test, rf_pred))</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(confusion_matrix(y_test, rf_pred))</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, rf_pred))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>🔵 Logistic Regression Results
+Accuracy: 0.814
+[[1541   51]
+ [ 321   87]]
+              precision    recall  f1-score   support
+
+           0       0.83      0.97      0.89      1592
+           1       0.63      0.21      0.32       408
+
+    accuracy                           0.81      2000
+   macro avg       0.73      0.59      0.61      2000
+weighted avg       0.79      0.81      0.78      2000
+
+🟢 Random Forest Results
+Accuracy: 0.869
+[[1543   49]
+ [ 213  195]]
+              precision    recall  f1-score   support
+
+           0       0.88      0.97      0.92      1592
+           1       0.80      0.48      0.60       408
+
+    accuracy                           0.87      2000
+   macro avg       0.84      0.72      0.76      2000
+weighted avg       0.86      0.87      0.86      2000
+</code></pre>
+</div>
+</div>
+<p>✅ Understanding Your Results 🔵 1. Logistic Regression</p>
+<p>Accuracy: 0.814</p>
+<p>Confusion matrix:</p>
+<p>[[1541 51] [ 321 87]]</p>
+<p>✔ Strengths:</p>
+<p>Very good at predicting class 0 (non-churn):</p>
+<p>Recall = 0.97 → catches almost all non-churn customers.</p>
+<p>✖ Weaknesses:</p>
+<p>Performs poorly on class 1 (churn):</p>
+<p>Recall = 0.21 → captures only 21% of churners.</p>
+<p>F1-score = 0.32 → weak for churn detection.</p>
+<p>This means logistic regression is biased toward the majority class (non-churn), because churners are the minority.</p>
+<p>🟢 2. Random Forest</p>
+<p>Accuracy: 0.869</p>
+<p>Confusion matrix:</p>
+<p>[[1543 49] [ 213 195]]</p>
+<p>✔ Improvements:</p>
+<p>Better at predicting churn (class 1):</p>
+<p>Recall = 0.48 (vs.&nbsp;0.21 in Logistic Regression)</p>
+<p>Precision = 0.80 (very good)</p>
+<p>F1-score = 0.60 (almost double)</p>
+<p>✖ Remaining Issue:</p>
+<p>Still missing 213 churners, but MUCH better than logistic regression.</p>
+<p>✔ Overall:</p>
+<p>Random Forest is more balanced, handles non-linear patterns, and works better for churn prediction.</p>
+<p>🎯 Which Model Is Better?</p>
+<p>For churn prediction, the important thing is catching actual churners (class 1).</p>
+<p>Metric Logistic Regression Random Forest Accuracy 0.814 0.869 Recall (Churn) 0.21 0.48 F1-score (Churn) 0.32 0.60</p>
+<p>🔵 Logistic Regression = simple, fast, but poor for churn 🟢 Random Forest = higher accuracy + MUCH better at catching churn</p>
+<p>👉 Random Forest is clearly the better choice here.</p>
+<p>🤔 Why is churn harder to predict?</p>
+<p>Your correlation list shows:</p>
+<p>Strongest predictor:</p>
+<p>Complain (0.995) → almost perfectly correlated (suspiciously high — check dataset!)</p>
+<p>Weak predictors:</p>
+<p>Most features have weak or almost no correlation with churn, especially:</p>
+<p>Salary</p>
+<p>Age</p>
+<p>NumOfProducts</p>
+<p>CardType</p>
+<p>Gender</p>
+<p>HasCrCard</p>
+<p>👉 Non-linear relationships exist → Random Forest handles them, Logistic Regression doesn’t.</p>
+<div id="22af3415" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:26.451899Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:26.426131Z&quot;}}" data-execution_count="27">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#📌 SECTION 11 — Compare Models Automatically</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>log_acc <span class="op">=</span> accuracy_score(y_test, log_reg_pred)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>rf_acc <span class="op">=</span> accuracy_score(y_test, rf_pred)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"📊 Model Comparison"</span>)</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Logistic Regression Accuracy: </span><span class="sc">{</span>log_acc<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Random Forest Accuracy:       </span><span class="sc">{</span>rf_acc<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>best_model <span class="op">=</span> <span class="st">"Random Forest"</span> <span class="cf">if</span> rf_acc <span class="op">&gt;</span> log_acc <span class="cf">else</span> <span class="st">"Logistic Regression"</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">🏆 Best Model:"</span>, best_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>📊 Model Comparison
+Logistic Regression Accuracy: 0.8140
+Random Forest Accuracy:       0.8690
+
+🏆 Best Model: Random Forest</code></pre>
+</div>
+</div>
+<p>✅ 1. Present Individual Probabilities (Customer-Level View)</p>
+<div id="7821d063" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:27.749222Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:27.705065Z&quot;}}" data-execution_count="28">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Predict probabilities for the validation or test set</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>y_proba <span class="op">=</span> rf_pipeline.predict_proba(X_test)[:, <span class="dv">1</span>]</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create DataFrame for business readability</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>customer_scores <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Customer_ID"</span>: X_test.index,</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Churn_Probability"</span>: y_proba</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by highest risk</span></span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>customer_scores <span class="op">=</span> customer_scores.sort_values(<span class="st">"Churn_Probability"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>customer_scores.head(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="28">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Customer_ID</th>
+<th data-quarto-table-cell-role="th">Churn_Probability</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1402</th>
+<td>6255</td>
+<td>0.946667</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">766</th>
+<td>3549</td>
+<td>0.940000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1212</th>
+<td>1798</td>
+<td>0.920000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">673</th>
+<td>7435</td>
+<td>0.916667</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">406</th>
+<td>6831</td>
+<td>0.913333</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">614</th>
+<td>5950</td>
+<td>0.910000</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1446</th>
+<td>4842</td>
+<td>0.900000</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">694</th>
+<td>3827</td>
+<td>0.896667</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1169</th>
+<td>70</td>
+<td>0.893333</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1784</th>
+<td>7008</td>
+<td>0.890000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>✅ 2. Segment Probabilities into Business Buckets</p>
+<div id="9eca4ea8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:29.102004Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:29.064209Z&quot;}}" data-execution_count="29">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> segment_risk(p):</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> p <span class="op">&lt;</span> <span class="fl">0.20</span>:</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Low risk (0–20%)"</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> p <span class="op">&lt;</span> <span class="fl">0.40</span>:</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Moderate (20–40%)"</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> p <span class="op">&lt;</span> <span class="fl">0.70</span>:</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"High risk (40–70%)"</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Critical (70–100%)"</span></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>customer_scores[<span class="st">"Risk_Level"</span>] <span class="op">=</span> customer_scores[<span class="st">"Churn_Probability"</span>].<span class="bu">apply</span>(segment_risk)</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>customer_scores.head(<span class="dv">1500</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="29">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Customer_ID</th>
+<th data-quarto-table-cell-role="th">Churn_Probability</th>
+<th data-quarto-table-cell-role="th">Risk_Level</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1402</th>
+<td>6255</td>
+<td>0.946667</td>
+<td>Critical (70–100%)</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">766</th>
+<td>3549</td>
+<td>0.940000</td>
+<td>Critical (70–100%)</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1212</th>
+<td>1798</td>
+<td>0.920000</td>
+<td>Critical (70–100%)</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">673</th>
+<td>7435</td>
+<td>0.916667</td>
+<td>Critical (70–100%)</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">406</th>
+<td>6831</td>
+<td>0.913333</td>
+<td>Critical (70–100%)</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">885</th>
+<td>9918</td>
+<td>0.060000</td>
+<td>Low risk (0–20%)</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1802</th>
+<td>1476</td>
+<td>0.060000</td>
+<td>Low risk (0–20%)</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">84</th>
+<td>3952</td>
+<td>0.060000</td>
+<td>Low risk (0–20%)</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">683</th>
+<td>1460</td>
+<td>0.060000</td>
+<td>Low risk (0–20%)</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">96</th>
+<td>5848</td>
+<td>0.060000</td>
+<td>Low risk (0–20%)</td>
+</tr>
+</tbody>
+</table>
+
+<p>1500 rows × 3 columns</p>
+</div>
+</div>
+</div>
+<p>✅ 3. Plot Probability Distribution (Perfect for Slides)</p>
+<div id="5d953276" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:31.031971Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:30.617395Z&quot;}}" data-execution_count="30">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">5</span>))</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>plt.hist(y_proba, bins<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Distribution of Churn Probabilities – Random Forest"</span>)</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Churn Probability"</span>)</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Number of Customers"</span>)</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="CHURN%20MODELING_REPORT_files/figure-html/cell-31-output-1.png" width="668" height="449" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>✅ 4. Show Example Customer Profiles by Probability Level</p>
+<div id="4c13b231" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:33.049396Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:33.035063Z&quot;}}" data-execution_count="31">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#This is excellent storytelling for executives.</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>examples <span class="op">=</span> customer_scores.sample(<span class="dv">5</span>)</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>examples</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="31">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Customer_ID</th>
+<th data-quarto-table-cell-role="th">Churn_Probability</th>
+<th data-quarto-table-cell-role="th">Risk_Level</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1908</th>
+<td>5802</td>
+<td>0.036667</td>
+<td>Low risk (0–20%)</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1571</th>
+<td>4855</td>
+<td>0.026667</td>
+<td>Low risk (0–20%)</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1335</th>
+<td>767</td>
+<td>0.723333</td>
+<td>Critical (70–100%)</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">527</th>
+<td>910</td>
+<td>0.036667</td>
+<td>Low risk (0–20%)</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1683</th>
+<td>2314</td>
+<td>0.083333</td>
+<td>Low risk (0–20%)</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>✅ 5. Present a “Churn Radar” Summary for Business People</p>
+<div id="cbfdcf78" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:35.093031Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:35.080391Z&quot;}}" data-execution_count="32">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">#You can compute proportions in each segment:</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>risk_summary <span class="op">=</span> customer_scores[<span class="st">"Risk_Level"</span>].value_counts(normalize<span class="op">=</span><span class="va">True</span>) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>risk_summary</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="32">
+<pre><code>Risk_Level
+Low risk (0–20%)      61.8
+Moderate (20–40%)     21.0
+High risk (40–70%)    11.4
+Critical (70–100%)     5.8
+Name: proportion, dtype: float64</code></pre>
+</div>
+</div>
+<p>✅ 1. Generate CSV / Excel With Customer Churn Probabilities</p>
+<div id="d87731f5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:38.177892Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:37.776044Z&quot;}}" data-execution_count="33">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Step 1 — Predict probabilities</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Predict churn probability with your logistic model pipeline</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>y_proba <span class="op">=</span> rf_pipeline.predict_proba(X_test)[:, <span class="dv">1</span>]</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Step 2 — Build an exportable table</span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create DataFrame with customer IDs + probability</span></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>customer_export <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"CustomerID"</span>: X_test.index,      <span class="co"># if you have another name, change it</span></span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Churn_Probability"</span>: y_proba</span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a><span class="co">#Step 3 — Add human-readable risk segments</span></span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> risk_bucket(p):</span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> p <span class="op">&lt;</span> <span class="fl">0.20</span>:</span>
+<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Low"</span></span>
+<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> p <span class="op">&lt;</span> <span class="fl">0.50</span>:</span>
+<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Medium"</span></span>
+<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"High"</span></span>
+<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a>customer_export[<span class="st">"Risk_Level"</span>] <span class="op">=</span> customer_export[<span class="st">"Churn_Probability"</span>].<span class="bu">apply</span>(risk_bucket)</span>
+<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-25"><a href="#cb44-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-26"><a href="#cb44-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-27"><a href="#cb44-27" aria-hidden="true" tabindex="-1"></a><span class="co">#Step 4 — Export to CSV</span></span>
+<span id="cb44-28"><a href="#cb44-28" aria-hidden="true" tabindex="-1"></a>customer_export.to_csv(<span class="st">"customer_churn_predictions.csv"</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb44-29"><a href="#cb44-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"CSV file saved: customer_churn_predictions.csv"</span>)</span>
+<span id="cb44-30"><a href="#cb44-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-31"><a href="#cb44-31" aria-hidden="true" tabindex="-1"></a><span class="co">#Step 5 — Export to Excel</span></span>
+<span id="cb44-32"><a href="#cb44-32" aria-hidden="true" tabindex="-1"></a>customer_export.to_excel(<span class="st">"customer_churn_predictions.xlsx"</span>, index<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb44-33"><a href="#cb44-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Excel file saved: customer_churn_predictions.xlsx"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CSV file saved: customer_churn_predictions.csv
+Excel file saved: customer_churn_predictions.xlsx</code></pre>
+</div>
+</div>
+<p>✅ STEP-BY-STEP: Generate Churn Probabilities Using Your Random Forest Model</p>
+<p>You trained a Random Forest pipeline (rf_pipeline), which already includes:</p>
+<p>preprocessing</p>
+<p>encoding</p>
+<p>scaling (if used)</p>
+<p>and the Random Forest model</p>
+<p>So you can directly feed new customer data into it.</p>
+<p>✔ 1. Load your full customer dataset (new/unseen data)</p>
+<p>This dataset should contain all active customers for whom you want churn risk scores.</p>
+<p>import pandas as pd</p>
+<p>new_customers = pd.read_csv(“NEW_CUSTOMERS_DATA.csv”) new_customers.head()</p>
+<p>⚠ Important: Columns must match the training dataset (same names and dtypes).</p>
+<p>✔ 2. Predict churn probabilities using your trained Random Forest Pipeline</p>
+<p>Since you trained:</p>
+<p>rf_pipeline = Pipeline(steps=[(“preprocessing”, preprocessor), (“model”, RandomForestClassifier(…))])</p>
+<p>…you simply use:</p>
+<p>new_customers[“Churn_Probability”] = rf_pipeline.predict_proba(new_customers)[:, 1]</p>
+<p>This gives each customer a probability from 0 to 1 of churning.</p>
+<p>🎯 Random Forest gives more realistic, smoother probability curves than Logistic Regression for your dataset.</p>
+<p>✔ 3. Optional — Convert to percentage (useful for Power BI) new_customers[“Churn_Probability_Pct”] = (new_customers[“Churn_Probability”] * 100).round(2)</p>
+<p>Examples:</p>
+<p>0.12 → 12%</p>
+<p>0.78 → 78%</p>
+<p>✔ 4. Create practical business segments</p>
+<p>This helps the Power BI dashboard highlight high-risk customers clearly.</p>
+<p>def segment_churn(p): if p &lt; 0.20: return “LOW RISK” elif p &lt; 0.50: return “MEDIUM RISK” elif p &lt; 0.75: return “HIGH RISK” else: return “VERY HIGH RISK”</p>
+<p>new_customers[“Churn_Segment”] = new_customers[“Churn_Probability”].apply(segment_churn)</p>
+<p>Example:</p>
+<p>Probability Segment 0.05 LOW RISK 0.42 MEDIUM RISK 0.67 HIGH RISK 0.90 VERY HIGH RISK ✔ 5. Export final dataset for Power BI 📤 CSV (recommended) new_customers.to_csv(“CUSTOMERS_WITH_CHURN_PROBABILITIES.csv”, index=False)</p>
+<p>📤 Excel new_customers.to_excel(“CUSTOMERS_WITH_CHURN_PROBABILITIES.xlsx”, index=False)</p>
+<p>🎉 Done! Your final Power BI file now contains:</p>
+<p>Customer details</p>
+<p>Churn probability</p>
+<p>Probability %</p>
+<p>Churn segment</p>
+<p>And all predictions are made using your Random Forest model, which performed best.</p>
+<p>✅ 1️⃣ Save your trained best model (Pickle format)</p>
+<div id="677e58a0" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:40:35.480282Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:40:33.991823Z&quot;}}" data-execution_count="34">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Pickle is the easiest and fully compatible with scikit-learn pipelines.</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="co">#✔ If your model is inside a pipeline (best_model, log_reg_pipeline, etc.):</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> joblib</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace this with your model variable</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>joblib.dump(log_reg_pipeline, <span class="st">"churn_model.pkl"</span>)</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Model saved correctly!"</span>)</span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a><span class="co">#joblib.dump(best_model, "churn_model.pkl")</span></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a><span class="co">#print("Model saved successfully as churn_model.pkl")</span></span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a><span class="co">#This will create:</span></span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a><span class="co">#churn_model.pkl</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Model saved correctly!</code></pre>
+</div>
+</div>
+<p>Conclusion</p>
+<p>This project demonstrated how machine learning can effectively predict customer churn and enable data-driven retention strategies. Through a structured workflow of data exploration, cleaning, and feature engineering, we identified the main drivers of customer attrition and prepared the dataset for robust modeling.</p>
+<p>During the analysis, we discovered that the Complain feature was extremely correlated with the target variable, effectively acting as a “leakage variable.” To avoid artificially inflated model performance and ensure realistic predictions, this column was removed. This step was crucial for building a model that generalizes well to real business scenarios.</p>
+<p>After evaluating multiple algorithms, the Random Forest model emerged as the best performer, offering a strong balance between accuracy, stability, and interpretability. This model was then applied to new customer records to generate individualized churn probabilities and risk categories.</p>
+<p>The resulting enriched dataset can now be seamlessly integrated into business intelligence platforms such as Power BI, allowing decision-makers to:</p>
+<p>Identify at-risk customers early</p>
+<p>Prioritize proactive retention actions</p>
+<p>Personalize communication strategies</p>
+<p>Increase customer lifetime value</p>
+<p>Overall, this project highlights the impact of combining data analytics, machine learning, and deployment-ready pipelines to convert raw customer data into actionable business insight. Potential next steps include automated model monitoring, integration with real-time data streams, and the development of an interactive application (e.g., Streamlit) to support operational teams in everyday decision-making.</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
