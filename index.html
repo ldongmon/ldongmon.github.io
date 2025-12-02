@@ -89,39 +89,45 @@
 
     <h2>📌 Project Overview</h2>
     <p>
-        Customer churn is a major challenge for subscription-based or service-based businesses.
-        The goal of this project is to create a predictive model that estimates the probability
-        that a customer will churn, using demographic, behavioral, and usage-related variables.
+        Customer churn is a critical challenge for subscription-based and service-driven businesses.
+        This project predicts the likelihood that a customer will churn using demographic,
+        behavioral, transactional, and product-level variables. The model is integrated into a 
+        full analytics pipeline with data processing, machine learning, and BI reporting.
     </p>
 
     <h2>🎯 Objectives</h2>
     <ul>
-        <li>Analyze customer data to understand churn patterns.</li>
-        <li>Build and evaluate multiple machine-learning models.</li>
-        <li>Identify the best-performing model.</li>
-        <li>Generate churn probabilities for business teams.</li>
-        <li>Deploy a user-friendly prediction interface with Streamlit.</li>
+        <li>Analyze customer data to uncover churn drivers and behavioral patterns.</li>
+        <li>Train and evaluate multiple machine-learning models.</li>
+        <li>Select the best-performing model based on accuracy and stability.</li>
+        <li>Generate real churn probabilities for new customer datasets.</li>
+        <li>Deploy a Streamlit-based prediction app for non-technical business users.</li>
     </ul>
 
     <h2>🧠 Machine Learning Pipeline</h2>
     <ol>
-        <li>Data preprocessing & cleaning</li>
+        <li>Data preprocessing & cleaning (handling missing values, outliers, encoding)</li>
         <li>Feature engineering</li>
         <li>Train/test split</li>
-        <li>Model training (Logistic Regression, Random Forest, XGBoost...)</li>
-        <li>Model selection (Logistic Regression was best)</li>
+        <li>Model training (Logistic Regression, Random Forest, XGBoost, KNN)</li>
+        <li>Model selection (<strong>Random Forest was the best model</strong>)</li>
         <li>Final model export (.pkl)</li>
     </ol>
 
-    <h2>📈 Best Model: Logistic Regression</h2>
+    <h2>📈 Best Model: Random Forest Classifier</h2>
     <p>
-        Logistic Regression achieved the most stable and interpretable performance,
-        making it suitable for operational use and business interpretation.
-        The model generates churn probabilities for each customer, which can be used in
-        CRM systems and Power BI dashboards.
+        The <strong>Random Forest</strong> model delivered the highest predictive performance,
+        achieving strong accuracy, stability, and robustness against overfitting.
+        Its ability to capture non-linear relationships made it superior to simpler models.
+        The final model outputs a churn probability score for each customer, which was later
+        integrated into Power BI dashboards to support customer retention strategies.
     </p>
 
     <a href="model/churn_model.pkl" class="button" download>Download Model (PKL)</a>
+
+</div>
+
+</body>
 
   <h2>🔬 Complete Jupyter Notebook Analysis</h2>
 <p>Explore the full machine learning workflow with code, visualizations, and results:</p>
