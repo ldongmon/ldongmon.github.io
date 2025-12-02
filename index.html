@@ -381,9 +381,9 @@
 
 <!-- Dataset Downloads -->
 <div style="background: #fff3cd; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px solid #ffeaa7;">
-    <h3 style="color: #856404; margin-top: 0;">📥 Project Datasets</h3>
+    <h3 style="color: #856404; margin-top: 0;">📥 Sample Datasets</h3>
     <p style="margin: 0 0 15px 0; color: #856404;">
-        Download the datasets used to build the churn prediction model and BI analytics platform:
+        Download the synthetic datasets used for this analysis:
     </p>
     
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px;">
@@ -406,32 +406,32 @@
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 25px 0;">
     <div style="text-align: center; padding: 15px; background: linear-gradient(135deg, #0066cc, #004c99); color: white; border-radius: 8px;">
         <div style="font-size: 24px; font-weight: bold;">2,000+</div>
-        <div style="font-size: 12px;">Customers Processed</div>
+        <div style="font-size: 12px;">Customers Analyzed</div>
     </div>
     <div style="text-align: center; padding: 15px; background: linear-gradient(135deg, #28a745, #1e7e34); color: white; border-radius: 8px;">
-        <div style="font-size: 24px; font-weight: bold;">87%</</div>
-        <div style="font-size: 12px;">Random Forest Accuracy</div>
+        <div style="font-size: 24px; font-weight: bold;">48.9%</div>
+        <div style="font-size: 12px;">Avg Churn Probability</div>
     </div>
     <div style="text-align: center; padding: 15px; background: linear-gradient(135deg, #6f42c1, #59359e); color: white; border-radius: 8px;">
         <div style="font-size: 24px; font-weight: bold;">4</div>
-        <div style="font-size: 12px;">Churn Risk Segments</div>
+        <div style="font-size: 12px;">Customer Segments</div>
     </div>
     <div style="text-align: center; padding: 15px; background: linear-gradient(135deg, #fd7e14, #e5690d); color: white; border-radius: 8px;">
         <div style="font-size: 24px; font-weight: bold;">5+</div>
-        <div style="font-size: 12px;">Data Sources Integrated</div>
+        <div style="font-size: 12px;">Product Categories</div>
     </div>
 </div>
 
 <!-- Action Buttons -->
 <div style="text-align: center; margin-top: 30px;">
     <a href="YOUR_POWER_BI_DASHBOARD_LINK" class="button" target="_blank" style="margin: 5px; padding: 15px 25px; font-size: 16px;">
-        🚀 View Interactive Power BI Dashboard
+        🚀 Open Interactive Dashboard
     </a>
-    <a href="downloads/churn_dashboard.pbix" class="button" download style="margin: 5px; padding: 15px 25px; font-size: 16px; background: #28a745;">
-        📥 Download Power BI PBIX
+    <a href="downloads/customer_analytics_dashboard.pbix" class="button" download style="margin: 5px; padding: 15px 25px; font-size: 16px; background: #28a745;">
+        📥 Download PBIX File
     </a>
-    <a href="documentation/churn_project_documentation.pdf" class="button" target="_blank" style="margin: 5px; padding: 15px 25px; font-size: 16px; background: #6f42c1;">
-        📋 View Project Documentation
+    <a href="documentation/powerbi-documentation.pdf" class="button" target="_blank" style="margin: 5px; padding: 15px 25px; font-size: 16px; background: #6f42c1;">
+        📋 View Documentation
     </a>
 </div>
 
@@ -440,22 +440,16 @@
     <h4 style="color: #17a2b8; margin-top: 0;">🛠 Technical Implementation</h4>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; font-size: 14px;">
         <div>
-            <strong>Machine Learning:</strong> Random Forest (best model), Pipeline preprocessing, Feature engineering
+            <strong>Tools:</strong> Power BI Desktop, DAX, Power Query
         </div>
         <div>
-            <strong>Deployment:</strong> Streamlit app for real-time churn prediction
+            <strong>Data Model:</strong> Star Schema with 4 tables
         </div>
         <div>
-            <strong>ETL:</strong> Power Query transformations & data cleaning
+            <strong>Measures:</strong> 15+ DAX calculations
         </div>
         <div>
-            <strong>Data Model:</strong> Star schema integrating transactions, customers, accounts & products
-        </div>
-        <div>
-            <strong>DAX:</strong> 15+ business measures and churn KPIs
-        </div>
-        <div>
-            <strong>Churn Segmentation:</strong> Rule-based segmentation (Low / Medium / High / Very High)
+            <strong>Segmentation:</strong> K-means clustering + rule-based
         </div>
     </div>
 </div>
