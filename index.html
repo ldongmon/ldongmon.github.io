@@ -124,43 +124,66 @@
     <a href="model/churn_model.pkl" class="button" download>Download Model (PKL)</a>
 
     <h2>🔬 Complete Jupyter Notebook Analysis</h2>
-    <p>Explore the full machine learning workflow with code, visualizations, and results:</p>
-    
-    <div style="width: 100%; height: 700px; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-        <iframe 
-            src="https://nbviewer.org/github/ldongmon/ldongmon.github.io/blob/main/CHURN%20MODELING_REPORT.ipynb" 
-            width="100%" 
-            height="100%" 
-            frameborder="0"
-            style="border: none;"
-            title="Churn Prediction Jupyter Notebook">
-        </iframe>
-    </div>
-    
-    <div style="text-align: center; margin-top: 15px; color: #666;">
-        <p><strong>Interactive Notebook Features:</strong></p>
-        <ul style="display: inline-block; text-align: left; margin: 0;">
-            <li>View all Python code and outputs</li>
-            <li>See data visualizations and charts</li>
-            <li>Read detailed analysis and explanations</li>
-            <li>Download the notebook file</li>
-        </ul>
-    </div>
+<p>Explore the full machine learning workflow with code, visualizations, and results:</p>
 
-    <div style="text-align: center; margin-top: 20px;">
-        <a href="https://github.com/ldongmon/ldongmon.github.io/blob/main/CHURN%20MODELING_REPORT.ipynb" 
-           class="button" 
-           target="_blank"
-           style="display: inline-block; margin: 5px;">
-            📁 View Raw Notebook on GitHub
-        </a>
-        <a href="https://nbviewer.org/github/ldongmon/ldongmon.github.io/blob/main/CHURN%20MODELING_REPORT.ipynb" 
-           class="button" 
-           target="_blank"
-           style="display: inline-block; margin: 5px; background: #28a745;">
-            🔍 Open in nbviewer
-        </a>
-    </div>
+<div style="width: 100%; height: 700px; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+    <iframe 
+        id="jupyterFrame"
+        width="100%" 
+        height="100%" 
+        frameborder="0"
+        style="border: none;"
+        title="Churn Prediction Jupyter Notebook">
+    </iframe>
+</div>
+
+<script>
+    // This ensures the notebook always loads fresh
+    document.addEventListener('DOMContentLoaded', function() {
+        const frame = document.getElementById('jupyterFrame');
+        const timestamp = new Date().getTime();
+        
+        // Option 1: Use nbviewer with cache busting
+        // frame.src = `https://nbviewer.org/github/ldongmon/ldongmon.github.io/blob/main/CHURN%20MODELING_REPORT.ipynb?v=${timestamp}`;
+        
+        // Option 2: Use GitHub raw (always fresh)
+        frame.src = `https://github.com/ldongmon/ldongmon.github.io/raw/main/CHURN%20MODELING_REPORT.ipynb?v=${timestamp}`;
+        
+        // Option 3: Use nbviewer with flush_cache
+        // frame.src = 'https://nbviewer.org/github/ldongmon/ldongmon.github.io/blob/main/CHURN%20MODELING_REPORT.ipynb?flush_cache=true';
+    });
+</script>
+
+<div style="text-align: center; margin-top: 15px; color: #666;">
+    <p><strong>Interactive Notebook Features:</strong></p>
+    <ul style="display: inline-block; text-align: left; margin: 0;">
+        <li>View all Python code and outputs</li>
+        <li>See data visualizations and charts</li>
+        <li>Read detailed analysis and explanations</li>
+        <li>Download the notebook file</li>
+    </ul>
+</div>
+
+<div style="text-align: center; margin-top: 20px;">
+    <a href="https://github.com/ldongmon/ldongmon.github.io/blob/main/CHURN%20MODELING_REPORT.ipynb" 
+       class="button" 
+       target="_blank"
+       style="display: inline-block; margin: 5px;">
+        📁 View Raw Notebook on GitHub
+    </a>
+    <a href="https://nbviewer.org/github/ldongmon/ldongmon.github.io/blob/main/CHURN%20MODELING_REPORT.ipynb?flush_cache=true" 
+       class="button" 
+       target="_blank"
+       style="display: inline-block; margin: 5px; background: #28a745;">
+        🔄 Force Refresh in nbviewer
+    </a>
+    <a href="https://colab.research.google.com/github/ldongmon/ldongmon.github.io/blob/main/CHURN%20MODELING_REPORT.ipynb" 
+       class="button" 
+       target="_blank"
+       style="display: inline-block; margin: 5px; background: #f9ab00;">
+        🚀 Open in Google Colab
+    </a>
+</div>
 
     <h2>🖥️ Live Demo (Streamlit App)</h2>
     <p>Try the interactive churn prediction app:</p>
