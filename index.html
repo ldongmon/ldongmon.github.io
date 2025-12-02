@@ -381,9 +381,9 @@
 
 <!-- Dataset Downloads -->
 <div style="background: #fff3cd; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px solid #ffeaa7;">
-    <h3 style="color: #856404; margin-top: 0;">📥 Sample Datasets</h3>
+    <h3 style="color: #856404; margin-top: 0;">📥 Project Datasets</h3>
     <p style="margin: 0 0 15px 0; color: #856404;">
-        Download the synthetic datasets used for this analysis:
+        Download the datasets used to build the churn prediction model and BI analytics platform:
     </p>
     
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px;">
@@ -406,51 +406,95 @@
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 25px 0;">
     <div style="text-align: center; padding: 15px; background: linear-gradient(135deg, #0066cc, #004c99); color: white; border-radius: 8px;">
         <div style="font-size: 24px; font-weight: bold;">2,000+</div>
-        <div style="font-size: 12px;">Customers Analyzed</div>
+        <div style="font-size: 12px;">Customers Processed</div>
     </div>
     <div style="text-align: center; padding: 15px; background: linear-gradient(135deg, #28a745, #1e7e34); color: white; border-radius: 8px;">
-        <div style="font-size: 24px; font-weight: bold;">48.9%</div>
-        <div style="font-size: 12px;">Avg Churn Probability</div>
+        <div style="font-size: 24px; font-weight: bold;">87%</</div>
+        <div style="font-size: 12px;">Random Forest Accuracy</div>
     </div>
     <div style="text-align: center; padding: 15px; background: linear-gradient(135deg, #6f42c1, #59359e); color: white; border-radius: 8px;">
         <div style="font-size: 24px; font-weight: bold;">4</div>
-        <div style="font-size: 12px;">Customer Segments</div>
+        <div style="font-size: 12px;">Churn Risk Segments</div>
     </div>
     <div style="text-align: center; padding: 15px; background: linear-gradient(135deg, #fd7e14, #e5690d); color: white; border-radius: 8px;">
         <div style="font-size: 24px; font-weight: bold;">5+</div>
-        <div style="font-size: 12px;">Product Categories</div>
+        <div style="font-size: 12px;">Data Sources Integrated</div>
     </div>
 </div>
 
 <!-- Action Buttons -->
 <div style="text-align: center; margin-top: 30px;">
     <a href="YOUR_POWER_BI_DASHBOARD_LINK" class="button" target="_blank" style="margin: 5px; padding: 15px 25px; font-size: 16px;">
-        🚀 Open Interactive Dashboard
+        🚀 View Interactive Power BI Dashboard
     </a>
-    <a href="downloads/customer_analytics_dashboard.pbix" class="button" download style="margin: 5px; padding: 15px 25px; font-size: 16px; background: #28a745;">
-        📥 Download PBIX File
+    <a href="downloads/churn_dashboard.pbix" class="button" download style="margin: 5px; padding: 15px 25px; font-size: 16px; background: #28a745;">
+        📥 Download Power BI PBIX
     </a>
-    <a href="documentation/powerbi-documentation.pdf" class="button" target="_blank" style="margin: 5px; padding: 15px 25px; font-size: 16px; background: #6f42c1;">
-        📋 View Documentation
+    <a href="documentation/churn_project_documentation.pdf" class="button" target="_blank" style="margin: 5px; padding: 15px 25px; font-size: 16px; background: #6f42c1;">
+        📋 View Project Documentation
     </a>
 </div>
 
 <!-- Technical Details -->
-<div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-top: 25px; border-left: 4px solid #17a2b8;">
-    <h4 style="color: #17a2b8; margin-top: 0;">🛠 Technical Implementation</h4>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; font-size: 14px;">
-        <div>
-            <strong>Tools:</strong> Power BI Desktop, DAX, Power Query
+<div style="background: #f8f9fa; padding: 25px; border-radius: 10px; margin-top: 30px; border-left: 6px solid #17a2b8;">
+    <h3 style="color: #17a2b8; margin-top: 0; font-size: 20px;">🛠 Technical Implementation</h3>
+    
+    <p style="font-size: 14px; color: #555; margin-bottom: 20px;">
+        This project combines Machine Learning, data engineering, and business intelligence to deliver an end-to-end churn prediction and analytics solution. 
+        Below is a breakdown of the core technical components:
+    </p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; font-size: 14px;">
+
+        <div style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #e2e6ea;">
+            <strong style="color: #17a2b8;">⚙ Machine Learning Pipeline</strong>
+            <p style="margin: 8px 0 0 0; color: #555;">
+                Data preprocessing, feature engineering, training and evaluation of multiple models 
+                (Logistic Regression, Random Forest, XGBoost).  
+                <br><strong>Random Forest selected as best model (87% accuracy).</strong>
+            </p>
         </div>
-        <div>
-            <strong>Data Model:</strong> Star Schema with 4 tables
+
+        <div style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #e2e6ea;">
+            <strong style="color: #17a2b8;">🧪 Model Deployment</strong>
+            <p style="margin: 8px 0 0 0; color: #555;">
+                Developed an interactive <strong>Streamlit web application</strong> that allows users 
+                to upload new customer datasets and instantly generate churn probabilities.
+            </p>
         </div>
-        <div>
-            <strong>Measures:</strong> 15+ DAX calculations
+
+        <div style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #e2e6ea;">
+            <strong style="color: #17a2b8;">🔄 ETL & Data Preparation</strong>
+            <p style="margin: 8px 0 0 0; color: #555;">
+                Full ETL workflow built in Power Query: data cleaning, merging, transformations,
+                feature enrichment, and loading into the BI model.
+            </p>
         </div>
-        <div>
-            <strong>Segmentation:</strong> K-means clustering + rule-based
+
+        <div style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #e2e6ea;">
+            <strong style="color: #17a2b8;">🗂 Data Modeling</strong>
+            <p style="margin: 8px 0 0 0; color: #555;">
+                Designed a robust <strong>Power BI star schema</strong> integrating customers, transactions,
+                accounts, products, and churn predictions for optimized reporting.
+            </p>
         </div>
+
+        <div style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #e2e6ea;">
+            <strong style="color: #17a2b8;">📐 DAX Calculations</strong>
+            <p style="margin: 8px 0 0 0; color: #555;">
+                Created 15+ DAX measures including churn rates, customer lifetime metrics, 
+                product engagement KPIs, and dynamic segmentation logic.
+            </p>
+        </div>
+
+        <div style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #e2e6ea;">
+            <strong style="color: #17a2b8;">📊 Churn Risk Segmentation</strong>
+            <p style="margin: 8px 0 0 0; color: #555;">
+                Implemented rule-based segmentation (Low, Medium, High, Very High) from ML predictions 
+                to support retention strategy and business targeting.
+            </p>
+        </div>
+
     </div>
 </div>
 
