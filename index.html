@@ -379,126 +379,222 @@
     </div>
 </div>
 
-<!-- Dataset Downloads -->
-<div style="background: #fff3cd; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px solid #ffeaa7;">
-    <h3 style="color: #856404; margin-top: 0;">📥 Project Datasets</h3>
-    <p style="margin: 0 0 15px 0; color: #856404;">
-        Download the datasets used to build the churn prediction model and BI analytics platform:
-    </p>
+<!-- Project Data & Resources Section -->
+<div style="margin: 40px 0;">
     
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px;">
-        <a href="datasets/customers.csv" download class="button" style="background: #17a2b8; padding: 10px; font-size: 14px;">
-            📊 customers.csv
-        </a>
-        <a href="datasets/accounts.csv" download class="button" style="background: #6f42c1; padding: 10px; font-size: 14px;">
-            💳 accounts.csv
-        </a>
-        <a href="datasets/transactions.csv" download class="button" style="background: #28a745; padding: 10px; font-size: 14px;">
-            🔄 transactions.csv
-        </a>
-        <a href="datasets/products.csv" download class="button" style="background: #fd7e14; padding: 10px; font-size: 14px;">
-            📦 products.csv
-        </a>
-    </div>
-</div>
-
-<!-- Key Metrics Showcase -->
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 25px 0;">
-    <div style="text-align: center; padding: 15px; background: linear-gradient(135deg, #0066cc, #004c99); color: white; border-radius: 8px;">
-        <div style="font-size: 24px; font-weight: bold;">2,000+</div>
-        <div style="font-size: 12px;">Customers Processed</div>
-    </div>
-    <div style="text-align: center; padding: 15px; background: linear-gradient(135deg, #28a745, #1e7e34); color: white; border-radius: 8px;">
-        <div style="font-size: 24px; font-weight: bold;">87%</</div>
-        <div style="font-size: 12px;">Random Forest Accuracy</div>
-    </div>
-    <div style="text-align: center; padding: 15px; background: linear-gradient(135deg, #6f42c1, #59359e); color: white; border-radius: 8px;">
-        <div style="font-size: 24px; font-weight: bold;">4</div>
-        <div style="font-size: 12px;">Churn Risk Segments</div>
-    </div>
-    <div style="text-align: center; padding: 15px; background: linear-gradient(135deg, #fd7e14, #e5690d); color: white; border-radius: 8px;">
-        <div style="font-size: 24px; font-weight: bold;">5+</div>
-        <div style="font-size: 12px;">Data Sources Integrated</div>
-    </div>
-</div>
-
-<!-- Action Buttons -->
-<div style="text-align: center; margin-top: 30px;">
-    <a href="YOUR_POWER_BI_DASHBOARD_LINK" class="button" target="_blank" style="margin: 5px; padding: 15px 25px; font-size: 16px;">
-        🚀 View Interactive Power BI Dashboard
-    </a>
-    <a href="downloads/churn_dashboard.pbix" class="button" download style="margin: 5px; padding: 15px 25px; font-size: 16px; background: #28a745;">
-        📥 Download Power BI PBIX
-    </a>
-    <a href="documentation/churn_project_documentation.pdf" class="button" target="_blank" style="margin: 5px; padding: 15px 25px; font-size: 16px; background: #6f42c1;">
-        📋 View Project Documentation
-    </a>
-</div>
-
-<!-- Technical Details -->
-<div style="background: #f8f9fa; padding: 25px; border-radius: 10px; margin-top: 30px; border-left: 6px solid #17a2b8;">
-    <h3 style="color: #17a2b8; margin-top: 0; font-size: 20px;">🛠 Technical Implementation</h3>
-    
-    <p style="font-size: 14px; color: #555; margin-bottom: 20px;">
-        This project combines Machine Learning, data engineering, and business intelligence to deliver an end-to-end churn prediction and analytics solution. 
-        Below is a breakdown of the core technical components:
-    </p>
-
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; font-size: 14px;">
-
-        <div style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #e2e6ea;">
-            <strong style="color: #17a2b8;">⚙ Machine Learning Pipeline</strong>
-            <p style="margin: 8px 0 0 0; color: #555;">
-                Data preprocessing, feature engineering, training and evaluation of multiple models 
-                (Logistic Regression, Random Forest, XGBoost).  
-                <br><strong>Random Forest selected as best model (87% accuracy).</strong>
-            </p>
+    <!-- Dataset Downloads - Modern Card Design -->
+    <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid #e8e8e8;">
+        <div style="display: flex; align-items: center; margin-bottom: 20px;">
+            <div style="background: #ffc107; padding: 10px; border-radius: 8px; margin-right: 15px;">
+                <span style="font-size: 24px;">📥</span>
+            </div>
+            <div>
+                <h3 style="color: #333; margin: 0; font-size: 22px;">Project Datasets</h3>
+                <p style="color: #666; margin: 5px 0 0 0; font-size: 14px;">
+                    Synthetic datasets used for model training and analytics
+                </p>
+            </div>
         </div>
-
-        <div style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #e2e6ea;">
-            <strong style="color: #17a2b8;">🧪 Model Deployment</strong>
-            <p style="margin: 8px 0 0 0; color: #555;">
-                Developed an interactive <strong>Streamlit web application</strong> that allows users 
-                to upload new customer datasets and instantly generate churn probabilities.
-            </p>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+            <a href="datasets/customers.csv" download 
+               style="display: flex; align-items: center; background: #f8f9fa; padding: 15px; border-radius: 8px; text-decoration: none; border: 2px solid #e3e6ea; transition: all 0.3s;">
+                <div style="background: #17a2b8; color: white; padding: 10px; border-radius: 6px; margin-right: 12px;">
+                    <span style="font-size: 18px;">👥</span>
+                </div>
+                <div>
+                    <div style="font-weight: 600; color: #333;">Customers</div>
+                    <div style="font-size: 12px; color: #666;">2,000+ customer profiles</div>
+                </div>
+            </a>
+            
+            <a href="datasets/accounts.csv" download 
+               style="display: flex; align-items: center; background: #f8f9fa; padding: 15px; border-radius: 8px; text-decoration: none; border: 2px solid #e3e6ea; transition: all 0.3s;">
+                <div style="background: #6f42c1; color: white; padding: 10px; border-radius: 6px; margin-right: 12px;">
+                    <span style="font-size: 18px;">💳</span>
+                </div>
+                <div>
+                    <div style="font-weight: 600; color: #333;">Accounts</div>
+                    <div style="font-size: 12px; color: #666;">Financial account data</div>
+                </div>
+            </a>
+            
+            <a href="datasets/transactions.csv" download 
+               style="display: flex; align-items: center; background: #f8f9fa; padding: 15px; border-radius: 8px; text-decoration: none; border: 2px solid #e3e6ea; transition: all 0.3s;">
+                <div style="background: #28a745; color: white; padding: 10px; border-radius: 6px; margin-right: 12px;">
+                    <span style="font-size: 18px;">🔄</span>
+                </div>
+                <div>
+                    <div style="font-weight: 600; color: #333;">Transactions</div>
+                    <div style="font-size: 12px; color: #666;">Customer transaction history</div>
+                </div>
+            </a>
+            
+            <a href="datasets/products.csv" download 
+               style="display: flex; align-items: center; background: #f8f9fa; padding: 15px; border-radius: 8px; text-decoration: none; border: 2px solid #e3e6ea; transition: all 0.3s;">
+                <div style="background: #fd7e14; color: white; padding: 10px; border-radius: 6px; margin-right: 12px;">
+                    <span style="font-size: 18px;">📦</span>
+                </div>
+                <div>
+                    <div style="font-weight: 600; color: #333;">Products</div>
+                    <div style="font-size: 12px; color: #666;">Product portfolio details</div>
+                </div>
+            </a>
         </div>
-
-        <div style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #e2e6ea;">
-            <strong style="color: #17a2b8;">🔄 ETL & Data Preparation</strong>
-            <p style="margin: 8px 0 0 0; color: #555;">
-                Full ETL workflow built in Power Query: data cleaning, merging, transformations,
-                feature enrichment, and loading into the BI model.
-            </p>
-        </div>
-
-        <div style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #e2e6ea;">
-            <strong style="color: #17a2b8;">🗂 Data Modeling</strong>
-            <p style="margin: 8px 0 0 0; color: #555;">
-                Designed a robust <strong>Power BI star schema</strong> integrating customers, transactions,
-                accounts, products, and churn predictions for optimized reporting.
-            </p>
-        </div>
-
-        <div style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #e2e6ea;">
-            <strong style="color: #17a2b8;">📐 DAX Calculations</strong>
-            <p style="margin: 8px 0 0 0; color: #555;">
-                Created 15+ DAX measures including churn rates, customer lifetime metrics, 
-                product engagement KPIs, and dynamic segmentation logic.
-            </p>
-        </div>
-
-        <div style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #e2e6ea;">
-            <strong style="color: #17a2b8;">📊 Churn Risk Segmentation</strong>
-            <p style="margin: 8px 0 0 0; color: #555;">
-                Implemented rule-based segmentation (Low, Medium, High, Very High) from ML predictions 
-                to support retention strategy and business targeting.
-            </p>
-        </div>
-
     </div>
-</div>
 
-    <h2>📁 GitHub Repository</h2>
+    <!-- Performance Metrics - Clean Design -->
+    <div style="background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%); padding: 25px; border-radius: 12px; margin-bottom: 30px; border: 1px solid #d8e1eb;">
+        <h3 style="color: #333; margin: 0 0 20px 0; font-size: 22px; text-align: center;">📊 Project Performance Metrics</h3>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px;">
+            <div style="background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 3px 10px rgba(0,102,204,0.1); border: 1px solid #e2edff;">
+                <div style="font-size: 32px; font-weight: 700; color: #0066cc; margin-bottom: 8px;">2,000+</div>
+                <div style="font-size: 14px; color: #666; font-weight: 600;">Customers Analyzed</div>
+                <div style="font-size: 12px; color: #888; margin-top: 5px;">Model Training Dataset</div>
+            </div>
+            
+            <div style="background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 3px 10px rgba(40,167,69,0.1); border: 1px solid #e2f4e5;">
+                <div style="font-size: 32px; font-weight: 700; color: #28a745; margin-bottom: 8px;">87%</div>
+                <div style="font-size: 14px; color: #666; font-weight: 600;">Model Accuracy</div>
+                <div style="font-size: 12px; color: #888; margin-top: 5px;">Random Forest Algorithm</div>
+            </div>
+            
+            <div style="background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 3px 10px rgba(111,66,193,0.1); border: 1px solid #f0e6ff;">
+                <div style="font-size: 32px; font-weight: 700; color: #6f42c1; margin-bottom: 8px;">4</div>
+                <div style="font-size: 14px; color: #666; font-weight: 600;">Risk Segments</div>
+                <div style="font-size: 12px; color: #888; margin-top: 5px;">Low/Medium/High/Critical</div>
+            </div>
+            
+            <div style="background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 3px 10px rgba(253,126,20,0.1); border: 1px solid #ffe8d4;">
+                <div style="font-size: 32px; font-weight: 700; color: #fd7e14; margin-bottom: 8px;">5+</div>
+                <div style="font-size: 14px; color: #666; font-weight: 600;">Data Sources</div>
+                <div style="font-size: 12px; color: #888; margin-top: 5px;">Integrated & Modeled</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Action Buttons - Modern Design -->
+    <div style="text-align: center; margin: 30px 0;">
+        <div style="display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
+            <a href="YOUR_POWER_BI_DASHBOARD_LINK" target="_blank" 
+               style="display: inline-flex; align-items: center; background: linear-gradient(135deg, #0066cc, #004c99); color: white; padding: 15px 25px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: transform 0.3s; box-shadow: 0 4px 15px rgba(0,102,204,0.2);">
+                <span style="margin-right: 10px; font-size: 20px;">🚀</span>
+                <span>View Interactive Dashboard</span>
+            </a>
+            
+            <a href="downloads/churn_dashboard.pbix" download 
+               style="display: inline-flex; align-items: center; background: linear-gradient(135deg, #28a745, #1e7e34); color: white; padding: 15px 25px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: transform 0.3s; box-shadow: 0 4px 15px rgba(40,167,69,0.2);">
+                <span style="margin-right: 10px; font-size: 20px;">📥</span>
+                <span>Download PBIX File</span>
+            </a>
+            
+            <a href="documentation/churn_project_documentation.pdf" target="_blank" 
+               style="display: inline-flex; align-items: center; background: linear-gradient(135deg, #6f42c1, #59359e); color: white; padding: 15px 25px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: transform 0.3s; box-shadow: 0 4px 15px rgba(111,66,193,0.2);">
+                <span style="margin-right: 10px; font-size: 20px;">📋</span>
+                <span>View Documentation</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Technical Implementation - Modern Card -->
+    <div style="background: white; padding: 30px; border-radius: 12px; margin-top: 30px; box-shadow: 0 5px 25px rgba(0,0,0,0.05); border: 1px solid #e8e8e8;">
+        <div style="display: flex; align-items: center; margin-bottom: 25px;">
+            <div style="background: #17a2b8; padding: 12px; border-radius: 8px; margin-right: 15px;">
+                <span style="font-size: 24px; color: white;">🛠</span>
+            </div>
+            <div>
+                <h3 style="color: #333; margin: 0; font-size: 22px;">Technical Implementation</h3>
+                <p style="color: #666; margin: 5px 0 0 0; font-size: 14px;">
+                    End-to-end solution combining Machine Learning, Data Engineering, and Business Intelligence
+                </p>
+            </div>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+            
+            <div style="background: linear-gradient(135deg, #f8f9fa, #ffffff); padding: 20px; border-radius: 10px; border-left: 4px solid #17a2b8;">
+                <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <div style="background: #17a2b8; color: white; padding: 8px; border-radius: 6px; margin-right: 10px;">
+                        ⚙
+                    </div>
+                    <strong style="color: #333;">ML Pipeline</strong>
+                </div>
+                <p style="color: #555; font-size: 14px; line-height: 1.5; margin: 0;">
+                    Scikit-learn pipeline with preprocessing, Random Forest (87% accuracy), 
+                    and probability calibration for reliable predictions.
+                </p>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, #f8f9fa, #ffffff); padding: 20px; border-radius: 10px; border-left: 4px solid #28a745;">
+                <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <div style="background: #28a745; color: white; padding: 8px; border-radius: 6px; margin-right: 10px;">
+                        🧪
+                    </div>
+                    <strong style="color: #333;">Streamlit App</strong>
+                </div>
+                <p style="color: #555; font-size: 14px; line-height: 1.5; margin: 0;">
+                    Interactive web application for real-time churn probability 
+                    generation and customer segmentation.
+                </p>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, #f8f9fa, #ffffff); padding: 20px; border-radius: 10px; border-left: 4px solid #fd7e14;">
+                <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <div style="background: #fd7e14; color: white; padding: 8px; border-radius: 6px; margin-right: 10px;">
+                        🔄
+                    </div>
+                    <strong style="color: #333;">ETL Workflow</strong>
+                </div>
+                <p style="color: #555; font-size: 14px; line-height: 1.5; margin: 0;">
+                    Power Query transformations, data cleaning, merging, and feature 
+                    enrichment for model-ready datasets.
+                </p>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, #f8f9fa, #ffffff); padding: 20px; border-radius: 10px; border-left: 4px solid #6f42c1;">
+                <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <div style="background: #6f42c1; color: white; padding: 8px; border-radius: 6px; margin-right: 10px;">
+                        🗂
+                    </div>
+                    <strong style="color: #333;">Star Schema</strong>
+                </div>
+                <p style="color: #555; font-size: 14px; line-height: 1.5; margin: 0;">
+                    Optimized Power BI data model integrating customers, transactions, 
+                    accounts, and churn predictions.
+                </p>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, #f8f9fa, #ffffff); padding: 20px; border-radius: 10px; border-left: 4px solid #dc3545;">
+                <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <div style="background: #dc3545; color: white; padding: 8px; border-radius: 6px; margin-right: 10px;">
+                        📐
+                    </div>
+                    <strong style="color: #333;">DAX Analytics</strong>
+                </div>
+                <p style="color: #555; font-size: 14px; line-height: 1.5; margin: 0;">
+                    15+ advanced DAX measures for churn rates, lifetime value, 
+                    segmentation, and KPI calculations.
+                </p>
+            </div>
+            
+            <div style="background: linear-gradient(135deg, #f8f9fa, #ffffff); padding: 20px; border-radius: 10px; border-left: 4px solid #20c997;">
+                <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <div style="background: #20c997; color: white; padding: 8px; border-radius: 6px; margin-right: 10px;">
+                        📊
+                    </div>
+                    <strong style="color: #333;">Risk Segmentation</strong>
+                </div>
+                <p style="color: #555; font-size: 14px; line-height: 1.5; margin: 0;">
+                    4-tier customer classification enabling targeted retention 
+                    strategies and resource optimization.
+                </p>
+            </div>
+            
+        </div>
+    </div>
+
+</div>    <h2>📁 GitHub Repository</h2>
     <p>Access the complete source code of the project:</p>
 
     <a href="https://github.com/ldongmon/churn_proba_apps" class="button" target="_blank">
