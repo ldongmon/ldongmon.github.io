@@ -123,24 +123,31 @@
 
     <a href="model/churn_model.pkl" class="button" download>Download Model (PKL)</a>
 
-    <h2>🔬 Complete Jupyter Notebook Analysis</h2>
+  <h2>🔬 Complete Jupyter Notebook Analysis</h2>
 <p>Explore the full machine learning workflow with code, visualizations, and results:</p>
 
-<!-- Option 1: Google Colab (Most Reliable) -->
-<div style="width: 100%; height: 700px; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-    <iframe 
-        src="https://colab.research.google.com/github/ldongmon/ldongmon.github.io/blob/main/CHURN%20MODELING_REPORT.ipynb" 
-        width="100%" 
-        height="100%" 
-        frameborder="0"
-        style="border: none;"
-        title="Churn Prediction Jupyter Notebook">
-    </iframe>
-</div>
-
-<!-- Option 2: nbviewer with JavaScript Cache Busting -->
-<!--
-<div style="width: 100%; height: 700px; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+<!-- Option 1: nbviewer with JavaScript Cache Busting -->
+<div style="width: 100%; height: 700px; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1); position: relative;">
+    <!-- Refresh button -->
+    <button id="refreshNotebookBtn" style="
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 8px 15px;
+        background: #0066cc;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        z-index: 1000;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    ">
+        🔄 Refresh Notebook
+    </button>
+    
     <iframe 
         id="nbviewerFrame"
         width="100%" 
@@ -152,12 +159,58 @@
 </div>
 
 <script>
-    // Force nbviewer to refresh cache
-    document.getElementById('nbviewerFrame').src = 
-        'https://nbviewer.jupyter.org/github/ldongmon/ldongmon.github.io/blob/main/CHURN%20MODELING_REPORT.ipynb?flush_cache=true&v=' + 
-        Date.now();
+    // Function to load notebook with cache busting
+    function loadNotebook() {
+        const timestamp = new Date().getTime();
+        const iframe = document.getElementById('nbviewerFrame');
+        
+        // Multiple nbviewer endpoints to try
+        const urls = [
+            `https://nbviewer.org/github/ldongmon/ldongmon.github.io/blob/main/CHURN%20MODELING_REPORT.ipynb?flush_cache=true&v=${timestamp}`,
+            `https://nbviewer.jupyter.org/github/ldongmon/ldongmon.github.io/blob/main/CHURN%20MODELING_REPORT.ipynb?flush_cache=true&v=${timestamp}`,
+            `https://nbviewer.jupyter.org/urls/github.com/ldongmon/ldongmon.github.io/raw/main/CHURN%20MODELING_REPORT.ipynb?v=${timestamp}`
+        ];
+        
+        let currentIndex = 0;
+        
+        function tryNextUrl() {
+            if (currentIndex < urls.length) {
+                console.log('Trying URL:', urls[currentIndex]);
+                iframe.src = urls[currentIndex];
+                currentIndex++;
+                
+                // If still fails after 5 seconds, try next URL
+                setTimeout(() => {
+                    if (iframe.contentDocument && iframe.contentDocument.body.innerHTML === '') {
+                        tryNextUrl();
+                    }
+                }, 5000);
+            }
+        }
+        
+        tryNextUrl();
+    }
+    
+    // Load notebook when page loads
+    document.addEventListener('DOMContentLoaded', loadNotebook);
+    
+    // Refresh button functionality
+    document.getElementById('refreshNotebookBtn').addEventListener('click', function() {
+        this.innerHTML = '🔄 Loading...';
+        this.disabled = true;
+        
+        loadNotebook();
+        
+        // Reset button after 3 seconds
+        setTimeout(() => {
+            this.innerHTML = '✅ Refreshed!';
+            setTimeout(() => {
+                this.innerHTML = '🔄 Refresh Notebook';
+                this.disabled = false;
+            }, 1000);
+        }, 3000);
+    });
 </script>
--->
 
 <div style="text-align: center; margin-top: 15px; color: #666;">
     <p><strong>Interactive Notebook Features:</strong></p>
@@ -165,7 +218,7 @@
         <li>View all Python code and outputs</li>
         <li>See data visualizations and charts</li>
         <li>Read detailed analysis and explanations</li>
-        <li>Run code directly in the browser (Colab only)</li>
+        <li>Always shows the latest version (auto-refresh)</li>
     </ul>
 </div>
 
@@ -176,26 +229,29 @@
        style="display: inline-block; margin: 5px;">
         📁 View on GitHub
     </a>
-    <a href="https://colab.research.google.com/github/ldongmon/ldongmon.github.io/blob/main/CHURN%20MODELING_REPORT.ipynb" 
-       class="button" 
-       target="_blank"
-       style="display: inline-block; margin: 5px; background: #f9ab00;">
-        🚀 Open in Google Colab
-    </a>
     <a href="https://nbviewer.jupyter.org/github/ldongmon/ldongmon.github.io/blob/main/CHURN%20MODELING_REPORT.ipynb?flush_cache=true" 
        class="button" 
        target="_blank"
        style="display: inline-block; margin: 5px; background: #28a745;">
-        🔄 Refresh nbviewer
+        🔄 Open in nbviewer
     </a>
-    <a href="CHURN%20MODELING_REPORT.ipynb" 
+    <a href="https://github.com/ldongmon/ldongmon.github.io/raw/main/CHURN%20MODELING_REPORT.ipynb" 
        class="button" 
-       download
+       download="CHURN_MODELING_REPORT.ipynb"
        style="display: inline-block; margin: 5px; background: #6f42c1;">
         📥 Download Notebook
     </a>
 </div>
 
+<!-- Instructions for updating -->
+<div style="background: #e8f4fd; padding: 15px; border-radius: 8px; margin-top: 20px; border-left: 4px solid #0066cc;">
+    <p style="margin: 0; color: #004085;">
+        <strong>📝 Update Instructions:</strong> After making changes to your notebook:
+        1. Commit and push to GitHub
+        2. Click the "Refresh Notebook" button above
+        3. The latest version will load immediately
+    </p>
+</div>
     <h2>🖥️ Live Demo (Streamlit App)</h2>
     <p>Try the interactive churn prediction app:</p>
 
