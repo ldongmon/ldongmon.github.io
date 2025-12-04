@@ -87,32 +87,39 @@
 
 <div class="container">
 
-    <h2>📌 Project Overview</h2>
-    <p>
-        Customer churn is a critical challenge for subscription-based and service-driven businesses.
-        This project predicts the likelihood that a customer will churn using demographic,
-        behavioral, transactional, and product-level variables. The model is integrated into a 
-        full analytics pipeline with data processing, machine learning, and BI reporting.
-    </p>
+   <h2>📌 Project Overview</h2>
+<p>
+    This project is built using an anonymized <strong>Multinational Bank Customer Dataset</strong> sourced from Kaggle.
+    The goal is to predict whether a customer is likely to churn based on demographic,
+    behavioral, account-level, product-level, and transactional variables.
+    The project integrates machine learning, ETL processing, and business intelligence to create a full
+    end-to-end churn analytics solution, from raw data to actionable business insights.
+</p>
 
-    <h2>🎯 Objectives</h2>
-    <ul>
-        <li>Analyze customer data to uncover churn drivers and behavioral patterns.</li>
-        <li>Train and evaluate multiple machine-learning models.</li>
-        <li>Select the best-performing model based on accuracy and stability.</li>
-        <li>Generate real churn probabilities for new customer datasets.</li>
-        <li>Deploy a Streamlit-based prediction app for non-technical business users.</li>
-    </ul>
+<h2>🎯 Objectives</h2>
+<ul>
+    <li>Analyze bank customer data to uncover churn drivers and behavioral patterns.</li>
+    <li>Train and evaluate multiple machine-learning models.</li>
+    <li>Select the best-performing model based on accuracy, interpretability, and stability.</li>
+    <li>Generate real churn probabilities for new customer datasets.</li>
+    <li>Deploy a Streamlit-based prediction app for non-technical business users.</li>
+    <li>
+        Integrate predicted churn probabilities with additional bank datasets 
+        (customers, products, accounts, transactions) and build a 
+        <strong>Power BI dashboard</strong> for managerial decision-making.
+    </li>
+</ul>
 
-    <h2>🧠 Machine Learning Pipeline</h2>
-    <ol>
-        <li>Data preprocessing & cleaning (handling missing values, outliers, encoding)</li>
-        <li>Feature engineering</li>
-        <li>Train/test split</li>
-        <li>Model training (Logistic Regression and Random Forest)</li>
-        <li>Model selection (<strong>Random Forest was the best model</strong>)</li>
-        <li>Final model export (.pkl)</li>
-    </ol>
+<h2>🧠 Machine Learning Pipeline</h2>
+<ol>
+    <li>Data preprocessing & cleaning (handling missing values, encoding, outlier checks)</li>
+    <li>Feature engineering & removal of leakage variables (e.g., <em>Complain</em> column)</li>
+    <li>Train/test split</li>
+    <li>Model training (Logistic Regression and Random Forest)</li>
+    <li>Model selection (<strong>Random Forest achieved the best performance</strong>)</li>
+    <li>Export of final model (.pkl) and deployment</li>
+</ol>
+
 
     <h2>📈 Best Model: Random Forest Classifier</h2>
     <p>
