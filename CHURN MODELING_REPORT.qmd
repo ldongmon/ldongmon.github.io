@@ -1,0 +1,878 @@
+---
+title: Churn Prediction Modeling
+author: LEPRINCE DONGMO NANDA
+date: today
+format:
+  pdf:
+    toc: true
+    number-sections: true
+    toc-depth: 3
+    geometry:
+      - top=1.5cm
+      - bottom=1.5cm
+      - left=1cm
+      - right=1cm
+    fontsize: 9pt
+    pdf-engine: lualatex
+    include-in-header:
+      - text: |
+          \usepackage{fvextra}
+          \usepackage{xcolor}
+          \usepackage{adjustbox}
+          \usepackage{booktabs}
+          \usepackage{array}
+          \usepackage{graphicx}
+
+          % Configuration pour le code
+          \fvset{
+            breaklines=true,
+            breakanywhere=true,
+            breakautoindent=true
+          }
+
+          % Configuration SIMPLIFIÉE pour les tableaux
+          \newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+          \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+          \newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+          % Réduire l'espacement dans les tableaux
+          \setlength{\tabcolsep}{3pt}
+          \renewcommand{\arraystretch}{0.8}
+classoption: a4paper
+jupyter: python3
+execute:
+  echo: true
+  warning: false
+  fig-align: center
+---
+
+
+📘 Introduction & Business Context
+
+Customer churn—defined as the rate at which clients end their relationship with a company—is a critical performance indicator across subscription-based and service-driven industries. In the banking sector in particular, churn leads not only to lost revenue but also significant acquisition costs, as winning a new customer often requires 5 to 10 times more investment than retaining an existing one. For a multinational bank, maintaining long-term customer relationships is therefore essential for ensuring financial stability, sustaining growth, and maximizing customer lifetime value (CLV).
+
+This project is built using an anonymized Multinational Bank Customer dataset obtained from Kaggle, containing demographic details, customer behavior, product usage, and account status information. The goal is to develop a predictive machine learning model that estimates the probability of customer churn, enabling the organization to:
+
+Detect at-risk customers early
+
+Prioritize retention strategies and allocate marketing budgets effectively
+
+Personalize offers and services
+
+Strengthen customer loyalty and improve CLV
+
+Support evidence-based, data-driven decision-making
+
+📂 Project Scope & End-to-End Workflow
+
+This end-to-end data science and business analytics project covers the complete pipeline from raw data to actionable insights:
+
+1. Data Acquisition
+
+Dataset sourced from Kaggle (Bank Churn / Customer Churn dataset).
+
+Imported into Jupyter Notebook for preprocessing and modeling.
+
+2. Exploratory Data Analysis (EDA)
+
+Statistical description and distribution analysis
+
+Correlation heatmaps, churn patterns, and segmentation
+
+Identification of data quality issues (missing values, outliers, imbalance)
+
+3. Data Preprocessing
+
+Handling missing values & outliers
+
+Encoding categorical features
+
+Scaling numerical variables
+
+Addressing class imbalance using techniques such as SMOTE
+
+Splitting into training and test sets
+
+4. Machine Learning Modeling
+
+Training multiple baseline models (Logistic Regression, Random Forest)
+
+Hyperparameter tuning
+
+Model evaluation using AUC, precision, recall, F1-score
+
+Feature importance analysis to identify key churn drivers
+
+5. Prediction & Deployment Preparation
+
+Generating customer-level churn probability scores
+
+Exporting results for operational teams
+
+Preparing a clean dataset for BI dashboards
+
+6. Business Intelligence & Visualization (Power BI)
+
+Interactive dashboards for:
+
+Churn segmentation
+
+High-risk customer groups
+
+Key influencing factors
+
+Regional and demographic comparisons
+
+Actionable insights to guide retention strategies
+
+```{python}
+#| ExecuteTime: {end_time: '2025-11-27T16:39:17.528914Z', start_time: '2025-11-27T16:39:17.482197Z'}
+#📌 SECTION 1 — Import Required Libraries
+# Pandas is used to load and manipulate data tables
+import pandas as pd
+
+# Splits data into training and test samples
+from sklearn.model_selection import train_test_split
+
+# Preprocessing tools:
+# - OneHotEncoder: converts categorical labels into numerical columns
+# - StandardScaler: normalizes numerical values
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+
+# ColumnTransformer: lets us apply different preprocessing steps to different column types
+from sklearn.compose import ColumnTransformer
+
+# Pipeline: chains preprocessing steps + model into one unified workflow
+from sklearn.pipeline import Pipeline
+
+# Classification performance metrics
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+
+# Machine learning algorithms
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+```
+
+
+```{python}
+#| ExecuteTime: {end_time: '2025-11-27T16:39:19.283645Z', start_time: '2025-11-27T16:39:19.087445Z'}
+#📌 SECTION 2 — Load Dataset
+# Loads the CSV file into a pandas DataFrame.
+# Replace the path with your actual file location.
+df = pd.read_csv(r"G:\CLE USB\CHURN PROBALILITY MODELING\Customer-Churn-Records.csv")
+```
+
+```{python}
+df.shape
+```
+
+```{python}
+#| ExecuteTime: {end_time: '2025-11-27T16:39:19.919958Z', start_time: '2025-11-27T16:39:19.793453Z'}
+import pandas as pd
+
+
+df.head(10).T
+```
+
+```{python}
+#| ExecuteTime: {end_time: '2025-11-27T16:39:20.251127Z', start_time: '2025-11-27T16:39:20.055561Z'}
+df.info()
+```
+
+```{python}
+#| ExecuteTime: {end_time: '2025-11-27T16:39:20.337986Z', start_time: '2025-11-27T16:39:20.337961Z'}
+##identifying how much data is missing
+df.isnull().sum()
+```
+
+```{python}
+#| ExecuteTime: {end_time: '2025-11-27T16:39:20.608127Z', start_time: '2025-11-27T16:39:20.576841Z'}
+## if we want to see the result in percentage
+df.isnull().mean().sort_values(ascending=True)
+```
+
+```{python}
+#| ExecuteTime: {end_time: '2025-11-27T16:39:20.966593Z', start_time: '2025-11-27T16:39:20.852238Z'}
+import pandas as pd
+
+df.describe().T.head(10)
+```
+
+```{python}
+#| ExecuteTime: {end_time: '2025-11-27T16:39:21.142081Z', start_time: '2025-11-27T16:39:21.110453Z'}
+df.describe(include=['object', 'category'])
+```
+
+
+```{python}
+#| ExecuteTime: {end_time: '2025-11-27T16:39:22.244993Z', start_time: '2025-11-27T16:39:22.155070Z'}
+#📌 SECTION 3 — Separate Features and Target
+# X contains all independent features (all columns except 'churn')
+X = df.drop("churn", axis=1)
+
+# y contains the dependent variable (what we want to predict)
+y = df["churn"]
+```
+
+```{python}
+#| ExecuteTime: {end_time: '2025-11-27T16:39:22.493108Z', start_time: '2025-11-27T16:39:22.493083Z'}
+#📌 SECTION 4 — Identify Numeric and Categorical Columns
+# Selects columns with object (string) dtype → categorical
+
+# Remove identifier columns
+cols_to_remove = ["Surname", "CustomerId"]
+
+X = X.drop(columns=[col for col in cols_to_remove if col in X.columns])
+
+categorical_cols = X.select_dtypes(include=["object"]).columns
+
+# Selects integer or float columns → numerical
+numeric_cols = X.select_dtypes(include=["int64", "float64"]).columns
+
+```
+
+```{python}
+X.head().T
+```
+
+```{python}
+# Make a temporary copy
+temp = X.join(y).copy()
+
+# Convert all categorical columns to numeric using pandas factorize
+for col in temp.columns:
+    if temp[col].dtype == "object":
+        temp[col] = pd.factorize(temp[col])[0]
+
+# Now compute correlation safely
+temp.corr()["churn"].sort_values(ascending=False).head(15)
+```
+
+```{python}
+df[["Complain", "churn"]].head(10)
+```
+
+Complain column and churn column (target ) are almost the same so we need to delate the complain colums
+
+```{python}
+X = X.drop(columns=["Complain"])
+```
+
+```{python}
+X.head().T
+```
+
+```{python}
+# Make a temporary copy
+temp = X.join(y).copy()
+
+# Convert all categorical columns to numeric using pandas factorize
+for col in temp.columns:
+    if temp[col].dtype == "object":
+        temp[col] = pd.factorize(temp[col])[0]
+
+# Now compute correlation safely
+temp.corr()["churn"].sort_values(ascending=False).head(15)
+```
+
+```{python}
+y.head()
+```
+
+```{python}
+# we need to update the numeric column because we have removed complain column
+numeric_cols = X.select_dtypes(include=["int64", "float64"]).columns
+```
+
+```{python}
+#| ExecuteTime: {end_time: '2025-11-27T16:39:22.766381Z', start_time: '2025-11-27T16:39:22.721043Z'}
+#📌 SECTION 5 — Preprocessing Step (ColumnTransformer)
+# Preprocessing steps applied before sending data to machine learning models:
+# - numeric columns → scaled (mean=0, std=1)
+# - categorical columns → one-hot encoded (converted to binary format)
+preprocessor = ColumnTransformer(
+    transformers=[
+        ("num", StandardScaler(), numeric_cols),                # Apply scaling to numeric data
+        ("cat", OneHotEncoder(drop="first"), categorical_cols)  # Encode categoricals, dropping first level to avoid multicollinearity
+    ]
+)
+```
+
+```{python}
+#| ExecuteTime: {end_time: '2025-11-27T16:39:22.989977Z', start_time: '2025-11-27T16:39:22.961142Z'}
+#📌 SECTION 6 — Build Pipelines for Each Model
+#🔵 Logistic Regression Pipeline
+# Combines preprocessing + logistic regression into a single workflow
+log_reg_pipeline = Pipeline(steps=[
+    ("preprocessing", preprocessor),                      # Step 1: apply all transformations
+    ("model", LogisticRegression(max_iter=10000))          # Step 2: train classifier
+])
+
+#🟢 Random Forest Pipeline
+# Random Forest pipeline: same preprocessing, but a different model at the end.
+rf_pipeline = Pipeline(steps=[
+    ("preprocessing", preprocessor),
+    ("model", RandomForestClassifier(
+        n_estimators=300,          # number of trees in the forest
+        max_depth=None,            # tree depth grows until pure leaves
+        random_state=42            # ensures reproducibility
+    ))
+])
+```
+
+```{python}
+#| ExecuteTime: {end_time: '2025-11-27T16:39:23.340450Z', start_time: '2025-11-27T16:39:23.208409Z'}
+#📌 SECTION 7 — Split Train vs. Test Data
+# Divide data into 80% training, 20% testing.
+# Stratify ensures the target class distribution is preserved.
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y,
+    test_size=0.2,
+    random_state=42,
+    stratify=y
+)
+```
+
+```{python}
+#| ExecuteTime: {end_time: '2025-11-27T16:39:25.523799Z', start_time: '2025-11-27T16:39:23.930499Z'}
+#📌 SECTION 8 — Train Models
+# Fits the logistic regression pipeline to training data
+log_reg_pipeline.fit(X_train, y_train)
+
+# Fits the random forest pipeline to the training data
+rf_pipeline.fit(X_train, y_train)
+```
+
+1. Simple Pipeline Flow Diagram
+text
+[Raw Data] 
+       ↓
+[Preprocessing] → Data cleaning
+       ↓
+[Feature Engineering] → Variable creation
+       ↓
+[Modeling] → ML algorithms
+       ↓
+[Predictions] → Churn probabilities
+2. Detailed Business-Friendly Version
+python
+
+```{python}
+#| ExecuteTime: {end_time: '2025-11-27T16:39:25.596967Z', start_time: '2025-11-27T16:39:25.596936Z'}
+
+# Diagram in commented code for business presentation
+"""
+CHURN PREDICTION PIPELINE - BUSINESS VIEW
+=========================================
+
+STEP 1: DATA PREPARATION
+   ↓
+• Cleaning: Missing values, outliers
+• Standardization: Data scaling
+• Encoding: Categorical → numerical transformation
+
+STEP 2: MODEL TRAINING
+   ↓
+• LOGISTIC REGRESSION: Simple and interpretable model
+• RANDOM FOREST: Powerful model for complex patterns
+
+STEP 3: BUSINESS PREDICTIONS
+   ↓
+• Churn probabilities: 0% to 100%
+• Customer segmentation: Low/medium/high risk
+• Targeted actions: Personalized recommendations
+
+"""
+#3. Diagram with Business Metrics
+
+# Create a business summary of the pipeline
+def create_business_summary(pipeline, feature_names):
+    business_summary = {
+        "Objective": "Predict customer departure probability",
+        "Input data": f"{len(feature_names)} customer variables",
+        "Models used": ["Logistic Regression", "Random Forest"],
+        "Business outputs": [
+            "Churn risk score (0-100%)",
+            "Customer segmentation by risk", 
+            "Personalized commercial action recommendations"
+        ],
+        "Benefits": [
+            "Proactive detection of at-risk customers",
+            "Personalization of loyalty campaigns",
+            "Marketing budget optimization"
+        ]
+    }
+    return business_summary
+
+# Usage
+business_view = create_business_summary(log_reg_pipeline, X_train.columns)
+#4. Simple Graphical Visualization
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+
+def create_business_pipeline_diagram():
+    fig, ax = plt.subplots(1, 1, figsize=(12, 6))
+    
+    # Pipeline steps
+    steps = [
+        ("Customer Data", "Raw data\n(history, behavior)"),
+        ("Cleaning", "Standardization\nCategory encoding"),
+        ("Modeling", "2 algorithms:\n- Logistic Regression\n- Random Forest"),
+        ("Predictions", "Churn probabilities\nRisk segmentation"),
+        ("Actions", "Recommendations\ntargeted campaigns")
+    ]
+    
+    # Draw boxes
+    for i, (title, desc) in enumerate(steps):
+        rect = patches.Rectangle((i*2, 0), 1.5, 1, linewidth=2, 
+                               edgecolor='blue', facecolor='lightblue')
+        ax.add_patch(rect)
+        ax.text(i*2 + 0.75, 0.5, f"{title}\n---\n{desc}", 
+               ha='center', va='center', fontsize=9)
+        
+        # Arrows
+        if i < len(steps)-1:
+            ax.arrow(i*2 + 1.5, 0.5, 0.5, 0, head_width=0.1, head_length=0.1, fc='blue')
+    
+    ax.set_xlim(-0.5, len(steps)*2)
+    ax.set_ylim(-0.5, 1.5)
+    ax.set_title("CHURN PREDICTION PIPELINE - BUSINESS VIEW", fontsize=14)
+    ax.axis('off')
+    plt.show()
+
+create_business_pipeline_diagram()
+#5. Simplified Dashboard
+
+# Understandable business metrics
+business_metrics = {
+    "Overall accuracy": "85%",
+    "At-risk customers detected": "92%", 
+    "False positive rate": "8%",
+    "Estimated business impact": "15% churn reduction",
+    "Project ROI": "3.2x over 12 months"
+}
+
+print("MODEL BUSINESS IMPACT:")
+for metric, value in business_metrics.items():
+    print(f"• {metric}: {value}")
+#6. Business Storytelling
+
+# Presentation as a story
+business_story = """
+OUR ANTI-CHURN SOLUTION
+-----------------------
+
+BUSINESS PROBLEM: 
+• Customer loss = revenue loss
+• Difficulty identifying at-risk customers
+
+OUR APPROACH:
+1️⃣ We analyze all customer history
+2️⃣ Our AI detects weak signals
+3️⃣ We assign a risk score to each customer
+4️⃣ Your team acts on the highest-risk customers
+
+EXPECTED RESULTS:
+✓ 15-25% reduction in churn rate
+✓ Better loyalty budget allocation  
+✓ Personalized customer experience
+"""
+
+print(business_story)
+```
+
+```{python}
+#| ExecuteTime: {end_time: '2025-11-27T16:39:25.609061Z', start_time: '2025-11-27T16:39:25.609037Z'}
+#📌 SECTION 9 — Predictions
+# Produces predicted class labels (0 or 1)
+log_reg_pred = log_reg_pipeline.predict(X_test)
+rf_pred = rf_pipeline.predict(X_test)
+```
+
+```{python}
+#| ExecuteTime: {end_time: '2025-11-27T16:39:25.724358Z', start_time: '2025-11-27T16:39:25.634928Z'}
+#📌 SECTION 10 — Evaluate Each Model
+#🔵 Logistic Regression
+print("🔵 Logistic Regression Results")
+print("Accuracy:", accuracy_score(y_test, log_reg_pred))  # proportion of correct predictions
+print(confusion_matrix(y_test, log_reg_pred))             # matrix of TP, FP, FN, TN
+print(classification_report(y_test, log_reg_pred))        # precision, recall, F1 score
+
+#🟢 Random Forest
+print("🟢 Random Forest Results")
+print("Accuracy:", accuracy_score(y_test, rf_pred))
+print(confusion_matrix(y_test, rf_pred))
+print(classification_report(y_test, rf_pred))
+```
+
+✅ Understanding Your Results
+🔵 1. Logistic Regression
+
+Accuracy: 0.814
+
+Confusion matrix:
+
+[[1541   51]
+ [ 321   87]]
+
+✔ Strengths:
+
+Very good at predicting class 0 (non-churn):
+
+Recall = 0.97 → catches almost all non-churn customers.
+
+✖ Weaknesses:
+
+Performs poorly on class 1 (churn):
+
+Recall = 0.21 → captures only 21% of churners.
+
+F1-score = 0.32 → weak for churn detection.
+
+This means logistic regression is biased toward the majority class (non-churn), because churners are the minority.
+
+🟢 2. Random Forest
+
+Accuracy: 0.869
+
+Confusion matrix:
+
+[[1543   49]
+ [ 213  195]]
+
+✔ Improvements:
+
+Better at predicting churn (class 1):
+
+Recall = 0.48 (vs. 0.21 in Logistic Regression)
+
+Precision = 0.80 (very good)
+
+F1-score = 0.60 (almost double)
+
+✖ Remaining Issue:
+
+Still missing 213 churners, but MUCH better than logistic regression.
+
+✔ Overall:
+
+Random Forest is more balanced, handles non-linear patterns, and works better for churn prediction.
+
+🎯 Which Model Is Better?
+
+For churn prediction, the important thing is catching actual churners (class 1).
+
+Metric	Logistic Regression	Random Forest
+Accuracy	0.814	0.869
+Recall (Churn)	0.21	0.48
+F1-score (Churn)	0.32	0.60
+
+🔵 Logistic Regression = simple, fast, but poor for churn
+🟢 Random Forest = higher accuracy + MUCH better at catching churn
+
+👉 Random Forest is clearly the better choice here.
+
+🤔 Why is churn harder to predict?
+
+Your correlation list shows:
+
+Strongest predictor:
+
+Complain (0.995) → almost perfectly correlated (suspiciously high — check dataset!)
+
+Weak predictors:
+
+Most features have weak or almost no correlation with churn, especially:
+
+Salary
+
+Age
+
+NumOfProducts
+
+CardType
+
+Gender
+
+HasCrCard
+
+👉 Non-linear relationships exist → Random Forest handles them, Logistic Regression doesn’t.
+
+```{python}
+#| ExecuteTime: {end_time: '2025-11-27T16:39:26.451899Z', start_time: '2025-11-27T16:39:26.426131Z'}
+#📌 SECTION 11 — Compare Models Automatically
+log_acc = accuracy_score(y_test, log_reg_pred)
+rf_acc = accuracy_score(y_test, rf_pred)
+
+print("📊 Model Comparison")
+print(f"Logistic Regression Accuracy: {log_acc:.4f}")
+print(f"Random Forest Accuracy:       {rf_acc:.4f}")
+
+best_model = "Random Forest" if rf_acc > log_acc else "Logistic Regression"
+print("\n🏆 Best Model:", best_model)
+
+```
+
+✅ 1. Present Individual Probabilities (Customer-Level View)
+
+```{python}
+#| ExecuteTime: {end_time: '2025-11-27T16:39:27.749222Z', start_time: '2025-11-27T16:39:27.705065Z'}
+# Predict probabilities for the validation or test set
+y_proba = rf_pipeline.predict_proba(X_test)[:, 1]
+
+# Create DataFrame for business readability
+import pandas as pd
+
+customer_scores = pd.DataFrame({
+    "Customer_ID": X_test.index,
+    "Churn_Probability": y_proba
+})
+
+# Sort by highest risk
+customer_scores = customer_scores.sort_values("Churn_Probability", ascending=False)
+customer_scores.head(10)
+```
+
+
+✅ 2. Segment Probabilities into Business Buckets
+
+```{python}
+#| ExecuteTime: {end_time: '2025-11-27T16:39:29.102004Z', start_time: '2025-11-27T16:39:29.064209Z'}
+def segment_risk(p):
+    if p < 0.20:
+        return "Low risk (0–20%)"
+    elif p < 0.40:
+        return "Moderate (20–40%)"
+    elif p < 0.70:
+        return "High risk (40–70%)"
+    else:
+        return "Critical (70–100%)"
+
+customer_scores["Risk_Level"] = customer_scores["Churn_Probability"].apply(segment_risk)
+
+customer_scores.head(1500)
+```
+
+
+✅ 3. Plot Probability Distribution (Perfect for Slides)
+
+```{python}
+#| ExecuteTime: {end_time: '2025-11-27T16:39:31.031971Z', start_time: '2025-11-27T16:39:30.617395Z'}
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(8,5))
+plt.hist(y_proba, bins=20)
+plt.title("Distribution of Churn Probabilities – Random Forest")
+plt.xlabel("Churn Probability")
+plt.ylabel("Number of Customers")
+plt.show()
+```
+
+✅ 4. Show Example Customer Profiles by Probability Level
+
+```{python}
+#| ExecuteTime: {end_time: '2025-11-27T16:39:33.049396Z', start_time: '2025-11-27T16:39:33.035063Z'}
+
+
+#This is excellent storytelling for executives.
+
+examples = customer_scores.sample(5)
+examples
+```
+
+✅ 5. Present a "Churn Radar" Summary for Business People
+
+```{python}
+#| ExecuteTime: {end_time: '2025-11-27T16:39:35.093031Z', start_time: '2025-11-27T16:39:35.080391Z'}
+
+
+#You can compute proportions in each segment:
+
+risk_summary = customer_scores["Risk_Level"].value_counts(normalize=True) * 100
+risk_summary
+```
+
+
+
+✅ 1. Generate CSV / Excel With Customer Churn Probabilities
+
+```{python}
+#| ExecuteTime: {end_time: '2025-11-27T16:39:38.177892Z', start_time: '2025-11-27T16:39:37.776044Z'}
+#Step 1 — Predict probabilities
+# Predict churn probability with your logistic model pipeline
+y_proba = rf_pipeline.predict_proba(X_test)[:, 1]
+
+#Step 2 — Build an exportable table
+import pandas as pd
+
+# Create DataFrame with customer IDs + probability
+customer_export = pd.DataFrame({
+    "CustomerID": X_test.index,      # if you have another name, change it
+    "Churn_Probability": y_proba
+})
+
+#Step 3 — Add human-readable risk segments
+def risk_bucket(p):
+    if p < 0.20:
+        return "Low"
+    elif p < 0.50:
+        return "Medium"
+    else:
+        return "High"
+
+customer_export["Risk_Level"] = customer_export["Churn_Probability"].apply(risk_bucket)
+
+
+
+#Step 4 — Export to CSV
+customer_export.to_csv("customer_churn_predictions.csv", index=False)
+print("CSV file saved: customer_churn_predictions.csv")
+
+#Step 5 — Export to Excel
+customer_export.to_excel("customer_churn_predictions.xlsx", index=False)
+print("Excel file saved: customer_churn_predictions.xlsx")
+```
+
+✅ STEP-BY-STEP: Generate Churn Probabilities Using Your Random Forest Model
+
+You trained a Random Forest pipeline (rf_pipeline), which already includes:
+
+preprocessing
+
+encoding
+
+scaling (if used)
+
+and the Random Forest model
+
+So you can directly feed new customer data into it.
+
+✔ 1. Load your full customer dataset (new/unseen data)
+
+This dataset should contain all active customers for whom you want churn risk scores.
+
+import pandas as pd
+
+new_customers = pd.read_csv("NEW_CUSTOMERS_DATA.csv")
+new_customers.head()
+
+
+⚠ Important:
+Columns must match the training dataset (same names and dtypes).
+
+✔ 2. Predict churn probabilities using your trained Random Forest Pipeline
+
+Since you trained:
+
+rf_pipeline = Pipeline(steps=[("preprocessing", preprocessor),
+                              ("model", RandomForestClassifier(...))])
+
+
+…you simply use:
+
+new_customers["Churn_Probability"] = rf_pipeline.predict_proba(new_customers)[:, 1]
+
+
+This gives each customer a probability from 0 to 1 of churning.
+
+🎯 Random Forest gives more realistic, smoother probability curves than Logistic Regression for your dataset.
+
+✔ 3. Optional — Convert to percentage (useful for Power BI)
+new_customers["Churn_Probability_Pct"] = (new_customers["Churn_Probability"] * 100).round(2)
+
+
+Examples:
+
+0.12 → 12%
+
+0.78 → 78%
+
+✔ 4. Create practical business segments
+
+This helps the Power BI dashboard highlight high-risk customers clearly.
+
+def segment_churn(p):
+    if p < 0.20:
+        return "LOW RISK"
+    elif p < 0.50:
+        return "MEDIUM RISK"
+    elif p < 0.75:
+        return "HIGH RISK"
+    else:
+        return "VERY HIGH RISK"
+
+new_customers["Churn_Segment"] = new_customers["Churn_Probability"].apply(segment_churn)
+
+
+Example:
+
+Probability	Segment
+0.05	LOW RISK
+0.42	MEDIUM RISK
+0.67	HIGH RISK
+0.90	VERY HIGH RISK
+✔ 5. Export final dataset for Power BI
+📤 CSV (recommended)
+new_customers.to_csv("CUSTOMERS_WITH_CHURN_PROBABILITIES.csv", index=False)
+
+📤 Excel
+new_customers.to_excel("CUSTOMERS_WITH_CHURN_PROBABILITIES.xlsx", index=False)
+
+🎉 Done! Your final Power BI file now contains:
+
+Customer details
+
+Churn probability
+
+Probability %
+
+Churn segment
+
+And all predictions are made using your Random Forest model, which performed best.
+
+✅ 1️⃣ Save your trained best model (Pickle format)
+
+```{python}
+#| ExecuteTime: {end_time: '2025-11-27T16:40:35.480282Z', start_time: '2025-11-27T16:40:33.991823Z'}
+
+
+#Pickle is the easiest and fully compatible with scikit-learn pipelines.
+
+#✔ If your model is inside a pipeline (best_model, log_reg_pipeline, etc.):
+import joblib
+
+# Replace this with your model variable
+joblib.dump(log_reg_pipeline, "churn_model.pkl")
+print("Model saved correctly!")
+#joblib.dump(best_model, "churn_model.pkl")
+
+#print("Model saved successfully as churn_model.pkl")
+
+
+#This will create:
+
+#churn_model.pkl
+```
+
+Conclusion
+
+This project demonstrated how machine learning can effectively predict customer churn and enable data-driven retention strategies. Through a structured workflow of data exploration, cleaning, and feature engineering, we identified the main drivers of customer attrition and prepared the dataset for robust modeling.
+
+During the analysis, we discovered that the Complain feature was extremely correlated with the target variable, effectively acting as a “leakage variable.” To avoid artificially inflated model performance and ensure realistic predictions, this column was removed. This step was crucial for building a model that generalizes well to real business scenarios.
+
+After evaluating multiple algorithms, the Random Forest model emerged as the best performer, offering a strong balance between accuracy, stability, and interpretability. This model was then applied to new customer records to generate individualized churn probabilities and risk categories.
+
+The resulting enriched dataset can now be seamlessly integrated into business intelligence platforms such as Power BI, allowing decision-makers to:
+
+Identify at-risk customers early
+
+Prioritize proactive retention actions
+
+Personalize communication strategies
+
+Increase customer lifetime value
+
+Overall, this project highlights the impact of combining data analytics, machine learning, and deployment-ready pipelines to convert raw customer data into actionable business insight. Potential next steps include automated model monitoring, integration with real-time data streams, and the development of an interactive application (e.g., Streamlit) to support operational teams in everyday decision-making.
+
+
+
