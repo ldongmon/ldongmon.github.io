@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="LEPRINCE DONGMO NANDA">
-<meta name="dcterms.date" content="2025-12-02">
+<meta name="dcterms.date" content="2025-12-04">
 
 <title>Churn Prediction Modeling</title>
 <style>
@@ -105,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 2, 2025</p>
+      <p class="date">December 4, 2025</p>
     </div>
   </div>
   
@@ -117,98 +117,58 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="introduction-business-context" class="level1">
-<h1>Introduction &amp; Business Context</h1>
-<p>Customer churn—defined as the percentage of customers who discontinue using a company’s service over a given period—is one of the most important metrics for subscription-based and service-oriented businesses. When customers leave, the company not only loses revenue but also incurs additional acquisition costs to replace them.</p>
-<p>Because acquiring a new customer is typically <strong>5 to 10 times more expensive</strong> than retaining an existing one, churn prevention is a strategic priority for any business seeking growth and profitability.</p>
-<p>In this study, our objective is to build a <strong>predictive model that estimates the probability that a customer will churn</strong>. This enables the business to:</p>
-<ul>
-<li>Detect at-risk customers early</li>
-<li>Prioritize retention actions and allocate marketing efforts more efficiently</li>
-<li>Personalize offers or communication strategies</li>
-<li>Increase customer lifetime value (CLV)</li>
-<li>Support data-driven decision-making</li>
-</ul>
-<p>The dataset includes demographic, behavioral, and service usage information for each customer. Using statistical and machine learning techniques, we aim to identify key drivers of churn and deliver a model that the business can apply directly to operational strategies.</p>
-<hr>
-</section>
-<section id="project-objectives" class="level1">
-<h1>Project Objectives</h1>
+<p>📘 Introduction &amp; Business Context</p>
+<p>Customer churn—defined as the rate at which clients end their relationship with a company—is a critical performance indicator across subscription-based and service-driven industries. In the banking sector in particular, churn leads not only to lost revenue but also significant acquisition costs, as winning a new customer often requires 5 to 10 times more investment than retaining an existing one. For a multinational bank, maintaining long-term customer relationships is therefore essential for ensuring financial stability, sustaining growth, and maximizing customer lifetime value (CLV).</p>
+<p>This project is built using an anonymized Multinational Bank Customer dataset obtained from Kaggle, containing demographic details, customer behavior, product usage, and account status information. The goal is to develop a predictive machine learning model that estimates the probability of customer churn, enabling the organization to:</p>
+<p>Detect at-risk customers early</p>
+<p>Prioritize retention strategies and allocate marketing budgets effectively</p>
+<p>Personalize offers and services</p>
+<p>Strengthen customer loyalty and improve CLV</p>
+<p>Support evidence-based, data-driven decision-making</p>
+<p>📂 Project Scope &amp; End-to-End Workflow</p>
+<p>This end-to-end data science and business analytics project covers the complete pipeline from raw data to actionable insights:</p>
 <ol type="1">
-<li>Analyze and understand the key drivers of customer churn</li>
-<li>Build predictive models to estimate churn probability</li>
-<li>Evaluate and compare models using robust performance metrics</li>
-<li>Select the best model and translate results into actionable insights</li>
-<li>Provide a clear and interpretable framework for business decision-making</li>
+<li>Data Acquisition</li>
 </ol>
-<hr>
-</section>
-<section id="workflow-methodological-plan" class="level1">
-<h1>Workflow / Methodological Plan</h1>
-<section id="data-understanding" class="level2">
-<h2 class="anchored" data-anchor-id="data-understanding">1. Data Understanding</h2>
-<ul>
-<li>Load and explore dataset</li>
-<li>Review churn distribution and customer characteristics</li>
-<li>Check missing values, duplicates, and anomalies</li>
-<li>Generate descriptive statistics</li>
-</ul>
-</section>
-<section id="data-cleaning-preprocessing" class="level2">
-<h2 class="anchored" data-anchor-id="data-cleaning-preprocessing">2. Data Cleaning &amp; Preprocessing</h2>
-<ul>
-<li>Handle missing values</li>
-<li>Encode categorical variables</li>
-<li>Normalize numerical features</li>
-<li>Correct data types and inconsistencies</li>
-</ul>
-</section>
-<section id="exploratory-data-analysis-eda" class="level2">
-<h2 class="anchored" data-anchor-id="exploratory-data-analysis-eda">3. Exploratory Data Analysis (EDA)</h2>
-<ul>
-<li>Compare churned vs non-churned customers</li>
-<li>Identify key behavioral/demographic differences</li>
-<li>Visualize trends and correlations</li>
-</ul>
-</section>
-<section id="feature-engineering" class="level2">
-<h2 class="anchored" data-anchor-id="feature-engineering">4. Feature Engineering</h2>
-<ul>
-<li>Create additional relevant features (e.g., tenure groups)</li>
-<li>Select or reduce unhelpful variables</li>
-</ul>
-</section>
-<section id="model-development" class="level2">
-<h2 class="anchored" data-anchor-id="model-development">5. Model Development</h2>
-<ul>
-<li>Train multiple models: Logistic Regression, Random Forest, Gradient Boosting, SVM</li>
-<li>Compare results to identify the best-performing model</li>
-</ul>
-</section>
-<section id="model-evaluation" class="level2">
-<h2 class="anchored" data-anchor-id="model-evaluation">6. Model Evaluation</h2>
-<ul>
-<li>Use ROC-AUC, precision, recall, F1-score, confusion matrix</li>
-<li>Validate stability and calibration of predicted probabilities</li>
-</ul>
-</section>
-<section id="model-selection-interpretation" class="level2">
-<h2 class="anchored" data-anchor-id="model-selection-interpretation">7. Model Selection &amp; Interpretation</h2>
-<ul>
-<li>Logistic Regression selected for its balance of performance and interpretability</li>
-<li>Explain most impactful features</li>
-<li>Segment customers by churn risk (low, medium, high)</li>
-</ul>
-</section>
-<section id="delivery-of-business-outputs" class="level2">
-<h2 class="anchored" data-anchor-id="delivery-of-business-outputs">8. Delivery of Business Outputs</h2>
-<ul>
-<li>Provide list of customers with churn probabilities</li>
-<li>Create actionable risk categories</li>
-<li>Recommend retention strategies</li>
-<li>Prepare dashboards and summaries for business teams</li>
-</ul>
-<div id="08a6a165" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:17.528914Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:17.482197Z&quot;}}" data-execution_count="1">
+<p>Dataset sourced from Kaggle (Bank Churn / Customer Churn dataset).</p>
+<p>Imported into Jupyter Notebook for preprocessing and modeling.</p>
+<ol start="2" type="1">
+<li>Exploratory Data Analysis (EDA)</li>
+</ol>
+<p>Statistical description and distribution analysis</p>
+<p>Correlation heatmaps, churn patterns, and segmentation</p>
+<p>Identification of data quality issues (missing values, outliers, imbalance)</p>
+<ol start="3" type="1">
+<li>Data Preprocessing</li>
+</ol>
+<p>Handling missing values &amp; outliers</p>
+<p>Encoding categorical features</p>
+<p>Scaling numerical variables</p>
+<p>Addressing class imbalance using techniques such as SMOTE</p>
+<p>Splitting into training and test sets</p>
+<ol start="4" type="1">
+<li>Machine Learning Modeling</li>
+</ol>
+<p>Training multiple baseline models (Logistic Regression, Random Forest)</p>
+<p>Hyperparameter tuning</p>
+<p>Model evaluation using AUC, precision, recall, F1-score</p>
+<p>Feature importance analysis to identify key churn drivers</p>
+<ol start="5" type="1">
+<li>Prediction &amp; Deployment Preparation</li>
+</ol>
+<p>Generating customer-level churn probability scores</p>
+<p>Exporting results for operational teams</p>
+<p>Preparing a clean dataset for BI dashboards</p>
+<ol start="6" type="1">
+<li>Business Intelligence &amp; Visualization (Power BI)</li>
+</ol>
+<p>Interactive dashboards for:</p>
+<p>Churn segmentation</p>
+<p>High-risk customer groups</p>
+<p>Key influencing factors</p>
+<p>Regional and demographic comparisons</p>
+<p>Actionable insights to guide retention strategies</p>
+<div id="6dff2b04" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:17.528914Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:17.482197Z&quot;}}" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#📌 SECTION 1 — Import Required Libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Pandas is used to load and manipulate data tables</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -234,24 +194,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="808e7f7e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:19.283645Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:19.087445Z&quot;}}" data-execution_count="2">
+<div id="d609585a" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:19.283645Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:19.087445Z&quot;}}" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#📌 SECTION 2 — Load Dataset</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Loads the CSV file into a pandas DataFrame.</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace the path with your actual file location.</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="vs">r"G:</span><span class="er">\</span><span class="vs">CLE USB</span><span class="er">\</span><span class="vs">CHURN PROBALILITY MODELING</span><span class="er">\</span><span class="vs">Customer-Churn-Records</span><span class="dv">.</span><span class="vs">csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="62b9fbe6" class="cell" data-execution_count="3">
+<div id="5a3c2ac3" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df.shape</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="37">
 <pre><code>(10000, 18)</code></pre>
 </div>
 </div>
-<div id="a2b82079" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:19.919958Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:19.793453Z&quot;}}" data-execution_count="4">
+<div id="18334c42" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:19.919958Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:19.793453Z&quot;}}" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">10</span>).T</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="38">
 <div>
 
 
@@ -512,7 +472,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="6f9822a6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:20.251127Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:20.055561Z&quot;}}" data-execution_count="5">
+<div id="0ab00f68" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:20.251127Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:20.055561Z&quot;}}" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
@@ -542,10 +502,10 @@ dtypes: float64(2), int64(12), object(4)
 memory usage: 1.4+ MB</code></pre>
 </div>
 </div>
-<div id="45cb9fd6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:20.337986Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:20.337961Z&quot;}}" data-execution_count="6">
+<div id="d0e1966b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:20.337986Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:20.337961Z&quot;}}" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">##identifying how much data is missing</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df.isnull().<span class="bu">sum</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="40">
 <pre><code>RowNumber             0
 CustomerId            0
 Surname               0
@@ -567,10 +527,10 @@ Point Earned          0
 dtype: int64</code></pre>
 </div>
 </div>
-<div id="5c30a9d8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:20.608127Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:20.576841Z&quot;}}" data-execution_count="7">
+<div id="562f14b6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:20.608127Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:20.576841Z&quot;}}" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">## if we want to see the result in percentage</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df.isnull().mean().sort_values(ascending<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="41">
 <pre><code>RowNumber             0.0
 CustomerId            0.0
 Surname               0.0
@@ -592,11 +552,11 @@ Point Earned          0.0
 dtype: float64</code></pre>
 </div>
 </div>
-<div id="937d5bd8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:20.966593Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:20.852238Z&quot;}}" data-execution_count="8">
+<div id="d7c10000" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:20.966593Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:20.852238Z&quot;}}" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>df.describe().T.head(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="42">
 <div>
 
 
@@ -731,9 +691,9 @@ dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="3a9f31b3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:21.142081Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:21.110453Z&quot;}}" data-execution_count="9">
+<div id="ce8e244e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:21.142081Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:21.110453Z&quot;}}" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df.describe(include<span class="op">=</span>[<span class="st">'object'</span>, <span class="st">'category'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="43">
 <div>
 
 
@@ -782,7 +742,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="da952e73" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:22.244993Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:22.155070Z&quot;}}" data-execution_count="10">
+<div id="c3433f1c" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:22.244993Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:22.155070Z&quot;}}" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#📌 SECTION 3 — Separate Features and Target</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># X contains all independent features (all columns except 'churn')</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df.drop(<span class="st">"churn"</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
@@ -790,7 +750,7 @@ dtype: float64</code></pre>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># y contains the dependent variable (what we want to predict)</span></span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df[<span class="st">"churn"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="38d483c6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:22.493108Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:22.493083Z&quot;}}" data-execution_count="11">
+<div id="084522d8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:22.493108Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:22.493083Z&quot;}}" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#📌 SECTION 4 — Identify Numeric and Categorical Columns</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Selects columns with object (string) dtype → categorical</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -804,9 +764,9 @@ dtype: float64</code></pre>
 <span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Selects integer or float columns → numerical</span></span>
 <span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>numeric_cols <span class="op">=</span> X.select_dtypes(include<span class="op">=</span>[<span class="st">"int64"</span>, <span class="st">"float64"</span>]).columns</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="17e0ef29" class="cell" data-execution_count="12">
+<div id="48236b35" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>X.head().T</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="12">
+<div class="cell-output cell-output-display" data-execution_count="46">
 <div>
 
 
@@ -948,7 +908,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="52cfdabb" class="cell" data-execution_count="13">
+<div id="4d228c8f" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a temporary copy</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>temp <span class="op">=</span> X.join(y).copy()</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -959,7 +919,7 @@ dtype: float64</code></pre>
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Now compute correlation safely</span></span>
 <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>temp.corr()[<span class="st">"churn"</span>].sort_values(ascending<span class="op">=</span><span class="va">False</span>).head(<span class="dv">15</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="13">
+<div class="cell-output cell-output-display" data-execution_count="47">
 <pre><code>churn                 1.000000
 Complain              0.995693
 Age                   0.285296
@@ -978,9 +938,9 @@ Gender               -0.106267
 Name: churn, dtype: float64</code></pre>
 </div>
 </div>
-<div id="04a71b9d" class="cell" data-execution_count="14">
+<div id="2d9b2ebe" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df[[<span class="st">"Complain"</span>, <span class="st">"churn"</span>]].head(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="14">
+<div class="cell-output cell-output-display" data-execution_count="48">
 <div>
 
 
@@ -1050,12 +1010,12 @@ Name: churn, dtype: float64</code></pre>
 </div>
 </div>
 <p>Complain column and churn column (target ) are almost the same so we need to delate the complain colums</p>
-<div id="f9f18640" class="cell" data-execution_count="15">
+<div id="90d5f98a" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> X.drop(columns<span class="op">=</span>[<span class="st">"Complain"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="c13bd0ff" class="cell" data-execution_count="16">
+<div id="a885d859" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>X.head().T</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
+<div class="cell-output cell-output-display" data-execution_count="50">
 <div>
 
 
@@ -1189,7 +1149,7 @@ Name: churn, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="88254d59" class="cell" data-execution_count="17">
+<div id="a2e9f01b" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a temporary copy</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>temp <span class="op">=</span> X.join(y).copy()</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1200,7 +1160,7 @@ Name: churn, dtype: float64</code></pre>
 <span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Now compute correlation safely</span></span>
 <span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>temp.corr()[<span class="st">"churn"</span>].sort_values(ascending<span class="op">=</span><span class="va">False</span>).head(<span class="dv">15</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="17">
+<div class="cell-output cell-output-display" data-execution_count="51">
 <pre><code>churn                 1.000000
 Age                   0.285296
 Geography             0.153518
@@ -1219,9 +1179,9 @@ IsActiveMember       -0.156356
 Name: churn, dtype: float64</code></pre>
 </div>
 </div>
-<div id="f27605fa" class="cell" data-execution_count="18">
+<div id="27c92960" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>y.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="18">
+<div class="cell-output cell-output-display" data-execution_count="52">
 <pre><code>0    1
 1    0
 2    1
@@ -1230,11 +1190,11 @@ Name: churn, dtype: float64</code></pre>
 Name: churn, dtype: int64</code></pre>
 </div>
 </div>
-<div id="20f225a2" class="cell" data-execution_count="19">
+<div id="bd07ceb0" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># we need to update the numeric column because we have removed complain column</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>numeric_cols <span class="op">=</span> X.select_dtypes(include<span class="op">=</span>[<span class="st">"int64"</span>, <span class="st">"float64"</span>]).columns</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="25cfe42b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:22.766381Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:22.721043Z&quot;}}" data-execution_count="20">
+<div id="c1bdd961" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:22.766381Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:22.721043Z&quot;}}" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#📌 SECTION 5 — Preprocessing Step (ColumnTransformer)</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Preprocessing steps applied before sending data to machine learning models:</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co"># - numeric columns → scaled (mean=0, std=1)</span></span>
@@ -1246,7 +1206,7 @@ Name: churn, dtype: int64</code></pre>
 <span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    ]</span>
 <span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="7808a59a" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:22.989977Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:22.961142Z&quot;}}" data-execution_count="21">
+<div id="5b705ddd" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:22.989977Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:22.961142Z&quot;}}" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#📌 SECTION 6 — Build Pipelines for Each Model</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co">#🔵 Logistic Regression Pipeline</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Combines preprocessing + logistic regression into a single workflow</span></span>
@@ -1266,7 +1226,7 @@ Name: churn, dtype: int64</code></pre>
 <span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>    ))</span>
 <span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="dd89c3dd" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:23.340450Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:23.208409Z&quot;}}" data-execution_count="22">
+<div id="cae46d53" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:23.340450Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:23.208409Z&quot;}}" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#📌 SECTION 7 — Split Train vs. Test Data</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Divide data into 80% training, 20% testing.</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Stratify ensures the target class distribution is preserved.</span></span>
@@ -1277,15 +1237,15 @@ Name: churn, dtype: int64</code></pre>
 <span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    stratify<span class="op">=</span>y</span>
 <span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="4abd6d6f" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:25.523799Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:23.930499Z&quot;}}" data-execution_count="23">
+<div id="453b905c" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:25.523799Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:23.930499Z&quot;}}" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#📌 SECTION 8 — Train Models</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Fits the logistic regression pipeline to training data</span></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>log_reg_pipeline.fit(X_train, y_train)</span>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Fits the random forest pipeline to the training data</span></span>
 <span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>rf_pipeline.fit(X_train, y_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="23">
-<style>#sk-container-id-1 {
+<div class="cell-output cell-output-display" data-execution_count="57">
+<style>#sk-container-id-2 {
   /* Definition of color scheme common for light and dark mode */
   --sklearn-color-text: #000;
   --sklearn-color-text-muted: #666;
@@ -1316,15 +1276,15 @@ Name: churn, dtype: int64</code></pre>
   }
 }
 
-#sk-container-id-1 {
+#sk-container-id-2 {
   color: var(--sklearn-color-text);
 }
 
-#sk-container-id-1 pre {
+#sk-container-id-2 pre {
   padding: 0;
 }
 
-#sk-container-id-1 input.sk-hidden--visually {
+#sk-container-id-2 input.sk-hidden--visually {
   border: 0;
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px);
@@ -1336,7 +1296,7 @@ Name: churn, dtype: int64</code></pre>
   width: 1px;
 }
 
-#sk-container-id-1 div.sk-dashed-wrapped {
+#sk-container-id-2 div.sk-dashed-wrapped {
   border: 1px dashed var(--sklearn-color-line);
   margin: 0 0.4em 0.5em 0.4em;
   box-sizing: border-box;
@@ -1344,7 +1304,7 @@ Name: churn, dtype: int64</code></pre>
   background-color: var(--sklearn-color-background);
 }
 
-#sk-container-id-1 div.sk-container {
+#sk-container-id-2 div.sk-container {
   /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
      but bootstrap.min.css set `[hidden] { display: none !important; }`
      so we also need the `!important` here to be able to override the
@@ -1354,7 +1314,7 @@ Name: churn, dtype: int64</code></pre>
   position: relative;
 }
 
-#sk-container-id-1 div.sk-text-repr-fallback {
+#sk-container-id-2 div.sk-text-repr-fallback {
   display: none;
 }
 
@@ -1370,14 +1330,14 @@ div.sk-item {
 
 /* Parallel-specific style estimator block */
 
-#sk-container-id-1 div.sk-parallel-item::after {
+#sk-container-id-2 div.sk-parallel-item::after {
   content: "";
   width: 100%;
   border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
   flex-grow: 1;
 }
 
-#sk-container-id-1 div.sk-parallel {
+#sk-container-id-2 div.sk-parallel {
   display: flex;
   align-items: stretch;
   justify-content: center;
@@ -1385,28 +1345,28 @@ div.sk-item {
   position: relative;
 }
 
-#sk-container-id-1 div.sk-parallel-item {
+#sk-container-id-2 div.sk-parallel-item {
   display: flex;
   flex-direction: column;
 }
 
-#sk-container-id-1 div.sk-parallel-item:first-child::after {
+#sk-container-id-2 div.sk-parallel-item:first-child::after {
   align-self: flex-end;
   width: 50%;
 }
 
-#sk-container-id-1 div.sk-parallel-item:last-child::after {
+#sk-container-id-2 div.sk-parallel-item:last-child::after {
   align-self: flex-start;
   width: 50%;
 }
 
-#sk-container-id-1 div.sk-parallel-item:only-child::after {
+#sk-container-id-2 div.sk-parallel-item:only-child::after {
   width: 0;
 }
 
 /* Serial-specific style estimator block */
 
-#sk-container-id-1 div.sk-serial {
+#sk-container-id-2 div.sk-serial {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1424,14 +1384,14 @@ clickable and can be expanded/collapsed.
 
 /* Pipeline and ColumnTransformer style (default) */
 
-#sk-container-id-1 div.sk-toggleable {
+#sk-container-id-2 div.sk-toggleable {
   /* Default theme specific background. It is overwritten whether we have a
   specific estimator or a Pipeline/ColumnTransformer */
   background-color: var(--sklearn-color-background);
 }
 
 /* Toggleable label */
-#sk-container-id-1 label.sk-toggleable__label {
+#sk-container-id-2 label.sk-toggleable__label {
   cursor: pointer;
   display: flex;
   width: 100%;
@@ -1444,13 +1404,13 @@ clickable and can be expanded/collapsed.
   gap: 0.5em;
 }
 
-#sk-container-id-1 label.sk-toggleable__label .caption {
+#sk-container-id-2 label.sk-toggleable__label .caption {
   font-size: 0.6rem;
   font-weight: lighter;
   color: var(--sklearn-color-text-muted);
 }
 
-#sk-container-id-1 label.sk-toggleable__label-arrow:before {
+#sk-container-id-2 label.sk-toggleable__label-arrow:before {
   /* Arrow on the left of the label */
   content: "▸";
   float: left;
@@ -1458,13 +1418,13 @@ clickable and can be expanded/collapsed.
   color: var(--sklearn-color-icon);
 }
 
-#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
+#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {
   color: var(--sklearn-color-text);
 }
 
 /* Toggleable content - dropdown */
 
-#sk-container-id-1 div.sk-toggleable__content {
+#sk-container-id-2 div.sk-toggleable__content {
   max-height: 0;
   max-width: 0;
   overflow: hidden;
@@ -1473,12 +1433,12 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-1 div.sk-toggleable__content.fitted {
+#sk-container-id-2 div.sk-toggleable__content.fitted {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-1 div.sk-toggleable__content pre {
+#sk-container-id-2 div.sk-toggleable__content pre {
   margin: 0.2em;
   border-radius: 0.25em;
   color: var(--sklearn-color-text);
@@ -1486,79 +1446,79 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-1 div.sk-toggleable__content.fitted pre {
+#sk-container-id-2 div.sk-toggleable__content.fitted pre {
   /* unfitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {
   /* Expand drop-down */
   max-height: 200px;
   max-width: 100%;
   overflow: auto;
 }
 
-#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
   content: "▾";
 }
 
 /* Pipeline/ColumnTransformer-specific style */
 
-#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-2 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
 /* Estimator-specific style */
 
 /* Colorize estimator box */
-#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-2 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
-#sk-container-id-1 div.sk-label label.sk-toggleable__label,
-#sk-container-id-1 div.sk-label label {
+#sk-container-id-2 div.sk-label label.sk-toggleable__label,
+#sk-container-id-2 div.sk-label label {
   /* The background is the default theme color */
   color: var(--sklearn-color-text-on-default-background);
 }
 
 /* On hover, darken the color of the background */
-#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
+#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
 /* Label box, darken color on hover, fitted */
-#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+#sk-container-id-2 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
 /* Estimator label */
 
-#sk-container-id-1 div.sk-label label {
+#sk-container-id-2 div.sk-label label {
   font-family: monospace;
   font-weight: bold;
   display: inline-block;
   line-height: 1.2em;
 }
 
-#sk-container-id-1 div.sk-label-container {
+#sk-container-id-2 div.sk-label-container {
   text-align: center;
 }
 
 /* Estimator-specific */
-#sk-container-id-1 div.sk-estimator {
+#sk-container-id-2 div.sk-estimator {
   font-family: monospace;
   border: 1px dotted var(--sklearn-color-border-box);
   border-radius: 0.25em;
@@ -1568,18 +1528,18 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-1 div.sk-estimator.fitted {
+#sk-container-id-2 div.sk-estimator.fitted {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
 /* on hover */
-#sk-container-id-1 div.sk-estimator:hover {
+#sk-container-id-2 div.sk-estimator:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-1 div.sk-estimator.fitted:hover {
+#sk-container-id-2 div.sk-estimator.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-2);
 }
@@ -1667,7 +1627,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 
 /* "?"-specific style due to the `<a>` HTML tag */
 
-#sk-container-id-1 a.estimator_doc_link {
+#sk-container-id-2 a.estimator_doc_link {
   float: right;
   font-size: 1rem;
   line-height: 1em;
@@ -1682,25 +1642,25 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
   border: var(--sklearn-color-unfitted-level-1) 1pt solid;
 }
 
-#sk-container-id-1 a.estimator_doc_link.fitted {
+#sk-container-id-2 a.estimator_doc_link.fitted {
   /* fitted */
   border: var(--sklearn-color-fitted-level-1) 1pt solid;
   color: var(--sklearn-color-fitted-level-1);
 }
 
 /* On hover */
-#sk-container-id-1 a.estimator_doc_link:hover {
+#sk-container-id-2 a.estimator_doc_link:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-3);
   color: var(--sklearn-color-background);
   text-decoration: none;
 }
 
-#sk-container-id-1 a.estimator_doc_link.fitted:hover {
+#sk-container-id-2 a.estimator_doc_link.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-3);
 }
-</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[('preprocessing',
+</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[('preprocessing',
                  ColumnTransformer(transformers=[('num', StandardScaler(),
                                                   Index(['RowNumber', 'CreditScore', 'Age', 'Tenure', 'Balance', 'NumOfProducts',
        'HasCrCard', 'IsActiveMember', 'EstimatedSalary', 'Satisfaction Score',
@@ -1710,7 +1670,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
                                                   OneHotEncoder(drop='first'),
                                                   Index(['Geography', 'Gender', 'Card Type'], dtype='object'))])),
                 ('model',
-                 RandomForestClassifier(n_estimators=300, random_state=42))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox"><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>Pipeline</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>Pipeline(steps=[('preprocessing',
+                 RandomForestClassifier(n_estimators=300, random_state=42))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox"><label for="sk-estimator-id-8" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>Pipeline</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>Pipeline(steps=[('preprocessing',
                  ColumnTransformer(transformers=[('num', StandardScaler(),
                                                   Index(['RowNumber', 'CreditScore', 'Age', 'Tenure', 'Balance', 'NumOfProducts',
        'HasCrCard', 'IsActiveMember', 'EstimatedSalary', 'Satisfaction Score',
@@ -1720,23 +1680,23 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
                                                   OneHotEncoder(drop='first'),
                                                   Index(['Geography', 'Gender', 'Card Type'], dtype='object'))])),
                 ('model',
-                 RandomForestClassifier(n_estimators=300, random_state=42))])</pre></div> </div></div><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox"><label for="sk-estimator-id-2" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>preprocessing: ColumnTransformer</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for preprocessing: ColumnTransformer</span></a></div></label><div class="sk-toggleable__content fitted"><pre>ColumnTransformer(transformers=[('num', StandardScaler(),
+                 RandomForestClassifier(n_estimators=300, random_state=42))])</pre></div> </div></div><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-9" type="checkbox"><label for="sk-estimator-id-9" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>preprocessing: ColumnTransformer</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.compose.ColumnTransformer.html">?<span>Documentation for preprocessing: ColumnTransformer</span></a></div></label><div class="sk-toggleable__content fitted"><pre>ColumnTransformer(transformers=[('num', StandardScaler(),
                                  Index(['RowNumber', 'CreditScore', 'Age', 'Tenure', 'Balance', 'NumOfProducts',
        'HasCrCard', 'IsActiveMember', 'EstimatedSalary', 'Satisfaction Score',
        'Point Earned'],
       dtype='object')),
                                 ('cat', OneHotEncoder(drop='first'),
-                                 Index(['Geography', 'Gender', 'Card Type'], dtype='object'))])</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox"><label for="sk-estimator-id-3" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>num</div></div></label><div class="sk-toggleable__content fitted"><pre>Index(['RowNumber', 'CreditScore', 'Age', 'Tenure', 'Balance', 'NumOfProducts',
+                                 Index(['Geography', 'Gender', 'Card Type'], dtype='object'))])</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-10" type="checkbox"><label for="sk-estimator-id-10" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>num</div></div></label><div class="sk-toggleable__content fitted"><pre>Index(['RowNumber', 'CreditScore', 'Age', 'Tenure', 'Balance', 'NumOfProducts',
        'HasCrCard', 'IsActiveMember', 'EstimatedSalary', 'Satisfaction Score',
        'Point Earned'],
-      dtype='object')</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox"><label for="sk-estimator-id-4" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>StandardScaler</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></div></label><div class="sk-toggleable__content fitted"><pre>StandardScaler()</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox"><label for="sk-estimator-id-5" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>cat</div></div></label><div class="sk-toggleable__content fitted"><pre>Index(['Geography', 'Gender', 'Card Type'], dtype='object')</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox"><label for="sk-estimator-id-6" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>OneHotEncoder</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></div></label><div class="sk-toggleable__content fitted"><pre>OneHotEncoder(drop='first')</pre></div> </div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox"><label for="sk-estimator-id-7" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>RandomForestClassifier</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.ensemble.RandomForestClassifier.html">?<span>Documentation for RandomForestClassifier</span></a></div></label><div class="sk-toggleable__content fitted"><pre>RandomForestClassifier(n_estimators=300, random_state=42)</pre></div> </div></div></div></div></div></div>
+      dtype='object')</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-11" type="checkbox"><label for="sk-estimator-id-11" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>StandardScaler</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></div></label><div class="sk-toggleable__content fitted"><pre>StandardScaler()</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-12" type="checkbox"><label for="sk-estimator-id-12" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>cat</div></div></label><div class="sk-toggleable__content fitted"><pre>Index(['Geography', 'Gender', 'Card Type'], dtype='object')</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-13" type="checkbox"><label for="sk-estimator-id-13" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>OneHotEncoder</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></div></label><div class="sk-toggleable__content fitted"><pre>OneHotEncoder(drop='first')</pre></div> </div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-14" type="checkbox"><label for="sk-estimator-id-14" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>RandomForestClassifier</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.ensemble.RandomForestClassifier.html">?<span>Documentation for RandomForestClassifier</span></a></div></label><div class="sk-toggleable__content fitted"><pre>RandomForestClassifier(n_estimators=300, random_state=42)</pre></div> </div></div></div></div></div></div>
 </div>
 </div>
 <ol type="1">
 <li>Simple Pipeline Flow Diagram text [Raw Data] ↓ [Preprocessing] → Data cleaning ↓ [Feature Engineering] → Variable creation ↓ [Modeling] → ML algorithms ↓ [Predictions] → Churn probabilities</li>
 <li>Detailed Business-Friendly Version python</li>
 </ol>
-<div id="b36eaa4b" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:25.596967Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:25.596936Z&quot;}}" data-execution_count="24">
+<div id="dce607ef" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:25.596967Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:25.596936Z&quot;}}" data-execution_count="24">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Diagram in commented code for business presentation</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co">"""</span></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co">CHURN PREDICTION PIPELINE - BUSINESS VIEW</span></span>
@@ -1891,13 +1851,13 @@ EXPECTED RESULTS:
 </code></pre>
 </div>
 </div>
-<div id="c4ba46fc" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:25.609061Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:25.609037Z&quot;}}" data-execution_count="25">
+<div id="a571195a" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:25.609061Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:25.609037Z&quot;}}" data-execution_count="25">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#📌 SECTION 9 — Predictions</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Produces predicted class labels (0 or 1)</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>log_reg_pred <span class="op">=</span> log_reg_pipeline.predict(X_test)</span>
 <span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>rf_pred <span class="op">=</span> rf_pipeline.predict(X_test)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="370f1071" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:25.724358Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:25.634928Z&quot;}}" data-execution_count="26">
+<div id="6b9a549d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:25.724358Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:25.634928Z&quot;}}" data-execution_count="26">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#📌 SECTION 10 — Evaluate Each Model</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co">#🔵 Logistic Regression</span></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"🔵 Logistic Regression Results"</span>)</span>
@@ -1982,7 +1942,7 @@ weighted avg       0.86      0.87      0.86      2000
 <p>Gender</p>
 <p>HasCrCard</p>
 <p>👉 Non-linear relationships exist → Random Forest handles them, Logistic Regression doesn’t.</p>
-<div id="22af3415" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:26.451899Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:26.426131Z&quot;}}" data-execution_count="27">
+<div id="14193894" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:26.451899Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:26.426131Z&quot;}}" data-execution_count="27">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#📌 SECTION 11 — Compare Models Automatically</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>log_acc <span class="op">=</span> accuracy_score(y_test, log_reg_pred)</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>rf_acc <span class="op">=</span> accuracy_score(y_test, rf_pred)</span>
@@ -2002,7 +1962,7 @@ Random Forest Accuracy:       0.8690
 </div>
 </div>
 <p>✅ 1. Present Individual Probabilities (Customer-Level View)</p>
-<div id="7821d063" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:27.749222Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:27.705065Z&quot;}}" data-execution_count="28">
+<div id="b4511504" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:27.749222Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:27.705065Z&quot;}}" data-execution_count="28">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Predict probabilities for the validation or test set</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>y_proba <span class="op">=</span> rf_pipeline.predict_proba(X_test)[:, <span class="dv">1</span>]</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2017,7 +1977,7 @@ Random Forest Accuracy:       0.8690
 <span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by highest risk</span></span>
 <span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>customer_scores <span class="op">=</span> customer_scores.sort_values(<span class="st">"Churn_Probability"</span>, ascending<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>customer_scores.head(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="28">
+<div class="cell-output cell-output-display" data-execution_count="62">
 <div>
 
 
@@ -2087,7 +2047,7 @@ Random Forest Accuracy:       0.8690
 </div>
 </div>
 <p>✅ 2. Segment Probabilities into Business Buckets</p>
-<div id="9eca4ea8" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:29.102004Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:29.064209Z&quot;}}" data-execution_count="29">
+<div id="18e66a12" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:29.102004Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:29.064209Z&quot;}}" data-execution_count="29">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> segment_risk(p):</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> p <span class="op">&lt;</span> <span class="fl">0.20</span>:</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Low risk (0–20%)"</span></span>
@@ -2101,7 +2061,7 @@ Random Forest Accuracy:       0.8690
 <span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>customer_scores[<span class="st">"Risk_Level"</span>] <span class="op">=</span> customer_scores[<span class="st">"Churn_Probability"</span>].<span class="bu">apply</span>(segment_risk)</span>
 <span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>customer_scores.head(<span class="dv">1500</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="29">
+<div class="cell-output cell-output-display" data-execution_count="63">
 <div>
 
 
@@ -2189,7 +2149,7 @@ Random Forest Accuracy:       0.8690
 </div>
 </div>
 <p>✅ 3. Plot Probability Distribution (Perfect for Slides)</p>
-<div id="5d953276" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:31.031971Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:30.617395Z&quot;}}" data-execution_count="30">
+<div id="d2d31bd5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:31.031971Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:30.617395Z&quot;}}" data-execution_count="30">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">5</span>))</span>
@@ -2207,12 +2167,12 @@ Random Forest Accuracy:       0.8690
 </div>
 </div>
 <p>✅ 4. Show Example Customer Profiles by Probability Level</p>
-<div id="4c13b231" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:33.049396Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:33.035063Z&quot;}}" data-execution_count="31">
+<div id="9d221b7d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:33.049396Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:33.035063Z&quot;}}" data-execution_count="31">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#This is excellent storytelling for executives.</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>examples <span class="op">=</span> customer_scores.sample(<span class="dv">5</span>)</span>
 <span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>examples</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="31">
+<div class="cell-output cell-output-display" data-execution_count="65">
 <div>
 
 
@@ -2227,33 +2187,33 @@ Random Forest Accuracy:       0.8690
 </thead>
 <tbody>
 <tr class="odd">
-<th data-quarto-table-cell-role="th">1908</th>
-<td>5802</td>
-<td>0.036667</td>
-<td>Low risk (0–20%)</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">1571</th>
-<td>4855</td>
-<td>0.026667</td>
-<td>Low risk (0–20%)</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">1335</th>
-<td>767</td>
-<td>0.723333</td>
-<td>Critical (70–100%)</td>
-</tr>
-<tr class="even">
-<th data-quarto-table-cell-role="th">527</th>
-<td>910</td>
-<td>0.036667</td>
-<td>Low risk (0–20%)</td>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">1683</th>
-<td>2314</td>
+<th data-quarto-table-cell-role="th">1251</th>
+<td>7623</td>
 <td>0.083333</td>
+<td>Low risk (0–20%)</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1991</th>
+<td>5296</td>
+<td>0.286667</td>
+<td>Moderate (20–40%)</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">178</th>
+<td>4608</td>
+<td>0.343333</td>
+<td>Moderate (20–40%)</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1027</th>
+<td>2731</td>
+<td>0.006667</td>
+<td>Low risk (0–20%)</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">1847</th>
+<td>7032</td>
+<td>0.170000</td>
 <td>Low risk (0–20%)</td>
 </tr>
 </tbody>
@@ -2263,12 +2223,12 @@ Random Forest Accuracy:       0.8690
 </div>
 </div>
 <p>✅ 5. Present a “Churn Radar” Summary for Business People</p>
-<div id="cbfdcf78" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:35.093031Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:35.080391Z&quot;}}" data-execution_count="32">
+<div id="b7b9614a" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:35.093031Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:35.080391Z&quot;}}" data-execution_count="32">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">#You can compute proportions in each segment:</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>risk_summary <span class="op">=</span> customer_scores[<span class="st">"Risk_Level"</span>].value_counts(normalize<span class="op">=</span><span class="va">True</span>) <span class="op">*</span> <span class="dv">100</span></span>
 <span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>risk_summary</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="32">
+<div class="cell-output cell-output-display" data-execution_count="66">
 <pre><code>Risk_Level
 Low risk (0–20%)      61.8
 Moderate (20–40%)     21.0
@@ -2278,7 +2238,7 @@ Name: proportion, dtype: float64</code></pre>
 </div>
 </div>
 <p>✅ 1. Generate CSV / Excel With Customer Churn Probabilities</p>
-<div id="d87731f5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:38.177892Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:37.776044Z&quot;}}" data-execution_count="33">
+<div id="db87b2fe" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:39:38.177892Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:39:37.776044Z&quot;}}" data-execution_count="33">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Step 1 — Predict probabilities</span></span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Predict churn probability with your logistic model pipeline</span></span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>y_proba <span class="op">=</span> rf_pipeline.predict_proba(X_test)[:, <span class="dv">1</span>]</span>
@@ -2354,7 +2314,7 @@ Excel file saved: customer_churn_predictions.xlsx</code></pre>
 <p>Churn segment</p>
 <p>And all predictions are made using your Random Forest model, which performed best.</p>
 <p>✅ 1️⃣ Save your trained best model (Pickle format)</p>
-<div id="677e58a0" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:40:35.480282Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:40:33.991823Z&quot;}}" data-execution_count="34">
+<div id="a2f72e82" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;ExecuteTime&quot;,&quot;value&quot;:{&quot;end_time&quot;:&quot;2025-11-27T16:40:35.480282Z&quot;,&quot;start_time&quot;:&quot;2025-11-27T16:40:33.991823Z&quot;}}" data-execution_count="34">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Pickle is the easiest and fully compatible with scikit-learn pipelines.</span></span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="co">#✔ If your model is inside a pipeline (best_model, log_reg_pipeline, etc.):</span></span>
@@ -2385,8 +2345,6 @@ Excel file saved: customer_churn_predictions.xlsx</code></pre>
 <p>Personalize communication strategies</p>
 <p>Increase customer lifetime value</p>
 <p>Overall, this project highlights the impact of combining data analytics, machine learning, and deployment-ready pipelines to convert raw customer data into actionable business insight. Potential next steps include automated model monitoring, integration with real-time data streams, and the development of an interactive application (e.g., Streamlit) to support operational teams in everyday decision-making.</p>
-</section>
-</section>
 
 </main>
 <!-- /main column -->
