@@ -1,201 +1,201 @@
-CustomerID;Age;Gender;Region;Occupation;AnnualIncome;TenureYears;AcquisitionChannel;RelationshipManager;ChurnProbability,City
-546900681,Brussels
-175438034,Antwerp
-287706322,Ghent
-192901451,Charleroi
-18302644,Liège
-336841981,Bruges
-184589042,Namur
-357695935,Leuven
-158838772,Mons
-504852627,Mechelen
-233089364,Aalst
-94568431,La Louvière
-68336911,Kortrijk
-373371151,Hasselt
-181497459,Ostend
-468820351,Sint-Niklaas
-44183762,Tournai
-273119565,Genk
-441739233,Seraing
-451499466,Roeselare
-514302511,Brussels
-198480423,Antwerp
-56244959,Ghent
-13096916,Charleroi
-442215345,Liège
-256328823,Bruges
-120080372,Namur
-290654868,Leuven
-248426499,Mons
-273114963,Mechelen
-231032745,Aalst
-397758385,La Louvière
-122809951,Kortrijk
-244312466,Hasselt
-169055031,Ostend
-363014352,Sint-Niklaas
-159391579,Tournai
-98012461,Genk
-325874444,Seraing
-306510805,Roeselare
-76712184,Brussels
-472862084,Antwerp
-315701101,Ghent
-206309642,Charleroi
-38672939,Liège
-416867006,Bruges
-305264082,Namur
-360409464,Leuven
-319652372,Mons
-60392032,Mechelen
-217675619,Aalst
-423391043,La Louvière
-85753596,Kortrijk
-2411421,Hasselt
-10682137,Ostend
-393997432,Sint-Niklaas
-255722633,Tournai
-384081129,Genk
-366145806,Seraing
-581643489,Roeselare
-562177561,Brussels
-8844444,Antwerp
-34462353,Ghent
-609565472,Charleroi
-314130977,Liège
-647946361,Bruges
-22650192,Namur
-453226706,Leuven
-599621851,Mons
-136231862,Mechelen
-23613795,Aalst
-604661457,La Louvière
-292048719,Kortrijk
-400422274,Hasselt
-450771094,Ostend
-184801866,Sint-Niklaas
-410192934,Tournai
-34973435,Genk
-175619197,Seraing
-205262227,Roeselare
-608556002,Brussels
-141658771,Antwerp
-435939463,Ghent
-308236533,Charleroi
-455006399,Liège
-427549085,Bruges
-278186168,Namur
-185240552,Leuven
-555317199,Mons
-503182058,Mechelen
-32184672,Aalst
-294037502,La Louvière
-125449385,Kortrijk
-444401251,Hasselt
-575768815,Ostend
-123810866,Sint-Niklaas
-141742475,Tournai
-187275199,Genk
-191267286,Seraing
-275008619,Roeselare
-259473265,Brussels
-116017338,Antwerp
-5878549,Ghent
-141844276,Charleroi
-267094092,Liège
-169349402,Bruges
-5051296,Namur
-215226301,Leuven
-302679284,Mons
-604336895,Mechelen
-226442825,Aalst
-330010235,La Louvière
-155267636,Kortrijk
-264038354,Hasselt
-387055571,Ostend
-121958158,Sint-Niklaas
-230734368,Tournai
-337432845,Genk
-72410463,Seraing
-378220735,Roeselare
-3194344,Brussels
-19725972,Antwerp
-287172101,Ghent
-600822192,Charleroi
-97122606,Liège
-275007354,Bruges
-504593399,Namur
-15951836,Leuven
-214443466,Mons
-463157328,Mechelen
-278102407,Aalst
-185040538,La Louvière
-114555559,Kortrijk
-422895056,Hasselt
-644067963,Ostend
-308325527,Sint-Niklaas
-410577425,Tournai
-196054206,Genk
-138874774,Seraing
-98526761,Roeselare
-367261131,Brussels
-507379335,Antwerp
-236461969,Ghent
-40563614,Charleroi
-264909771,Liège
-380811794,Bruges
-225331747,Namur
-45153695,Leuven
-164366033,Mons
-1914307,Mechelen
-261646114,Aalst
-356393722,La Louvière
-80739367,Kortrijk
-108457475,Hasselt
-245526647,Ostend
-545397246,Sint-Niklaas
-335541139,Tournai
-111932575,Genk
-7861862,Seraing
-22324956,Roeselare
-239344893,Brussels
-469165084,Antwerp
-109301013,Ghent
-350841738,Charleroi
-114733277,Liège
-520956084,Bruges
-462919117,Namur
-445808431,Leuven
-450745647,Mons
-207768702,Mechelen
-55308464,Aalst
-241405785,La Louvière
-352199145,Kortrijk
-562333555,Hasselt
-66028107,Ostend
-478010363,Sint-Niklaas
-361955742,Tournai
-401619076,Genk
-144769089,Seraing
-148536183,Roeselare
-267312282,Brussels
-266505895,Antwerp
-20168444,Ghent
-519134858,Charleroi
-12576969,Liège
-230059532,Bruges
-89162477,Namur
-543718323,Leuven
-338064168,Mons
-220993777,Mechelen
-12232167,Aalst
-327157746,La Louvière
-99974827,Kortrijk
-33759204,Hasselt
-582854473,Ostend
-549032609,Sint-Niklaas
-144400215,Tournai
-539788685,Genk
-49103914,Seraing
-226929867,Roeselare
+CustomerID;Age;Gender;City;Rgion;Occupation;AnnualIncome;TenureYears;AcquisitionChannel;RelationshipManager;ChurnProbability
+CUST0001;56;Female;Brussels;Brussels-Capital;Manager;125570;12,20;Online;RM2;0,546900681
+CUST0002;69;Female;Antwerp;Antwerp;Doctor;28702;4,90;Online;RM2;0,175438034
+CUST0003;46;Other;Ghent;East Flanders;Worker;151456;2,20;Call Center;RM2;0,287706322
+CUST0004;32;Female;Charleroi;Hainaut;Engineer;20404;3,20;Branch;RM2;0,192901451
+CUST0005;60;Other;Liège;Liège;Worker;192015;5,10;Online;RM4;0,18302644
+CUST0006;25;Male;Bruges;West Flanders;Doctor;198998;3,40;Online;RM2;0,336841981
+CUST0007;38;Other;Namur;Namur;Manager;180261;3,90;Online;RM3;0,184589042
+CUST0008;56;Female;Leuven;Flemish Brabant;Worker;32763;5,80;Referral;RM3;0,357695935
+CUST0009;36;Male;Mons;Hainaut;Manager;169456;3,60;Referral;RM4;0,158838772
+CUST0010;40;Male;Mechelen;Antwerp;Retired;118142;18,00;Call Center;;0,504852627
+CUST0011;28;Male;Aalst;East Flanders;Engineer;160932;1,80;Branch;RM4;0,233089364
+CUST0012;28;Other;La Louvière;Hainaut;Retired;100642;10,60;Call Center;RM2;0,094568431
+CUST0013;41;Female;Kortrijk;West Flanders;Manager;70612;8,30;Branch;RM1;0,068336911
+CUST0014;70;Male;Hasselt;Limburg;Manager;43574;19,70;Referral;RM2;0,373371151
+CUST0015;53;Male;Ostend;West Flanders;Teacher;43524;2,40;Referral;RM3;0,181497459
+CUST0016;57;Male;Sint-Niklaas;East Flanders;Teacher;30916;8,10;Referral;RM1;0,468820351
+CUST0017;41;Other;Tournai;Hainaut;Retired;24809;19,40;Call Center;RM3;0,44183762
+CUST0018;20;Other;Genk;Limburg;Student;183273;17,30;Online;RM3;0,273119565
+CUST0019;39;Female;Seraing;Liège;Retired;164528;16,40;Online;RM2;0,441739233
+CUST0020;70;Other;Roeselare;West Flanders;Teacher;141288;5,30;Referral;RM4;0,451499466
+CUST0021;19;Male;Brussels;Brussels-Capital;Manager;58765;3,60;Online;RM1;0,514302511
+CUST0022;41;Female;Antwerp;Antwerp;Doctor;185888;13,40;Online;RM1;0,198480423
+CUST0023;61;Male;Ghent;East Flanders;Retired;65106;18,60;Call Center;RM4;0,056244959
+CUST0024;47;Male;Charleroi;Hainaut;Manager;73932;11,20;Branch;RM3;0,013096916
+CUST0025;55;Other;Liège;Liège;Doctor;168172;11,50;Referral;RM4;0,442215345
+CUST0026;19;Female;Bruges;West Flanders;Doctor;77091;5,70;Referral;RM3;0,256328823
+CUST0027;38;Other;Namur;Namur;Teacher;41949;15,40;Call Center;RM2;0,120080372
+CUST0028;50;Other;Leuven;Flemish Brabant;Retired;57744;3,90;Call Center;;0,290654868
+CUST0029;29;Female;Mons;Hainaut;Worker;196615;6,60;Online;RM4;0,248426499
+CUST0030;39;Male;Mechelen;Antwerp;Engineer;128319;8,60;Referral;RM4;0,273114963
+CUST0031;61;Male;Aalst;East Flanders;Teacher;112193;10,30;Branch;RM2;0,231032745
+CUST0032;42;Female;La Louvière;Hainaut;Teacher;56187;5,00;Call Center;RM3;0,397758385
+CUST0033;66;Male;Kortrijk;West Flanders;Worker;158311;2,50;Branch;RM2;0,122809951
+CUST0034;44;Female;Hasselt;Limburg;Engineer;144454;12,30;Branch;RM1;0,244312466
+CUST0035;59;Female;Ostend;West Flanders;Manager;34489;5,90;Referral;;0,169055031
+CUST0036;45;Other;Sint-Niklaas;East Flanders;Student;81877;11,70;Referral;RM1;0,363014352
+CUST0037;33;Female;Tournai;Hainaut;Retired;194197;3,30;Call Center;;0,159391579
+CUST0038;32;Other;Genk;Limburg;Student;69922;9,70;Referral;RM3;0,098012461
+CUST0039;64;Male;Seraing;Liège;Manager;114074;10,70;Referral;RM1;0,325874444
+CUST0040;68;Male;Roeselare;West Flanders;Teacher;183121;1,20;Referral;RM3;0,306510805
+CUST0041;61;Male;Brussels;Brussels-Capital;Engineer;57131;6,90;Branch;;0,076712184
+CUST0042;72;Male;Antwerp;Antwerp;Teacher;194016;2,90;Call Center;RM4;0,472862084
+CUST0043;69;Other;Ghent;East Flanders;Doctor;135765;1,50;Online;;0,315701101
+CUST0044;74;Male;Charleroi;Hainaut;Teacher;93963;19,80;Branch;RM4;0,206309642
+CUST0045;20;Female;Liège;Liège;Teacher;126884;6,60;Referral;RM4;0,038672939
+CUST0046;54;Female;Bruges;West Flanders;Manager;145917;16,20;Branch;;0,416867006
+CUST0047;68;Female;Namur;Namur;Manager;44285;5,20;Referral;RM2;0,305264082
+CUST0048;24;Other;Leuven;Flemish Brabant;Manager;57626;13,70;Referral;RM3;0,360409464
+CUST0049;38;Male;Mons;Hainaut;Student;193880;15,30;Branch;RM2;0,319652372
+CUST0050;26;Male;Mechelen;Antwerp;Doctor;39198;12,00;Call Center;;0,060392032
+CUST0051;56;Male;Aalst;East Flanders;Manager;170830;9,50;Referral;;0,217675619
+CUST0052;35;Other;La Louvière;Hainaut;Engineer;35254;8,40;Call Center;RM1;0,423391043
+CUST0053;21;Female;Kortrijk;West Flanders;Student;64238;7,10;Online;RM4;0,085753596
+CUST0054;42;Female;Hasselt;Limburg;Worker;21252;18,60;Referral;;0,2411421
+CUST0055;31;Male;Ostend;West Flanders;Engineer;59764;16,60;Call Center;RM1;0,10682137
+CUST0056;67;Female;Sint-Niklaas;East Flanders;Retired;97709;19,30;Call Center;RM3;0,393997432
+CUST0057;26;Female;Tournai;Hainaut;Retired;188513;2,70;Online;;0,255722633
+CUST0058;43;Other;Genk;Limburg;Engineer;73682;14,70;Call Center;RM1;0,384081129
+CUST0059;70;Other;Seraing;Liège;Manager;79494;18,80;Call Center;RM4;0,366145806
+CUST0060;19;Other;Roeselare;West Flanders;Worker;101317;3,80;Online;RM2;0,581643489
+CUST0061;37;Other;Brussels;Brussels-Capital;Worker;85215;1,50;Referral;;0,562177561
+CUST0062;45;Male;Antwerp;Antwerp;Student;98587;14,90;Call Center;;0,08844444
+CUST0063;64;Other;Ghent;East Flanders;Worker;26949;11,60;Call Center;;0,34462353
+CUST0064;24;Female;Charleroi;Hainaut;Retired;75393;16,90;Call Center;RM3;0,609565472
+CUST0065;61;Male;Liège;Liège;Doctor;158013;3,00;Branch;;0,314130977
+CUST0066;25;Female;Bruges;West Flanders;Manager;45934;15,90;Online;;0,647946361
+CUST0067;64;Female;Namur;Namur;Worker;174458;4,20;Branch;RM2;0,22650192
+CUST0068;52;Female;Leuven;Flemish Brabant;Student;95745;3,40;Online;;0,453226706
+CUST0069;31;Other;Mons;Hainaut;Retired;114456;3,50;Referral;RM1;0,599621851
+CUST0070;34;Other;Mechelen;Antwerp;Doctor;73413;16,30;Referral;RM3;0,136231862
+CUST0071;53;Male;Aalst;East Flanders;Teacher;117239;13,40;Call Center;RM2;0,23613795
+CUST0072;67;Male;La Louvière;Hainaut;Teacher;62318;10,60;Online;RM1;0,604661457
+CUST0073;57;Other;Kortrijk;West Flanders;Doctor;90390;7,30;Referral;RM1;0,292048719
+CUST0074;21;Female;Hasselt;Limburg;Retired;63088;17,60;Online;RM4;0,400422274
+CUST0075;19;Male;Ostend;West Flanders;Student;123196;8,00;Referral;RM2;0,450771094
+CUST0076;23;Other;Sint-Niklaas;East Flanders;Doctor;190883;16,40;Branch;RM4;0,184801866
+CUST0077;71;Other;Tournai;Hainaut;Manager;75479;8,90;Referral;RM1;0,410192934
+CUST0078;59;Other;Genk;Limburg;Manager;39963;7,70;Branch;RM2;0,34973435
+CUST0079;21;Female;Seraing;Liège;Teacher;75123;9,40;Referral;RM3;0,175619197
+CUST0080;71;Other;Roeselare;West Flanders;Worker;145911;6,20;Call Center;RM4;0,205262227
+CUST0081;46;Other;Brussels;Brussels-Capital;Student;122468;15,00;Branch;RM2;0,608556002
+CUST0082;35;Other;Antwerp;Antwerp;Teacher;93477;10,20;Referral;RM4;0,141658771
+CUST0083;43;Other;Ghent;East Flanders;Worker;34388;4,80;Call Center;;0,435939463
+CUST0084;61;Male;Charleroi;Hainaut;Worker;25569;18,00;Branch;RM4;0,308236533
+CUST0085;51;Male;Liège;Liège;Manager;89836;7,80;Call Center;RM2;0,455006399
+CUST0086;27;Other;Bruges;West Flanders;Retired;124573;11,00;Online;RM1;0,427549085
+CUST0087;53;Female;Namur;Namur;Engineer;187658;18,10;Online;;0,278186168
+CUST0088;31;Male;Leuven;Flemish Brabant;Retired;163087;12,60;Branch;RM1;0,185240552
+CUST0089;48;Other;Mons;Hainaut;Engineer;65002;2,50;Referral;;0,555317199
+CUST0090;65;Male;Mechelen;Antwerp;Doctor;157326;18,80;Branch;RM3;0,503182058
+CUST0091;32;Male;Aalst;East Flanders;Manager;168216;12,60;Call Center;;0,32184672
+CUST0092;25;Female;La Louvière;Hainaut;Worker;175286;6,80;Referral;RM4;0,294037502
+CUST0093;31;Other;Kortrijk;West Flanders;Student;157162;3,00;Online;;0,125449385
+CUST0094;40;Other;Hasselt;Limburg;Engineer;162709;15,90;Referral;RM2;0,444401251
+CUST0095;74;Female;Ostend;West Flanders;Retired;173487;12,50;Online;RM4;0,575768815
+CUST0096;57;Female;Sint-Niklaas;East Flanders;Worker;44071;10,80;Referral;RM3;0,123810866
+CUST0097;38;Other;Tournai;Hainaut;Engineer;78243;17,90;Referral;RM3;0,141742475
+CUST0098;33;Other;Genk;Limburg;Engineer;145827;15,80;Referral;RM4;0,187275199
+CUST0099;62;Female;Seraing;Liège;Engineer;128215;3,20;Call Center;;0,191267286
+CUST0100;35;Male;Roeselare;West Flanders;Student;192312;6,40;Call Center;;0,275008619
+CUST0101;64;Male;Brussels;Brussels-Capital;Manager;121570;5,10;Branch;RM4;0,259473265
+CUST0102;70;Female;Antwerp;Antwerp;Student;184506;14,90;Branch;RM3;0,116017338
+CUST0103;41;Male;Ghent;East Flanders;Teacher;89724;0,90;Online;RM3;0,5878549
+CUST0104;43;Female;Charleroi;Hainaut;Worker;135359;11,50;Call Center;RM4;0,141844276
+CUST0105;42;Male;Liège;Liège;Manager;95697;15,30;Online;RM2;0,267094092
+CUST0106;62;Male;Bruges;West Flanders;Manager;48732;17,60;Branch;RM1;0,169349402
+CUST0107;58;Other;Namur;Namur;Manager;141465;7,00;Online;RM2;0,5051296
+CUST0108;46;Other;Leuven;Flemish Brabant;Retired;162386;16,50;Branch;RM2;0,215226301
+CUST0109;32;Male;Mons;Hainaut;Manager;175026;2,40;Call Center;RM2;0,302679284
+CUST0110;62;Male;Mechelen;Antwerp;Student;77108;17,00;Referral;RM2;0,604336895
+CUST0111;18;Other;Aalst;East Flanders;Manager;131195;2,70;Call Center;RM1;0,226442825
+CUST0112;42;Other;La Louvière;Hainaut;Doctor;123081;8,10;Online;RM1;0,330010235
+CUST0113;24;Other;Kortrijk;West Flanders;Worker;56668;16,00;Online;;0,155267636
+CUST0114;26;Female;Hasselt;Limburg;Manager;43061;3,20;Call Center;RM3;0,264038354
+CUST0115;41;Male;Ostend;West Flanders;Worker;99252;4,70;Call Center;RM2;0,387055571
+CUST0116;18;Other;Sint-Niklaas;East Flanders;Doctor;59749;14,50;Branch;RM4;0,121958158
+CUST0117;61;Male;Tournai;Hainaut;Doctor;150560;14,50;Online;RM2;0,230734368
+CUST0118;25;Female;Genk;Limburg;Worker;124680;12,90;Online;;0,337432845
+CUST0119;41;Female;Seraing;Liège;Engineer;167979;13,90;Call Center;RM4;0,072410463
+CUST0120;28;Other;Roeselare;West Flanders;Teacher;169849;10,90;Referral;RM1;0,378220735
+CUST0121;68;Female;Brussels;Brussels-Capital;Retired;71745;5,20;Online;RM3;0,3194344
+CUST0122;34;Male;Antwerp;Antwerp;Engineer;128464;7,00;Referral;;0,19725972
+CUST0123;25;Other;Ghent;East Flanders;Engineer;111865;3,80;Call Center;;0,287172101
+CUST0124;52;Male;Charleroi;Hainaut;Student;132428;18,20;Call Center;RM3;0,600822192
+CUST0125;52;Male;Liège;Liège;Retired;43624;11,80;Branch;RM4;0,097122606
+CUST0126;50;Female;Bruges;West Flanders;Retired;43321;8,10;Online;RM1;0,275007354
+CUST0127;22;Female;Namur;Namur;Engineer;161560;9,30;Referral;;0,504593399
+CUST0128;59;Female;Leuven;Flemish Brabant;Manager;42574;19,00;Branch;RM2;0,15951836
+CUST0129;56;Female;Mons;Hainaut;Student;156312;3,20;Online;;0,214443466
+CUST0130;58;Female;Mechelen;Antwerp;Student;194293;11,80;Branch;RM4;0,463157328
+CUST0131;45;Other;Aalst;East Flanders;Doctor;161550;10,20;Call Center;RM4;0,278102407
+CUST0132;24;Male;La Louvière;Hainaut;Retired;170334;12,30;Online;RM3;0,185040538
+CUST0133;26;Male;Kortrijk;West Flanders;Engineer;138831;0,60;Branch;RM2;0,114555559
+CUST0134;25;Male;Hasselt;Limburg;Doctor;155504;17,50;Branch;RM1;0,422895056
+CUST0135;29;Male;Ostend;West Flanders;Worker;115257;18,70;Referral;RM2;0,644067963
+CUST0136;51;Female;Sint-Niklaas;East Flanders;Teacher;84291;11,40;Branch;RM1;0,308325527
+CUST0137;50;Male;Tournai;Hainaut;Student;147600;14,00;Online;RM4;0,410577425
+CUST0138;65;Other;Genk;Limburg;Worker;70428;18,50;Online;RM2;0,196054206
+CUST0139;72;Other;Seraing;Liège;Worker;151374;14,20;Referral;RM1;0,138874774
+CUST0140;40;Male;Roeselare;West Flanders;Manager;151127;3,20;Online;;0,098526761
+CUST0141;41;Male;Brussels;Brussels-Capital;Teacher;131317;11,60;Call Center;;0,367261131
+CUST0142;54;Other;Antwerp;Antwerp;Worker;159789;12,20;Online;;0,507379335
+CUST0143;52;Other;Ghent;East Flanders;Worker;147449;8,60;Online;;0,236461969
+CUST0144;61;Female;Charleroi;Hainaut;Teacher;48699;14,80;Branch;RM1;0,40563614
+CUST0145;57;Other;Liège;Liège;Teacher;93686;18,70;Branch;RM2;0,264909771
+CUST0146;39;Female;Bruges;West Flanders;Worker;87661;18,50;Online;RM4;0,380811794
+CUST0147;44;Female;Namur;Namur;Teacher;64247;9,10;Referral;RM4;0,225331747
+CUST0148;52;Female;Leuven;Flemish Brabant;Worker;167820;2,40;Branch;RM1;0,045153695
+CUST0149;18;Female;Mons;Hainaut;Worker;125113;19,70;Referral;;0,164366033
+CUST0150;52;Female;Mechelen;Antwerp;Manager;24621;16,80;Online;RM2;0,1914307
+CUST0151;54;Male;Aalst;East Flanders;Engineer;166106;2,70;Online;RM2;0,261646114
+CUST0152;64;Other;La Louvière;Hainaut;Worker;156198;18,40;Call Center;RM3;0,356393722
+CUST0153;31;Female;Kortrijk;West Flanders;Doctor;156194;17,40;Branch;RM3;0,080739367
+CUST0154;20;Other;Hasselt;Limburg;Student;38030;10,50;Online;RM3;0,108457475
+CUST0155;18;Other;Ostend;West Flanders;Retired;102838;11,90;Call Center;RM1;0,245526647
+CUST0156;22;Female;Sint-Niklaas;East Flanders;Engineer;104717;8,10;Branch;;0,545397246
+CUST0157;43;Male;Tournai;Hainaut;Engineer;58638;1,30;Online;RM2;0,335541139
+CUST0158;72;Female;Genk;Limburg;Engineer;87067;6,80;Online;RM1;0,111932575
+CUST0159;31;Male;Seraing;Liège;Manager;138033;16,10;Branch;;0,07861862
+CUST0160;56;Other;Roeselare;West Flanders;Worker;125977;0,30;Branch;;0,22324956
+CUST0161;44;Male;Brussels;Brussels-Capital;Manager;108869;6,80;Branch;;0,239344893
+CUST0162;26;Male;Antwerp;Antwerp;Worker;125186;8,10;Online;;0,469165084
+CUST0163;32;Male;Ghent;East Flanders;Manager;54674;10,80;Online;RM4;0,109301013
+CUST0164;32;Other;Charleroi;Hainaut;Manager;186926;18,40;Call Center;RM3;0,350841738
+CUST0165;43;Other;Liège;Liège;Student;66271;7,10;Referral;RM1;0,114733277
+CUST0166;59;Male;Bruges;West Flanders;Doctor;93688;7,10;Branch;RM3;0,520956084
+CUST0167;30;Male;Namur;Namur;Manager;189590;14,80;Online;RM2;0,462919117
+CUST0168;68;Female;Leuven;Flemish Brabant;Student;131076;9,20;Online;RM2;0,445808431
+CUST0169;49;Male;Mons;Hainaut;Teacher;161339;4,60;Branch;RM4;0,450745647
+CUST0170;56;Female;Mechelen;Antwerp;Doctor;21062;9,20;Referral;RM3;0,207768702
+CUST0171;66;Male;Aalst;East Flanders;Manager;70448;3,00;Branch;RM1;0,55308464
+CUST0172;69;Female;La Louvière;Hainaut;Retired;115462;3,70;Referral;RM2;0,241405785
+CUST0173;49;Other;Kortrijk;West Flanders;Engineer;157301;10,10;Online;RM4;0,352199145
+CUST0174;21;Male;Hasselt;Limburg;Teacher;67915;8,50;Referral;RM1;0,562333555
+CUST0175;47;Male;Ostend;West Flanders;Teacher;24632;18,30;Call Center;;0,066028107
+CUST0176;54;Male;Sint-Niklaas;East Flanders;Student;124592;7,40;Online;RM3;0,478010363
+CUST0177;40;Male;Tournai;Hainaut;Teacher;154668;11,70;Call Center;RM3;0,361955742
+CUST0178;56;Female;Genk;Limburg;Doctor;129779;12,70;Branch;RM3;0,401619076
+CUST0179;62;Male;Seraing;Liège;Manager;157240;0,50;Branch;;0,144769089
+CUST0180;32;Other;Roeselare;West Flanders;Manager;128099;13,30;Branch;RM2;0,148536183
+CUST0181;60;Other;Brussels;Brussels-Capital;Retired;27561;3,70;Referral;RM4;0,267312282
+CUST0182;46;Male;Antwerp;Antwerp;Engineer;102152;19,20;Online;RM3;0,266505895
+CUST0183;53;Other;Ghent;East Flanders;Student;145036;3,10;Branch;RM2;0,20168444
+CUST0184;30;Male;Charleroi;Hainaut;Engineer;144049;8,40;Branch;;0,519134858
+CUST0185;49;Male;Liège;Liège;Teacher;46734;1,90;Online;RM4;0,012576969
+CUST0186;24;Other;Bruges;West Flanders;Retired;157443;19,90;Branch;RM4;0,230059532
+CUST0187;68;Male;Namur;Namur;Engineer;46069;10,10;Call Center;;0,089162477
+CUST0188;39;Other;Leuven;Flemish Brabant;Doctor;32910;12,00;Online;;0,543718323
+CUST0189;45;Female;Mons;Hainaut;Manager;93479;1,50;Online;RM4;0,338064168
+CUST0190;19;Male;Mechelen;Antwerp;Teacher;101264;15,00;Online;;0,220993777
+CUST0191;59;Female;Aalst;East Flanders;Retired;43275;4,40;Call Center;RM4;0,12232167
+CUST0192;62;Other;La Louvière;Hainaut;Engineer;92274;18,00;Online;RM4;0,327157746
+CUST0193;74;Female;Kortrijk;West Flanders;Student;120776;4,30;Call Center;RM4;0,099974827
+CUST0194;70;Female;Hasselt;Limburg;Doctor;68447;4,00;Online;RM4;0,33759204
+CUST0195;23;Other;Ostend;West Flanders;Doctor;185601;0,90;Referral;RM1;0,582854473
+CUST0196;45;Female;Sint-Niklaas;East Flanders;Engineer;146394;9,50;Branch;;0,549032609
+CUST0197;45;Female;Tournai;Hainaut;Manager;95703;11,40;Referral;;0,144400215
+CUST0198;61;Other;Genk;Limburg;Engineer;96090;1,50;Branch;RM1;0,539788685
+CUST0199;61;Female;Seraing;Liège;Teacher;37260;15,60;Call Center;;0,049103914
+CUST0200;37;Other;Roeselare;West Flanders;Engineer;132581;9,20;Referral;RM1;0,226929867
