@@ -89,11 +89,16 @@
 
    <h2>📌 Project Overview</h2>
 <p>
-    This project is built using an anonymized <strong>Multinational Bank Customer Dataset</strong> sourced from Kaggle.
-    The goal is to predict whether a customer is likely to churn based on demographic,
-    behavioral, account-level, product-level, and transactional variables.
-    The project integrates machine learning, ETL processing, and business intelligence to create a full
-    end-to-end churn analytics solution, from raw data to actionable business insights.
+    This project predicts whether a bank customer is likely to churn, based on demographic,
+    behavioral, account-level, product-level, and transactional variables. It integrates machine
+    learning, ETL processing, and business intelligence into a full end-to-end analytics solution,
+    from raw data to actionable business insights.
+</p>
+<p>
+    <strong>Data sources.</strong> The churn model is trained on the public, anonymized
+    <em>Bank Customer Churn</em> dataset (Kaggle). The relational tables behind the Power BI model
+    &mdash; customers, accounts, transactions and products &mdash; are <strong>synthetic datasets</strong>
+    generated to simulate a bank&rsquo;s operational systems and to build a realistic star schema.
 </p>
 
 <h2>🎯 Objectives</h2>
@@ -130,11 +135,7 @@
         integrated into Power BI dashboards to support customer retention strategies.
     </p>
 
-    <a href="model/churn_model.pkl" class="button" download>Download Model (PKL)</a>
-
-</div>
-
-</body>
+    <a href="churn_model.pkl" class="button" download>Download Model (PKL)</a>
 
   <h2>🔬 Complete Jupyter Notebook Analysis</h2>
 <p>Explore the full machine learning workflow with code, visualizations, and results:</p>
@@ -238,13 +239,13 @@
 <div style="text-align: center; margin-top: 20px;">
     <a href="https://github.com/ldongmon/ldongmon.github.io/blob/main/CHURN%20MODELING_REPORT.ipynb" 
        class="button" 
-       target="_blank"
+       target="_blank" rel="noopener"
        style="display: inline-block; margin: 5px;">
         📁 View on GitHub
     </a>
     <a href="https://nbviewer.jupyter.org/github/ldongmon/ldongmon.github.io/blob/main/CHURN%20MODELING_REPORT.ipynb?flush_cache=true" 
        class="button" 
-       target="_blank"
+       target="_blank" rel="noopener"
        style="display: inline-block; margin: 5px; background: #28a745;">
         🔄 Open in nbviewer
     </a>
@@ -256,20 +257,11 @@
     </a>
 </div>
 
-<!-- Instructions for updating -->
-<div style="background: #e8f4fd; padding: 15px; border-radius: 8px; margin-top: 20px; border-left: 4px solid #0066cc;">
-    <p style="margin: 0; color: #004085;">
-        <strong>📝 Update Instructions:</strong> After making changes to your notebook:
-        1. Commit and push to GitHub
-        2. Click the "Refresh Notebook" button above
-        3. The latest version will load immediately
-    </p>
-</div>
     <h2>🖥️ Live Demo (Streamlit App)</h2>
     <p>Try the interactive churn prediction app:</p>
 
     <a href="https://churnprobaapps-ftuk5k4wd7umfmm5angxsk.streamlit.app/" 
-       class="button" target="_blank">
+       class="button" target="_blank" rel="noopener">
        Launch Streamlit App
     </a>
 
@@ -281,14 +273,19 @@
 
 <!-- Dashboard Preview Section -->
 <div style="text-align: center; margin: 30px 0;">
-    <div style="position: relative; display: inline-block; max-width: 100%;">
-        <img src="images/powerbi-dashboard-preview.png" 
-             alt="Power BI Customer Analytics Dashboard" 
-             style="max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
-        <div style="position: absolute; top: 20px; left: 20px; background: rgba(0,102,204,0.9); color: white; padding: 10px 15px; border-radius: 5px; font-weight: bold;">
-            🔍 Interactive Dashboard
-        </div>
-    </div>
+    <a href="powerbi-dashboard-preview.png" target="_blank" rel="noopener"
+       title="Open the dashboard at full size"
+       style="position: relative; display: inline-block; max-width: 100%; text-decoration: none;">
+        <img src="powerbi-dashboard-preview.png"
+             alt="Power BI Customer Value &amp; Risk Analytics Dashboard"
+             style="max-width: 100%; height: auto; display: block; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+        <span style="position: absolute; bottom: 14px; right: 14px; background: rgba(0,51,102,0.88); color: white; padding: 8px 14px; border-radius: 5px; font-weight: 600; font-size: 13px;">
+            🔍 Click to enlarge
+        </span>
+    </a>
+    <p style="margin: 12px 0 0 0; font-size: 13px; color: #777; font-style: italic;">
+        Report page shown with the “High Value” customer segment selected in the slicer.
+    </p>
 </div>
 
 <!-- Key Features Grid -->
@@ -398,13 +395,13 @@
             <div>
                 <h3 style="color: #333; margin: 0; font-size: 22px;">Project Datasets</h3>
                 <p style="color: #666; margin: 5px 0 0 0; font-size: 14px;">
-                    Synthetic datasets used for model training and analytics
+                    Synthetic relational tables generated for the Power BI star schema
                 </p>
             </div>
         </div>
         
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
-            <a href="datasets/customers.csv" download 
+            <a href="customers.csv" download 
                style="display: flex; align-items: center; background: #f8f9fa; padding: 15px; border-radius: 8px; text-decoration: none; border: 2px solid #e3e6ea; transition: all 0.3s;">
                 <div style="background: #17a2b8; color: white; padding: 10px; border-radius: 6px; margin-right: 12px;">
                     <span style="font-size: 18px;">👥</span>
@@ -415,7 +412,7 @@
                 </div>
             </a>
             
-            <a href="datasets/accounts.csv" download 
+            <a href="accounts.csv" download 
                style="display: flex; align-items: center; background: #f8f9fa; padding: 15px; border-radius: 8px; text-decoration: none; border: 2px solid #e3e6ea; transition: all 0.3s;">
                 <div style="background: #6f42c1; color: white; padding: 10px; border-radius: 6px; margin-right: 12px;">
                     <span style="font-size: 18px;">💳</span>
@@ -426,7 +423,7 @@
                 </div>
             </a>
             
-            <a href="datasets/transactions.csv" download 
+            <a href="transactions.csv" download 
                style="display: flex; align-items: center; background: #f8f9fa; padding: 15px; border-radius: 8px; text-decoration: none; border: 2px solid #e3e6ea; transition: all 0.3s;">
                 <div style="background: #28a745; color: white; padding: 10px; border-radius: 6px; margin-right: 12px;">
                     <span style="font-size: 18px;">🔄</span>
@@ -437,7 +434,7 @@
                 </div>
             </a>
             
-            <a href="datasets/products.csv" download 
+            <a href="products.csv" download 
                style="display: flex; align-items: center; background: #f8f9fa; padding: 15px; border-radius: 8px; text-decoration: none; border: 2px solid #e3e6ea; transition: all 0.3s;">
                 <div style="background: #fd7e14; color: white; padding: 10px; border-radius: 6px; margin-right: 12px;">
                     <span style="font-size: 18px;">📦</span>
@@ -457,8 +454,8 @@
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px;">
             <div style="background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 3px 10px rgba(0,102,204,0.1); border: 1px solid #e2edff;">
                 <div style="font-size: 32px; font-weight: 700; color: #0066cc; margin-bottom: 8px;">2,000+</div>
-                <div style="font-size: 14px; color: #666; font-weight: 600;">Customers Analyzed</div>
-                <div style="font-size: 12px; color: #888; margin-top: 5px;">Model Training Dataset</div>
+                <div style="font-size: 14px; color: #666; font-weight: 600;">Customers Modeled</div>
+                <div style="font-size: 12px; color: #888; margin-top: 5px;">Synthetic customer profiles</div>
             </div>
             
             <div style="background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 3px 10px rgba(40,167,69,0.1); border: 1px solid #e2f4e5;">
@@ -484,19 +481,19 @@
     <!-- Action Buttons - Modern Design -->
     <div style="text-align: center; margin: 30px 0;">
         <div style="display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
-            <a href="YOUR_POWER_BI_DASHBOARD_LINK" target="_blank" 
+            <a href="powerbi-dashboard-preview.png" target="_blank" rel="noopener"
                style="display: inline-flex; align-items: center; background: linear-gradient(135deg, #0066cc, #004c99); color: white; padding: 15px 25px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: transform 0.3s; box-shadow: 0 4px 15px rgba(0,102,204,0.2);">
-                <span style="margin-right: 10px; font-size: 20px;">🚀</span>
-                <span>View Interactive Dashboard</span>
+                <span style="margin-right: 10px; font-size: 20px;">🖼️</span>
+                <span>View Dashboard</span>
             </a>
-            
-            <a href="downloads/churn_dashboard.pbix" download 
+
+            <a href="MY_Dashboard.pbix" download
                style="display: inline-flex; align-items: center; background: linear-gradient(135deg, #28a745, #1e7e34); color: white; padding: 15px 25px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: transform 0.3s; box-shadow: 0 4px 15px rgba(40,167,69,0.2);">
                 <span style="margin-right: 10px; font-size: 20px;">📥</span>
                 <span>Download PBIX File</span>
             </a>
             
-            <a href="documentation/churn_project_documentation.pdf" target="_blank" 
+            <a href="DOCUMENTATION.pdf" target="_blank" rel="noopener" 
                style="display: inline-flex; align-items: center; background: linear-gradient(135deg, #6f42c1, #59359e); color: white; padding: 15px 25px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: transform 0.3s; box-shadow: 0 4px 15px rgba(111,66,193,0.2);">
                 <span style="margin-right: 10px; font-size: 20px;">📋</span>
                 <span>View Documentation</span>
@@ -658,20 +655,22 @@
  <h2>📁 GitHub Repository</h2>
     <p>Access the complete source code of the project:</p>
 
-    <a href="https://github.com/ldongmon/churn_proba_apps" class="button" target="_blank">
+    <a href="https://github.com/ldongmon/churn_proba_apps" class="button" target="_blank" rel="noopener">
         View on GitHub
     </a>
 
     <h2>📞 Contact</h2>
     <p>
-        Created by <strong>Leprince Dongmo</strong>.  
-        For questions or collaboration, feel free to reach out.
+        Created by <strong>Leprince Dongmo Nanda</strong> &mdash; Dendermonde, Belgium.<br>
+        <a href="mailto:leprince.dongmo@yahoo.fr">leprince.dongmo@yahoo.fr</a> &nbsp;&middot;&nbsp;
+        <a href="https://www.linkedin.com/in/leprince-dongmo-nanda/" target="_blank" rel="noopener">LinkedIn</a> &nbsp;&middot;&nbsp;
+        <a href="https://github.com/ldongmon" target="_blank" rel="noopener">GitHub</a>
     </p>
 
 </div>
 
 <footer>
-    © 2025 — Churn Prediction Project by Leprince Dongmo
+    © 2026 — Churn Prediction Project by Leprince Dongmo Nanda
 </footer>
 
 </body>
