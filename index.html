@@ -90,7 +90,7 @@
    <h2>📌 Project Overview</h2>
 <p>
     This project predicts whether a bank customer is likely to churn, based on demographic,
-    behavioral, account-level, product-level, and transactional variables. It integrates machine
+    account and product-usage variables. It integrates machine
     learning, ETL processing, and business intelligence into a full end-to-end analytics solution,
     from raw data to actionable business insights.
 </p>
@@ -98,44 +98,50 @@
     <strong>Data sources.</strong> The churn model is trained on the public, anonymized
     <em>Bank Customer Churn</em> dataset (Kaggle). The relational tables behind the Power BI model
     &mdash; customers, accounts, transactions and products &mdash; are <strong>synthetic datasets</strong>
-    generated to simulate a bank&rsquo;s operational systems and to build a realistic star schema.
+    generated to simulate a bank&rsquo;s operational systems and to build a realistic relational model.
+    The churn score shown in the dashboard is a simulated column of that synthetic customer table: it
+    illustrates how a model score is consumed in a BI layer, and is not an output of the model above.
 </p>
 
 <h2>🎯 Objectives</h2>
 <ul>
     <li>Analyze bank customer data to uncover churn drivers and behavioral patterns.</li>
     <li>Train and evaluate multiple machine-learning models.</li>
-    <li>Select the best-performing model based on accuracy, interpretability, and stability.</li>
-    <li>Generate real churn probabilities for new customer datasets.</li>
+    <li>Select the best-performing model on precision, recall and F1 for the churn class.</li>
+    <li>Generate a churn probability and a risk band for each customer of a dataset.</li>
     <li>Deploy a Streamlit-based prediction app for non-technical business users.</li>
     <li>
-        Integrate predicted churn probabilities with additional bank datasets 
-        (customers, products, accounts, transactions) and build a 
-        <strong>Power BI dashboard</strong> for managerial decision-making.
+        Build a <strong>Power BI dashboard</strong> on a relational bank data model
+        (customers, accounts, transactions, products) that consumes a churn score per customer
+        for managerial decision-making.
     </li>
 </ul>
 
 <h2>🧠 Machine Learning Pipeline</h2>
 <ol>
-    <li>Data preprocessing & cleaning (handling missing values, encoding, outlier checks)</li>
-    <li>Feature engineering & removal of leakage variables (e.g., <em>Complain</em> column)</li>
-    <li>Train/test split</li>
+    <li>Data checks & preprocessing (missing-value check, scaling, one-hot encoding)</li>
+    <li>Removal of identifier columns and of the leakage variable (<em>Complain</em>, r = 0.996 with the target)</li>
+    <li>Stratified train/test split (80/20: 8,000 / 2,000 customers)</li>
     <li>Model training (Logistic Regression and Random Forest)</li>
-    <li>Model selection (<strong>Random Forest achieved the best performance</strong>)</li>
-    <li>Export of final model (.pkl) and deployment</li>
+    <li>Model selection on the held-out test set (<strong>Random Forest achieved the best performance</strong>)</li>
+    <li>Export of the Random Forest pipeline (.pkl) and deployment in a Streamlit app</li>
 </ol>
 
 
     <h2>📈 Best Model: Random Forest Classifier</h2>
     <p>
-        The <strong>Random Forest</strong> model delivered the highest predictive performance,
-        achieving strong accuracy, stability, and robustness against overfitting.
-        Its ability to capture non-linear relationships made it superior to simpler models.
-        The final model outputs a churn probability score for each customer, which was later
-        integrated into Power BI dashboards to support customer retention strategies.
+        On the held-out test set (2,000 customers, 408 churners), the <strong>Random Forest</strong>
+        reaches an accuracy of <strong>0.869</strong>, a precision of <strong>0.80</strong> and a recall of
+        <strong>0.47</strong> on the churn class (F1 0.59, ROC-AUC 0.867). Logistic Regression reaches
+        0.813 accuracy but only 0.21 recall. As 79.6% of customers do not churn, accuracy alone says
+        little: the model is right four times out of five when it flags a customer, and it finds about half
+        of the customers who leave. It is a prioritisation tool for retention teams. The probabilities are
+        not calibrated: they rank customers, they are not a literal chance of leaving.
     </p>
 
     <a href="churn_model.pkl" class="button" download>Download Model (PKL)</a>
+    <a href="CHURN%20MODELING_REPORT.html" class="button" target="_blank" rel="noopener">Read the HTML Report</a>
+    <p style="font-size: 13px; color: #777;">The model file is a scikit-learn 1.6.1 pipeline (preprocessing + Random Forest, 300 trees).</p>
 
   <h2>🔬 Complete Jupyter Notebook Analysis</h2>
 <p>Explore the full machine learning workflow with code, visualizations, and results:</p>
@@ -267,8 +273,8 @@
 
     <h2>📊 Power BI Customer Analytics Dashboard</h2>
 <p>
-    Comprehensive customer segmentation and churn analysis dashboard built with Power BI, 
-    featuring real-time insights into customer behavior, risk profiles, and retention strategies.
+    One-page customer value and churn-risk report built with Power BI on synthetic bank data:
+    headline KPIs, value segments, churn exposure by relationship manager and by city.
 </p>
 
 <!-- Dashboard Preview Section -->
@@ -297,28 +303,28 @@
         <div style="background: white; padding: 20px; border-radius: 6px; border-left: 4px solid #0066cc; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
             <h4 style="color: #0066cc; margin: 0 0 10px 0;">🎯 Customer Segmentation</h4>
             <p style="margin: 0; font-size: 14px; color: #555;">
-                Behavioral clustering based on income, tenure, transaction patterns, and credit scores
+                Rule-based segments (High Value, Mid Value, At Risk, Other) from income, tenure and churn probability
             </p>
         </div>
         
         <div style="background: white; padding: 20px; border-radius: 6px; border-left: 4px solid #28a745; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
             <h4 style="color: #28a745; margin: 0 0 10px 0;">📈 Churn Risk Analysis</h4>
             <p style="margin: 0; font-size: 14px; color: #555;">
-                Predictive churn probabilities with at-risk customer identification
+                Average churn probability and count of customers above the 0.6 risk threshold
             </p>
         </div>
         
         <div style="background: white; padding: 20px; border-radius: 6px; border-left: 4px solid #6f42c1; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
             <h4 style="color: #6f42c1; margin: 0 0 10px 0;">💰 Portfolio Management</h4>
             <p style="margin: 0; font-size: 14px; color: #555;">
-                RM performance tracking and customer lifetime value analysis
+                Churn exposure compared across relationship managers, with the income profile of each segment
             </p>
         </div>
         
         <div style="background: white; padding: 20px; border-radius: 6px; border-left: 4px solid #fd7e14; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-            <h4 style="color: #fd7e14; margin: 0 0 10px 0;">📊 Product Analytics</h4>
+            <h4 style="color: #fd7e14; margin: 0 0 10px 0;">🗺️ Geographic View</h4>
             <p style="margin: 0; font-size: 14px; color: #555;">
-                Product penetration and transaction pattern analysis
+                Average churn probability by city on a map, and tenure by occupation
             </p>
         </div>
         
@@ -329,7 +335,8 @@
 <div style="background: #e8f4fd; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px solid #b3d9ff;">
     <h3 style="color: #003366; margin-top: 0;">🔗 Data Architecture</h3>
     <p style="margin: 0 0 15px 0; color: #555;">
-        <strong>Star Schema Model:</strong> Customers → Accounts → Transactions with Products bridge table
+        <strong>Relational model:</strong> Customers → Accounts → Transactions, and Customers → Products
+        (one-to-many relationships, single-direction filters)
     </p>
     
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; text-align: center;">
@@ -377,7 +384,7 @@
                 Products
             </div>
             <p style="margin: 8px 0 0 0; font-size: 12px; color: #666;">
-                Loans, Credit Cards, Investments
+                Mortgage, Personal Loan, Credit Card, Mutual Fund, ETF
             </p>
         </div>
     </div>
@@ -395,7 +402,7 @@
             <div>
                 <h3 style="color: #333; margin: 0; font-size: 22px;">Project Datasets</h3>
                 <p style="color: #666; margin: 5px 0 0 0; font-size: 14px;">
-                    Synthetic relational tables generated for the Power BI star schema
+                    Synthetic relational tables generated for the Power BI data model
                 </p>
             </div>
         </div>
@@ -408,7 +415,7 @@
                 </div>
                 <div>
                     <div style="font-weight: 600; color: #333;">Customers</div>
-                    <div style="font-size: 12px; color: #666;">2,000+ customer profiles</div>
+                    <div style="font-size: 12px; color: #666;">200 customer profiles</div>
                 </div>
             </a>
             
@@ -419,7 +426,7 @@
                 </div>
                 <div>
                     <div style="font-weight: 600; color: #333;">Accounts</div>
-                    <div style="font-size: 12px; color: #666;">Financial account data</div>
+                    <div style="font-size: 12px; color: #666;">407 accounts</div>
                 </div>
             </a>
             
@@ -430,7 +437,7 @@
                 </div>
                 <div>
                     <div style="font-weight: 600; color: #333;">Transactions</div>
-                    <div style="font-size: 12px; color: #666;">Customer transaction history</div>
+                    <div style="font-size: 12px; color: #666;">8,758 transactions</div>
                 </div>
             </a>
             
@@ -441,7 +448,7 @@
                 </div>
                 <div>
                     <div style="font-weight: 600; color: #333;">Products</div>
-                    <div style="font-size: 12px; color: #666;">Product portfolio details</div>
+                    <div style="font-size: 12px; color: #666;">309 product holdings</div>
                 </div>
             </a>
         </div>
@@ -453,27 +460,27 @@
         
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px;">
             <div style="background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 3px 10px rgba(0,102,204,0.1); border: 1px solid #e2edff;">
-                <div style="font-size: 32px; font-weight: 700; color: #0066cc; margin-bottom: 8px;">2,000+</div>
-                <div style="font-size: 14px; color: #666; font-weight: 600;">Customers Modeled</div>
-                <div style="font-size: 12px; color: #888; margin-top: 5px;">Synthetic customer profiles</div>
+                <div style="font-size: 32px; font-weight: 700; color: #0066cc; margin-bottom: 8px;">10,000</div>
+                <div style="font-size: 14px; color: #666; font-weight: 600;">Customers in the Model Dataset</div>
+                <div style="font-size: 12px; color: #888; margin-top: 5px;">Kaggle Bank Customer Churn (8,000 train / 2,000 test)</div>
             </div>
             
             <div style="background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 3px 10px rgba(40,167,69,0.1); border: 1px solid #e2f4e5;">
-                <div style="font-size: 32px; font-weight: 700; color: #28a745; margin-bottom: 8px;">87%</div>
-                <div style="font-size: 14px; color: #666; font-weight: 600;">Model Accuracy</div>
-                <div style="font-size: 12px; color: #888; margin-top: 5px;">Random Forest Algorithm</div>
+                <div style="font-size: 32px; font-weight: 700; color: #28a745; margin-bottom: 8px;">0.80 / 0.47</div>
+                <div style="font-size: 14px; color: #666; font-weight: 600;">Precision / Recall (churn)</div>
+                <div style="font-size: 12px; color: #888; margin-top: 5px;">Random Forest, accuracy 86.9% (baseline 79.6%)</div>
             </div>
             
             <div style="background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 3px 10px rgba(111,66,193,0.1); border: 1px solid #f0e6ff;">
                 <div style="font-size: 32px; font-weight: 700; color: #6f42c1; margin-bottom: 8px;">4</div>
-                <div style="font-size: 14px; color: #666; font-weight: 600;">Risk Segments</div>
-                <div style="font-size: 12px; color: #888; margin-top: 5px;">Low/Medium/High/Critical</div>
+                <div style="font-size: 14px; color: #666; font-weight: 600;">Risk Bands</div>
+                <div style="font-size: 12px; color: #888; margin-top: 5px;">Low / Moderate / High / Critical</div>
             </div>
             
             <div style="background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 3px 10px rgba(253,126,20,0.1); border: 1px solid #ffe8d4;">
-                <div style="font-size: 32px; font-weight: 700; color: #fd7e14; margin-bottom: 8px;">5+</div>
+                <div style="font-size: 32px; font-weight: 700; color: #fd7e14; margin-bottom: 8px;">5</div>
                 <div style="font-size: 14px; color: #666; font-weight: 600;">Data Sources</div>
-                <div style="font-size: 12px; color: #888; margin-top: 5px;">Integrated & Modeled</div>
+                <div style="font-size: 12px; color: #888; margin-top: 5px;">1 public dataset + 4 synthetic tables</div>
             </div>
         </div>
     </div>
@@ -526,8 +533,8 @@
                     <strong style="color: #333;">ML Pipeline</strong>
                 </div>
                 <p style="color: #555; font-size: 14px; line-height: 1.5; margin: 0;">
-                    Scikit-learn pipeline with preprocessing, Random Forest (87% accuracy), 
-                    and probability calibration for reliable predictions.
+                    Scikit-learn pipeline with scaling, one-hot encoding and a Random Forest of 300 trees
+                    (precision 0.80, recall 0.47 on churners).
                 </p>
             </div>
             
@@ -540,8 +547,8 @@
                     <strong style="color: #333;">Streamlit App</strong>
                 </div>
                 <p style="color: #555; font-size: 14px; line-height: 1.5; margin: 0;">
-                    Interactive web application for real-time churn probability 
-                    generation and customer segmentation.
+                    Interactive web application: upload a customer CSV and get a churn probability
+                    and a risk band for each customer.
                 </p>
             </div>
             
@@ -554,8 +561,8 @@
                     <strong style="color: #333;">ETL Workflow</strong>
                 </div>
                 <p style="color: #555; font-size: 14px; line-height: 1.5; margin: 0;">
-                    Power Query transformations, data cleaning, merging, and feature 
-                    enrichment for model-ready datasets.
+                    Power Query steps: header promotion, explicit data types, column renaming and
+                    handling of customers without a relationship manager.
                 </p>
             </div>
             
@@ -565,11 +572,11 @@
                     <div style="background: #6f42c1; color: white; padding: 8px; border-radius: 6px; margin-right: 10px;">
                         🗂
                     </div>
-                    <strong style="color: #333;">Star Schema</strong>
+                    <strong style="color: #333;">Data Model</strong>
                 </div>
                 <p style="color: #555; font-size: 14px; line-height: 1.5; margin: 0;">
-                    Optimized Power BI data model integrating customers, transactions, 
-                    accounts, and churn predictions.
+                    Power BI relational model linking customers, accounts, transactions
+                    and products, with a churn score on the customer table.
                 </p>
             </div>
             
@@ -582,8 +589,8 @@
                     <strong style="color: #333;">DAX Analytics</strong>
                 </div>
                 <p style="color: #555; font-size: 14px; line-height: 1.5; margin: 0;">
-                    15+ advanced DAX measures for churn rates, lifetime value, 
-                    segmentation, and KPI calculations.
+                    11 DAX measures (customers at risk, average churn by manager, product
+                    penetration, KPIs) and a calculated segment column.
                 </p>
             </div>
             
@@ -596,8 +603,8 @@
                     <strong style="color: #333;">Risk Segmentation</strong>
                 </div>
                 <p style="color: #555; font-size: 14px; line-height: 1.5; margin: 0;">
-                    4-tier customer classification enabling targeted retention 
-                    strategies and resource optimization.
+                    4 risk bands with fixed cut-offs (0.20 / 0.40 / 0.70) so that retention
+                    teams can prioritise the Critical and High bands.
                 </p>
             </div>
             
@@ -625,7 +632,7 @@
                 <div style="text-align: center; flex: 1; min-width: 120px;">
                     <div style="background: #17a2b8; color: white; width: 40px; height: 40px; line-height: 40px; border-radius: 50%; margin: 0 auto 10px; font-weight: bold;">1</div>
                     <div style="font-weight: 600; color: #333; font-size: 14px;">Data Collection</div>
-                    <div style="font-size: 12px; color: #666;">CSV/Excel sources</div>
+                    <div style="font-size: 12px; color: #666;">CSV sources</div>
                 </div>
                 <div style="text-align: center; flex: 1; min-width: 120px;">
                     <div style="background: #28a745; color: white; width: 40px; height: 40px; line-height: 40px; border-radius: 50%; margin: 0 auto 10px; font-weight: bold;">2</div>
@@ -655,8 +662,14 @@
  <h2>📁 GitHub Repository</h2>
     <p>Access the complete source code of the project:</p>
 
+    <a href="https://github.com/ldongmon/ldongmon.github.io" class="button" target="_blank" rel="noopener">
+        Notebook, Report &amp; Data (GitHub)
+    </a>
     <a href="https://github.com/ldongmon/churn_proba_apps" class="button" target="_blank" rel="noopener">
-        View on GitHub
+        App Source Code (GitHub)
+    </a>
+    <a href="https://churnprobaapps-ftuk5k4wd7umfmm5angxsk.streamlit.app/" class="button" target="_blank" rel="noopener" style="background: #28a745;">
+        Streamlit App
     </a>
 
     <h2>📞 Contact</h2>
