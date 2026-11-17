@@ -3,42 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Customer Churn Prediction Project – Leprince Dongmo</title>
+<title>Customer Churn Prediction | Leprince Dongmo Nanda</title>
+<meta name="description" content="Bank customer churn prediction: Random Forest model, Streamlit scoring app and Power BI dashboard.">
+<meta name="author" content="Leprince Dongmo Nanda">
 
 <style>
+    * { box-sizing: border-box; }
+
     body {
         font-family: Arial, Helvetica, sans-serif;
         margin: 0;
-        padding: 0;
         background: #f4f6f9;
         color: #333;
+        line-height: 1.55;
     }
 
     header {
         background: #003366;
-        color: white;
-        padding: 40px 20px;
+        color: #fff;
+        padding: 48px 20px 64px;
         text-align: center;
     }
 
-    header h1 {
-        margin: 0;
-        font-size: 36px;
-    }
-
-    header p {
-        margin-top: 10px;
-        font-size: 18px;
-        font-style: italic;
-    }
+    header h1 { margin: 0; font-size: 34px; }
+    header p { margin: 10px 0 0; font-size: 17px; opacity: 0.9; }
 
     .container {
-        max-width: 900px;
-        margin: auto;
-        padding: 20px;
-        background: white;
-        margin-top: -30px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        max-width: 960px;
+        margin: -32px auto 0;
+        padding: 28px 32px;
+        background: #fff;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         border-radius: 10px;
     }
 
@@ -46,34 +41,138 @@
         color: #003366;
         border-left: 4px solid #0066cc;
         padding-left: 10px;
+        margin-top: 40px;
     }
 
-    a {
-        color: #0066cc;
-    }
+    h3 { color: #003366; margin: 0 0 6px; font-size: 20px; }
+    h4 { margin: 0 0 8px; font-size: 16px; }
+
+    a { color: #0066cc; }
+
+    .note { font-size: 13px; color: #777; }
+    .caption { font-size: 13px; color: #777; font-style: italic; margin: 12px 0 0; }
 
     .button {
         display: inline-block;
         background: #0066cc;
-        color: white;
-        padding: 12px 20px;
+        color: #fff;
+        padding: 11px 20px;
         border-radius: 6px;
         text-decoration: none;
         font-weight: bold;
-        margin-top: 10px;
-        transition: 0.3s;
+        margin: 10px 8px 0 0;
+        transition: background 0.2s;
+    }
+    .button:hover { background: #004c99; }
+    .button.green { background: #28a745; }
+    .button.green:hover { background: #1e7e34; }
+    .button.purple { background: #6f42c1; }
+    .button.purple:hover { background: #59359e; }
+
+    .actions { text-align: center; margin: 24px 0; }
+
+    .panel {
+        background: #f8f9fa;
+        padding: 24px;
+        border-radius: 8px;
+        margin: 24px 0;
+        border: 1px solid #e3e6ea;
+    }
+    .panel.blue { background: #eef6fd; border-color: #cfe4f7; }
+
+    .grid { display: grid; gap: 16px; margin-top: 16px; }
+    .grid.cols-250 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+    .grid.cols-200 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+    .grid.cols-180 { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+
+    .card {
+        background: #fff;
+        padding: 18px 20px;
+        border-radius: 6px;
+        border-left: 4px solid #0066cc;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .card p { margin: 0; font-size: 14px; color: #555; }
+    .c-blue { border-color: #0066cc; } .c-blue h4 { color: #0066cc; }
+    .c-green { border-color: #28a745; } .c-green h4 { color: #28a745; }
+    .c-purple { border-color: #6f42c1; } .c-purple h4 { color: #6f42c1; }
+    .c-orange { border-color: #fd7e14; } .c-orange h4 { color: #fd7e14; }
+    .c-teal { border-color: #17a2b8; } .c-teal h4 { color: #17a2b8; }
+    .c-red { border-color: #dc3545; } .c-red h4 { color: #dc3545; }
+    .c-mint { border-color: #20c997; } .c-mint h4 { color: #1a9c76; }
+
+    .notebook {
+        width: 100%;
+        height: 700px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    .notebook iframe { width: 100%; height: 100%; border: 0; }
+
+    .preview { text-align: center; margin: 28px 0; }
+    .preview img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.12);
     }
 
-    .button:hover {
-        background: #004c99;
+    .flow { display: flex; flex-wrap: wrap; align-items: stretch; gap: 10px; margin-top: 16px; }
+    .flow .node { flex: 1; min-width: 150px; text-align: center; }
+    .flow .label { color: #fff; padding: 10px; border-radius: 5px; font-weight: bold; }
+    .flow .desc { margin: 8px 0 0; font-size: 12px; color: #666; }
+    .flow .arrow { align-self: center; color: #6c7a89; font-size: 20px; }
+
+    .file {
+        display: block;
+        background: #f8f9fa;
+        padding: 14px 16px;
+        border-radius: 8px;
+        text-decoration: none;
+        border: 1px solid #e3e6ea;
+        transition: border-color 0.2s;
     }
+    .file:hover { border-color: #0066cc; }
+    .file strong { color: #333; display: block; }
+    .file span { font-size: 12px; color: #666; }
+
+    .stat { background: #fff; padding: 20px; border-radius: 10px; text-align: center; border: 1px solid #e2e8f0; }
+    .stat .value { font-size: 30px; font-weight: 700; margin-bottom: 6px; }
+    .stat .name { font-size: 14px; color: #555; font-weight: 600; }
+    .stat .detail { font-size: 12px; color: #888; margin-top: 4px; }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tags span { background: #e9ecef; padding: 5px 12px; border-radius: 20px; font-size: 13px; color: #495057; }
+
+    .steps { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; }
+    .steps div { text-align: center; flex: 1; min-width: 120px; }
+    .steps b {
+        display: block;
+        background: #0066cc;
+        color: #fff;
+        width: 36px; height: 36px; line-height: 36px;
+        border-radius: 50%;
+        margin: 0 auto 8px;
+    }
+    .steps strong { display: block; font-size: 14px; }
+    .steps small { color: #666; }
 
     footer {
         text-align: center;
         padding: 20px;
         background: #003366;
-        color: white;
-        margin-top: 30px;
+        color: #fff;
+        margin-top: 40px;
+        font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+        header h1 { font-size: 26px; }
+        .container { padding: 20px 16px; margin: -24px 12px 0; }
+        .notebook { height: 520px; }
     }
 </style>
 </head>
@@ -82,53 +181,48 @@
 
 <header>
     <h1>Customer Churn Prediction Project</h1>
-    <p>Developed by <strong>Leprince Dongmo</strong> — Machine Learning & Power BI for Business Decision-Making</p>
+    <p>Leprince Dongmo Nanda · Machine Learning and Power BI for business decision-making</p>
 </header>
 
-<div class="container">
+<main class="container">
 
-   <h2>📌 Project Overview</h2>
-<p>
-    This project predicts whether a bank customer is likely to churn, based on demographic,
-    account and product-usage variables. It integrates machine
-    learning, ETL processing, and business intelligence into a full end-to-end analytics solution,
-    from raw data to actionable business insights.
-</p>
-<p>
-    <strong>Data sources.</strong> The churn model is trained on the public, anonymized
-    <em>Bank Customer Churn</em> dataset (Kaggle). The relational tables behind the Power BI model
-    &mdash; customers, accounts, transactions and products &mdash; are <strong>synthetic datasets</strong>
-    generated to simulate a bank&rsquo;s operational systems and to build a realistic relational model.
-    The churn score shown in the dashboard is a simulated column of that synthetic customer table: it
-    illustrates how a model score is consumed in a BI layer, and is not an output of the model above.
-</p>
+    <h2>Project Overview</h2>
+    <p>
+        This project predicts whether a bank customer is likely to churn, based on demographic,
+        account and product-usage variables. It combines machine learning, data preparation and
+        business intelligence in one end-to-end workflow, from raw data to a decision-support report.
+    </p>
+    <p>
+        <strong>Data sources.</strong> The churn model is trained on the public, anonymised
+        <em>Bank Customer Churn</em> dataset (Kaggle). The relational tables behind the Power BI model
+        (customers, accounts, transactions and products) are <strong>synthetic datasets</strong>
+        built to simulate a bank's operational systems. The churn score shown in the dashboard is a
+        simulated column of that synthetic customer table: it illustrates how a model score is consumed
+        in a BI layer, and is not an output of the model below.
+    </p>
 
-<h2>🎯 Objectives</h2>
-<ul>
-    <li>Analyze bank customer data to uncover churn drivers and behavioral patterns.</li>
-    <li>Train and evaluate multiple machine-learning models.</li>
-    <li>Select the best-performing model on precision, recall and F1 for the churn class.</li>
-    <li>Generate a churn probability and a risk band for each customer of a dataset.</li>
-    <li>Deploy a Streamlit-based prediction app for non-technical business users.</li>
-    <li>
-        Build a <strong>Power BI dashboard</strong> on a relational bank data model
-        (customers, accounts, transactions, products) that consumes a churn score per customer
-        for managerial decision-making.
-    </li>
-</ul>
+    <h2>Objectives</h2>
+    <ul>
+        <li>Analyse bank customer data to find churn drivers and behavioural patterns.</li>
+        <li>Train and evaluate several machine-learning models.</li>
+        <li>Select the model with the best precision, recall and F1 on the churn class.</li>
+        <li>Produce a churn probability and a risk band for each customer of a dataset.</li>
+        <li>Deploy a Streamlit scoring app for non-technical business users.</li>
+        <li>Build a <strong>Power BI dashboard</strong> on a relational bank data model
+            (customers, accounts, transactions, products) that uses a churn score per customer.</li>
+    </ul>
 
-<h2>🧠 Machine Learning Pipeline</h2>
-<ol>
-    <li>Data checks & preprocessing (missing-value check, scaling, one-hot encoding)</li>
-    <li>Removal of identifier columns and of the leakage variable (<em>Complain</em>, r = 0.996 with the target)</li>
-    <li>Stratified train/test split (80/20: 8,000 / 2,000 customers)</li>
-    <li>Model training (Logistic Regression and Random Forest)</li>
-    <li>Model selection on the held-out test set (<strong>Random Forest achieved the best performance</strong>)</li>
-    <li>Export of the Random Forest pipeline (.pkl) and deployment in a Streamlit app</li>
-</ol>
+    <h2>Machine Learning Pipeline</h2>
+    <ol>
+        <li>Data checks and preprocessing (missing values, scaling, one-hot encoding)</li>
+        <li>Removal of identifier columns and of the leakage variable <em>Complain</em> (r = 0.996 with the target)</li>
+        <li>Stratified train/test split (80/20: 8,000 / 2,000 customers)</li>
+        <li>Model training (Logistic Regression and Random Forest)</li>
+        <li>Model selection on the held-out test set: <strong>Random Forest</strong> performs best</li>
+        <li>Export of the Random Forest pipeline (.pkl) and deployment in a Streamlit app</li>
+    </ol>
 
-
-    <h2>📈 Best Model: Random Forest Classifier</h2>
+    <h2>Selected Model: Random Forest Classifier</h2>
     <p>
         On the held-out test set (2,000 customers, 408 churners), the <strong>Random Forest</strong>
         reaches an accuracy of <strong>0.869</strong>, a precision of <strong>0.80</strong> and a recall of
@@ -141,549 +235,207 @@
 
     <a href="churn_model.pkl" class="button" download>Download Model (PKL)</a>
     <a href="CHURN%20MODELING_REPORT.html" class="button" target="_blank" rel="noopener">Read the HTML Report</a>
-    <p style="font-size: 13px; color: #777;">The model file is a scikit-learn 1.6.1 pipeline (preprocessing + Random Forest, 300 trees).</p>
+    <a href="CHURN-MODELING_REPORT.pdf" class="button" target="_blank" rel="noopener">Read the PDF Report</a>
+    <p class="note">The model file is a scikit-learn 1.6.1 pipeline (preprocessing + Random Forest, 300 trees).</p>
 
-  <h2>🔬 Complete Jupyter Notebook Analysis</h2>
-<p>Explore the full machine learning workflow with code, visualizations, and results:</p>
+    <h2>Jupyter Notebook</h2>
+    <p>The full modelling workflow, with code, charts and results:</p>
 
-<!-- Option 1: nbviewer with JavaScript Cache Busting -->
-<div style="width: 100%; height: 700px; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1); position: relative;">
-    <!-- Refresh button -->
-    <button id="refreshNotebookBtn" style="
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        padding: 8px 15px;
-        background: #0066cc;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        z-index: 1000;
-        font-size: 12px;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-    ">
-        🔄 Refresh Notebook
-    </button>
-    
-    <iframe 
-        id="nbviewerFrame"
-        width="100%" 
-        height="100%" 
-        frameborder="0"
-        style="border: none;"
-        title="Churn Prediction Jupyter Notebook">
-    </iframe>
-</div>
-
-<script>
-    // Function to load notebook with cache busting
-    function loadNotebook() {
-        const timestamp = new Date().getTime();
-        const iframe = document.getElementById('nbviewerFrame');
-        
-        // Multiple nbviewer endpoints to try
-        const urls = [
-            `https://nbviewer.org/github/ldongmon/ldongmon.github.io/blob/main/CHURN%20MODELING_REPORT.ipynb?flush_cache=true&v=${timestamp}`,
-            `https://nbviewer.jupyter.org/github/ldongmon/ldongmon.github.io/blob/main/CHURN%20MODELING_REPORT.ipynb?flush_cache=true&v=${timestamp}`,
-            `https://nbviewer.jupyter.org/urls/github.com/ldongmon/ldongmon.github.io/raw/main/CHURN%20MODELING_REPORT.ipynb?v=${timestamp}`
-        ];
-        
-        let currentIndex = 0;
-        
-        function tryNextUrl() {
-            if (currentIndex < urls.length) {
-                console.log('Trying URL:', urls[currentIndex]);
-                iframe.src = urls[currentIndex];
-                currentIndex++;
-                
-                // If still fails after 5 seconds, try next URL
-                setTimeout(() => {
-                    if (iframe.contentDocument && iframe.contentDocument.body.innerHTML === '') {
-                        tryNextUrl();
-                    }
-                }, 5000);
-            }
-        }
-        
-        tryNextUrl();
-    }
-    
-    // Load notebook when page loads
-    document.addEventListener('DOMContentLoaded', loadNotebook);
-    
-    // Refresh button functionality
-    document.getElementById('refreshNotebookBtn').addEventListener('click', function() {
-        this.innerHTML = '🔄 Loading...';
-        this.disabled = true;
-        
-        loadNotebook();
-        
-        // Reset button after 3 seconds
-        setTimeout(() => {
-            this.innerHTML = '✅ Refreshed!';
-            setTimeout(() => {
-                this.innerHTML = '🔄 Refresh Notebook';
-                this.disabled = false;
-            }, 1000);
-        }, 3000);
-    });
-</script>
-
-<div style="text-align: center; margin-top: 15px; color: #666;">
-    <p><strong>Interactive Notebook Features:</strong></p>
-    <ul style="display: inline-block; text-align: left; margin: 0;">
-        <li>View all Python code and outputs</li>
-        <li>See data visualizations and charts</li>
-        <li>Read detailed analysis and explanations</li>
-        <li>Always shows the latest version (auto-refresh)</li>
-    </ul>
-</div>
-
-<div style="text-align: center; margin-top: 20px;">
-    <a href="https://github.com/ldongmon/ldongmon.github.io/blob/main/CHURN%20MODELING_REPORT.ipynb" 
-       class="button" 
-       target="_blank" rel="noopener"
-       style="display: inline-block; margin: 5px;">
-        📁 View on GitHub
-    </a>
-    <a href="https://nbviewer.jupyter.org/github/ldongmon/ldongmon.github.io/blob/main/CHURN%20MODELING_REPORT.ipynb?flush_cache=true" 
-       class="button" 
-       target="_blank" rel="noopener"
-       style="display: inline-block; margin: 5px; background: #28a745;">
-        🔄 Open in nbviewer
-    </a>
-    <a href="https://github.com/ldongmon/ldongmon.github.io/raw/main/CHURN%20MODELING_REPORT.ipynb" 
-       class="button" 
-       download="CHURN_MODELING_REPORT.ipynb"
-       style="display: inline-block; margin: 5px; background: #6f42c1;">
-        📥 Download Notebook
-    </a>
-</div>
-
-    <h2>🖥️ Live Demo (Streamlit App)</h2>
-    <p>Try the interactive churn prediction app:</p>
-
-    <a href="https://churnprobaapps-ftuk5k4wd7umfmm5angxsk.streamlit.app/" 
-       class="button" target="_blank" rel="noopener">
-       Launch Streamlit App
-    </a>
-
-    <h2>📊 Power BI Customer Analytics Dashboard</h2>
-<p>
-    One-page customer value and churn-risk report built with Power BI on synthetic bank data:
-    headline KPIs, value segments, churn exposure by relationship manager and by city.
-</p>
-
-<!-- Dashboard Preview Section -->
-<div style="text-align: center; margin: 30px 0;">
-    <a href="powerbi-dashboard-preview.png" target="_blank" rel="noopener"
-       title="Open the dashboard at full size"
-       style="position: relative; display: inline-block; max-width: 100%; text-decoration: none;">
-        <img src="powerbi-dashboard-preview.png"
-             alt="Power BI Customer Value &amp; Risk Analytics Dashboard"
-             style="max-width: 100%; height: auto; display: block; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
-        <span style="position: absolute; bottom: 14px; right: 14px; background: rgba(0,51,102,0.88); color: white; padding: 8px 14px; border-radius: 5px; font-weight: 600; font-size: 13px;">
-            🔍 Click to enlarge
-        </span>
-    </a>
-    <p style="margin: 12px 0 0 0; font-size: 13px; color: #777; font-style: italic;">
-        Report page shown with the “High Value” customer segment selected in the slicer.
-    </p>
-</div>
-
-<!-- Key Features Grid -->
-<div style="background: #f8f9fa; padding: 25px; border-radius: 8px; margin: 20px 0;">
-    <h3 style="color: #003366; margin-top: 0; text-align: center;">Dashboard Features</h3>
-    
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
-        
-        <div style="background: white; padding: 20px; border-radius: 6px; border-left: 4px solid #0066cc; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-            <h4 style="color: #0066cc; margin: 0 0 10px 0;">🎯 Customer Segmentation</h4>
-            <p style="margin: 0; font-size: 14px; color: #555;">
-                Rule-based segments (High Value, Mid Value, At Risk, Other) from income, tenure and churn probability
-            </p>
-        </div>
-        
-        <div style="background: white; padding: 20px; border-radius: 6px; border-left: 4px solid #28a745; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-            <h4 style="color: #28a745; margin: 0 0 10px 0;">📈 Churn Risk Analysis</h4>
-            <p style="margin: 0; font-size: 14px; color: #555;">
-                Average churn probability and count of customers above the 0.6 risk threshold
-            </p>
-        </div>
-        
-        <div style="background: white; padding: 20px; border-radius: 6px; border-left: 4px solid #6f42c1; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-            <h4 style="color: #6f42c1; margin: 0 0 10px 0;">💰 Portfolio Management</h4>
-            <p style="margin: 0; font-size: 14px; color: #555;">
-                Churn exposure compared across relationship managers, with the income profile of each segment
-            </p>
-        </div>
-        
-        <div style="background: white; padding: 20px; border-radius: 6px; border-left: 4px solid #fd7e14; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-            <h4 style="color: #fd7e14; margin: 0 0 10px 0;">🗺️ Geographic View</h4>
-            <p style="margin: 0; font-size: 14px; color: #555;">
-                Average churn probability by city on a map, and tenure by occupation
-            </p>
-        </div>
-        
-    </div>
-</div>
-
-<!-- Data Model Overview -->
-<div style="background: #e8f4fd; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px solid #b3d9ff;">
-    <h3 style="color: #003366; margin-top: 0;">🔗 Data Architecture</h3>
-    <p style="margin: 0 0 15px 0; color: #555;">
-        <strong>Relational model:</strong> Customers → Accounts → Transactions, and Customers → Products
-        (one-to-many relationships, single-direction filters)
-    </p>
-    
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; text-align: center;">
-        <div>
-            <div style="background: #0066cc; color: white; padding: 10px; border-radius: 5px; font-weight: bold;">
-                Customers
-            </div>
-            <p style="margin: 8px 0 0 0; font-size: 12px; color: #666;">
-                Demographics, Income, Churn Probability
-            </p>
-        </div>
-        
-        <div style="display: flex; align-items: center; justify-content: center;">
-            <span style="font-size: 20px;">⬇️</span>
-        </div>
-        
-        <div>
-            <div style="background: #28a745; color: white; padding: 10px; border-radius: 5px; font-weight: bold;">
-                Accounts
-            </div>
-            <p style="margin: 8px 0 0 0; font-size: 12px; color: #666;">
-                Balances, Credit Scores, Account Types
-            </p>
-        </div>
-        
-        <div style="display: flex; align-items: center; justify-content: center;">
-            <span style="font-size: 20px;">⬇️</span>
-        </div>
-        
-        <div>
-            <div style="background: #6f42c1; color: white; padding: 10px; border-radius: 5px; font-weight: bold;">
-                Transactions
-            </div>
-            <p style="margin: 8px 0 0 0; font-size: 12px; color: #666;">
-                Deposits, Withdrawals, Payments
-            </p>
-        </div>
-        
-        <div style="display: flex; align-items: center; justify-content: center;">
-            <span style="font-size: 20px;">🔄</span>
-        </div>
-        
-        <div>
-            <div style="background: #fd7e14; color: white; padding: 10px; border-radius: 5px; font-weight: bold;">
-                Products
-            </div>
-            <p style="margin: 8px 0 0 0; font-size: 12px; color: #666;">
-                Mortgage, Personal Loan, Credit Card, Mutual Fund, ETF
-            </p>
-        </div>
-    </div>
-</div>
-
-<!-- Project Data & Resources Section -->
-<div style="margin: 40px 0;">
-    
-    <!-- Dataset Downloads - Modern Card Design -->
-    <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid #e8e8e8;">
-        <div style="display: flex; align-items: center; margin-bottom: 20px;">
-            <div style="background: #ffc107; padding: 10px; border-radius: 8px; margin-right: 15px;">
-                <span style="font-size: 24px;">📥</span>
-            </div>
-            <div>
-                <h3 style="color: #333; margin: 0; font-size: 22px;">Project Datasets</h3>
-                <p style="color: #666; margin: 5px 0 0 0; font-size: 14px;">
-                    Synthetic relational tables generated for the Power BI data model
-                </p>
-            </div>
-        </div>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
-            <a href="customers.csv" download 
-               style="display: flex; align-items: center; background: #f8f9fa; padding: 15px; border-radius: 8px; text-decoration: none; border: 2px solid #e3e6ea; transition: all 0.3s;">
-                <div style="background: #17a2b8; color: white; padding: 10px; border-radius: 6px; margin-right: 12px;">
-                    <span style="font-size: 18px;">👥</span>
-                </div>
-                <div>
-                    <div style="font-weight: 600; color: #333;">Customers</div>
-                    <div style="font-size: 12px; color: #666;">200 customer profiles</div>
-                </div>
-            </a>
-            
-            <a href="accounts.csv" download 
-               style="display: flex; align-items: center; background: #f8f9fa; padding: 15px; border-radius: 8px; text-decoration: none; border: 2px solid #e3e6ea; transition: all 0.3s;">
-                <div style="background: #6f42c1; color: white; padding: 10px; border-radius: 6px; margin-right: 12px;">
-                    <span style="font-size: 18px;">💳</span>
-                </div>
-                <div>
-                    <div style="font-weight: 600; color: #333;">Accounts</div>
-                    <div style="font-size: 12px; color: #666;">407 accounts</div>
-                </div>
-            </a>
-            
-            <a href="transactions.csv" download 
-               style="display: flex; align-items: center; background: #f8f9fa; padding: 15px; border-radius: 8px; text-decoration: none; border: 2px solid #e3e6ea; transition: all 0.3s;">
-                <div style="background: #28a745; color: white; padding: 10px; border-radius: 6px; margin-right: 12px;">
-                    <span style="font-size: 18px;">🔄</span>
-                </div>
-                <div>
-                    <div style="font-weight: 600; color: #333;">Transactions</div>
-                    <div style="font-size: 12px; color: #666;">8,758 transactions</div>
-                </div>
-            </a>
-            
-            <a href="products.csv" download 
-               style="display: flex; align-items: center; background: #f8f9fa; padding: 15px; border-radius: 8px; text-decoration: none; border: 2px solid #e3e6ea; transition: all 0.3s;">
-                <div style="background: #fd7e14; color: white; padding: 10px; border-radius: 6px; margin-right: 12px;">
-                    <span style="font-size: 18px;">📦</span>
-                </div>
-                <div>
-                    <div style="font-weight: 600; color: #333;">Products</div>
-                    <div style="font-size: 12px; color: #666;">309 product holdings</div>
-                </div>
-            </a>
-        </div>
+    <div class="notebook">
+        <iframe
+            src="https://nbviewer.org/github/ldongmon/ldongmon.github.io/blob/main/CHURN%20MODELING_REPORT.ipynb"
+            title="Churn prediction Jupyter notebook"
+            loading="lazy"></iframe>
     </div>
 
-    <!-- Performance Metrics - Clean Design -->
-    <div style="background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%); padding: 25px; border-radius: 12px; margin-bottom: 30px; border: 1px solid #d8e1eb;">
-        <h3 style="color: #333; margin: 0 0 20px 0; font-size: 22px; text-align: center;">📊 Project Performance Metrics</h3>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px;">
-            <div style="background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 3px 10px rgba(0,102,204,0.1); border: 1px solid #e2edff;">
-                <div style="font-size: 32px; font-weight: 700; color: #0066cc; margin-bottom: 8px;">10,000</div>
-                <div style="font-size: 14px; color: #666; font-weight: 600;">Customers in the Model Dataset</div>
-                <div style="font-size: 12px; color: #888; margin-top: 5px;">Kaggle Bank Customer Churn (8,000 train / 2,000 test)</div>
-            </div>
-            
-            <div style="background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 3px 10px rgba(40,167,69,0.1); border: 1px solid #e2f4e5;">
-                <div style="font-size: 32px; font-weight: 700; color: #28a745; margin-bottom: 8px;">0.80 / 0.47</div>
-                <div style="font-size: 14px; color: #666; font-weight: 600;">Precision / Recall (churn)</div>
-                <div style="font-size: 12px; color: #888; margin-top: 5px;">Random Forest, accuracy 86.9% (baseline 79.6%)</div>
-            </div>
-            
-            <div style="background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 3px 10px rgba(111,66,193,0.1); border: 1px solid #f0e6ff;">
-                <div style="font-size: 32px; font-weight: 700; color: #6f42c1; margin-bottom: 8px;">4</div>
-                <div style="font-size: 14px; color: #666; font-weight: 600;">Risk Bands</div>
-                <div style="font-size: 12px; color: #888; margin-top: 5px;">Low / Moderate / High / Critical</div>
-            </div>
-            
-            <div style="background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 3px 10px rgba(253,126,20,0.1); border: 1px solid #ffe8d4;">
-                <div style="font-size: 32px; font-weight: 700; color: #fd7e14; margin-bottom: 8px;">5</div>
-                <div style="font-size: 14px; color: #666; font-weight: 600;">Data Sources</div>
-                <div style="font-size: 12px; color: #888; margin-top: 5px;">1 public dataset + 4 synthetic tables</div>
-            </div>
-        </div>
+    <div class="actions">
+        <a href="https://github.com/ldongmon/ldongmon.github.io/blob/main/CHURN%20MODELING_REPORT.ipynb"
+           class="button" target="_blank" rel="noopener">View on GitHub</a>
+        <a href="https://nbviewer.org/github/ldongmon/ldongmon.github.io/blob/main/CHURN%20MODELING_REPORT.ipynb"
+           class="button green" target="_blank" rel="noopener">Open in nbviewer</a>
+        <a href="https://github.com/ldongmon/ldongmon.github.io/raw/main/CHURN%20MODELING_REPORT.ipynb"
+           class="button purple" download="CHURN_MODELING_REPORT.ipynb">Download Notebook</a>
     </div>
 
-    <!-- Action Buttons - Modern Design -->
-    <div style="text-align: center; margin: 30px 0;">
-        <div style="display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
-            <a href="powerbi-dashboard-preview.png" target="_blank" rel="noopener"
-               style="display: inline-flex; align-items: center; background: linear-gradient(135deg, #0066cc, #004c99); color: white; padding: 15px 25px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: transform 0.3s; box-shadow: 0 4px 15px rgba(0,102,204,0.2);">
-                <span style="margin-right: 10px; font-size: 20px;">🖼️</span>
-                <span>View Dashboard</span>
-            </a>
+    <h2>Live Demo (Streamlit App)</h2>
+    <p>Upload a customer CSV file and get a churn probability and a risk band for each customer:</p>
+    <a href="https://churnprobaapps-ftuk5k4wd7umfmm5angxsk.streamlit.app/"
+       class="button" target="_blank" rel="noopener">Launch Streamlit App</a>
 
-            <a href="MY_Dashboard.pbix" download
-               style="display: inline-flex; align-items: center; background: linear-gradient(135deg, #28a745, #1e7e34); color: white; padding: 15px 25px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: transform 0.3s; box-shadow: 0 4px 15px rgba(40,167,69,0.2);">
-                <span style="margin-right: 10px; font-size: 20px;">📥</span>
-                <span>Download PBIX File</span>
-            </a>
-            
-            <a href="DOCUMENTATION.pdf" target="_blank" rel="noopener" 
-               style="display: inline-flex; align-items: center; background: linear-gradient(135deg, #6f42c1, #59359e); color: white; padding: 15px 25px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: transform 0.3s; box-shadow: 0 4px 15px rgba(111,66,193,0.2);">
-                <span style="margin-right: 10px; font-size: 20px;">📋</span>
-                <span>View Documentation</span>
-            </a>
-        </div>
-    </div>
-
-    <!-- Technical Implementation - Corrected Full Version -->
-    <div style="background: white; padding: 30px; border-radius: 12px; margin-top: 30px; box-shadow: 0 5px 25px rgba(0,0,0,0.05); border: 1px solid #e8e8e8;">
-        <div style="display: flex; align-items: center; margin-bottom: 25px;">
-            <div style="background: #17a2b8; padding: 12px; border-radius: 8px; margin-right: 15px;">
-                <span style="font-size: 24px; color: white;">🛠</span>
-            </div>
-            <div>
-                <h3 style="color: #333; margin: 0; font-size: 22px;">Technical Implementation</h3>
-                <p style="color: #666; margin: 5px 0 0 0; font-size: 14px;">
-                    End-to-end solution combining Machine Learning, Data Engineering, and Business Intelligence
-                </p>
-            </div>
-        </div>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-            
-            <!-- ML Pipeline -->
-            <div style="background: linear-gradient(135deg, #f8f9fa, #ffffff); padding: 20px; border-radius: 10px; border-left: 4px solid #17a2b8;">
-                <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                    <div style="background: #17a2b8; color: white; padding: 8px; border-radius: 6px; margin-right: 10px;">
-                        ⚙
-                    </div>
-                    <strong style="color: #333;">ML Pipeline</strong>
-                </div>
-                <p style="color: #555; font-size: 14px; line-height: 1.5; margin: 0;">
-                    Scikit-learn pipeline with scaling, one-hot encoding and a Random Forest of 300 trees
-                    (precision 0.80, recall 0.47 on churners).
-                </p>
-            </div>
-            
-            <!-- Streamlit App -->
-            <div style="background: linear-gradient(135deg, #f8f9fa, #ffffff); padding: 20px; border-radius: 10px; border-left: 4px solid #28a745;">
-                <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                    <div style="background: #28a745; color: white; padding: 8px; border-radius: 6px; margin-right: 10px;">
-                        🧪
-                    </div>
-                    <strong style="color: #333;">Streamlit App</strong>
-                </div>
-                <p style="color: #555; font-size: 14px; line-height: 1.5; margin: 0;">
-                    Interactive web application: upload a customer CSV and get a churn probability
-                    and a risk band for each customer.
-                </p>
-            </div>
-            
-            <!-- ETL Workflow -->
-            <div style="background: linear-gradient(135deg, #f8f9fa, #ffffff); padding: 20px; border-radius: 10px; border-left: 4px solid #fd7e14;">
-                <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                    <div style="background: #fd7e14; color: white; padding: 8px; border-radius: 6px; margin-right: 10px;">
-                        🔄
-                    </div>
-                    <strong style="color: #333;">ETL Workflow</strong>
-                </div>
-                <p style="color: #555; font-size: 14px; line-height: 1.5; margin: 0;">
-                    Power Query steps: header promotion, explicit data types, column renaming and
-                    handling of customers without a relationship manager.
-                </p>
-            </div>
-            
-            <!-- Star Schema -->
-            <div style="background: linear-gradient(135deg, #f8f9fa, #ffffff); padding: 20px; border-radius: 10px; border-left: 4px solid #6f42c1;">
-                <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                    <div style="background: #6f42c1; color: white; padding: 8px; border-radius: 6px; margin-right: 10px;">
-                        🗂
-                    </div>
-                    <strong style="color: #333;">Data Model</strong>
-                </div>
-                <p style="color: #555; font-size: 14px; line-height: 1.5; margin: 0;">
-                    Power BI relational model linking customers, accounts, transactions
-                    and products, with a churn score on the customer table.
-                </p>
-            </div>
-            
-            <!-- DAX Analytics -->
-            <div style="background: linear-gradient(135deg, #f8f9fa, #ffffff); padding: 20px; border-radius: 10px; border-left: 4px solid #dc3545;">
-                <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                    <div style="background: #dc3545; color: white; padding: 8px; border-radius: 6px; margin-right: 10px;">
-                        📐
-                    </div>
-                    <strong style="color: #333;">DAX Analytics</strong>
-                </div>
-                <p style="color: #555; font-size: 14px; line-height: 1.5; margin: 0;">
-                    11 DAX measures (customers at risk, average churn by manager, product
-                    penetration, KPIs) and a calculated segment column.
-                </p>
-            </div>
-            
-            <!-- Risk Segmentation -->
-            <div style="background: linear-gradient(135deg, #f8f9fa, #ffffff); padding: 20px; border-radius: 10px; border-left: 4px solid #20c997;">
-                <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                    <div style="background: #20c997; color: white; padding: 8px; border-radius: 6px; margin-right: 10px;">
-                        📊
-                    </div>
-                    <strong style="color: #333;">Risk Segmentation</strong>
-                </div>
-                <p style="color: #555; font-size: 14px; line-height: 1.5; margin: 0;">
-                    4 risk bands with fixed cut-offs (0.20 / 0.40 / 0.70) so that retention
-                    teams can prioritise the Critical and High bands.
-                </p>
-            </div>
-            
-        </div>
-        
-        <!-- Additional Technical Information -->
-        <div style="margin-top: 25px; padding: 20px; background: linear-gradient(135deg, #f0f8ff, #e6f2ff); border-radius: 10px; border: 1px solid #cce5ff;">
-            <h4 style="color: #0066cc; margin: 0 0 15px 0; font-size: 16px;">🔧 Development Stack</h4>
-            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-                <span style="background: #e9ecef; padding: 6px 12px; border-radius: 20px; font-size: 13px; color: #495057;">Python</span>
-                <span style="background: #d1ecf1; padding: 6px 12px; border-radius: 20px; font-size: 13px; color: #0c5460;">Scikit-learn</span>
-                <span style="background: #d4edda; padding: 6px 12px; border-radius: 20px; font-size: 13px; color: #155724;">Pandas</span>
-                <span style="background: #fff3cd; padding: 6px 12px; border-radius: 20px; font-size: 13px; color: #856404;">Streamlit</span>
-                <span style="background: #e2d9f3; padding: 6px 12px; border-radius: 20px; font-size: 13px; color: #3d2c6d;">Power BI</span>
-                <span style="background: #ffe5d0; padding: 6px 12px; border-radius: 20px; font-size: 13px; color: #8a4b08;">Power Query</span>
-                <span style="background: #f8d7da; padding: 6px 12px; border-radius: 20px; font-size: 13px; color: #721c24;">DAX</span>
-                <span style="background: #d1e7dd; padding: 6px 12px; border-radius: 20px; font-size: 13px; color: #0a3622;">Git</span>
-            </div>
-        </div>
-        
-        <!-- Workflow Summary -->
-        <div style="margin-top: 25px; padding: 20px; background: #f8f9fa; border-radius: 10px; border: 1px solid #dee2e6;">
-            <h4 style="color: #495057; margin: 0 0 15px 0; font-size: 16px;">📋 End-to-End Workflow</h4>
-            <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
-                <div style="text-align: center; flex: 1; min-width: 120px;">
-                    <div style="background: #17a2b8; color: white; width: 40px; height: 40px; line-height: 40px; border-radius: 50%; margin: 0 auto 10px; font-weight: bold;">1</div>
-                    <div style="font-weight: 600; color: #333; font-size: 14px;">Data Collection</div>
-                    <div style="font-size: 12px; color: #666;">CSV sources</div>
-                </div>
-                <div style="text-align: center; flex: 1; min-width: 120px;">
-                    <div style="background: #28a745; color: white; width: 40px; height: 40px; line-height: 40px; border-radius: 50%; margin: 0 auto 10px; font-weight: bold;">2</div>
-                    <div style="font-weight: 600; color: #333; font-size: 14px;">ETL Processing</div>
-                    <div style="font-size: 12px; color: #666;">Cleaning & transformation</div>
-                </div>
-                <div style="text-align: center; flex: 1; min-width: 120px;">
-                    <div style="background: #fd7e14; color: white; width: 40px; height: 40px; line-height: 40px; border-radius: 50%; margin: 0 auto 10px; font-weight: bold;">3</div>
-                    <div style="font-weight: 600; color: #333; font-size: 14px;">ML Modeling</div>
-                    <div style="font-size: 12px; color: #666;">Random Forest training</div>
-                </div>
-                <div style="text-align: center; flex: 1; min-width: 120px;">
-                    <div style="background: #6f42c1; color: white; width: 40px; height: 40px; line-height: 40px; border-radius: 50%; margin: 0 auto 10px; font-weight: bold;">4</div>
-                    <div style="font-weight: 600; color: #333; font-size: 14px;">BI Integration</div>
-                    <div style="font-size: 12px; color: #666;">Power BI dashboard</div>
-                </div>
-                <div style="text-align: center; flex: 1; min-width: 120px;">
-                    <div style="background: #20c997; color: white; width: 40px; height: 40px; line-height: 40px; border-radius: 50%; margin: 0 auto 10px; font-weight: bold;">5</div>
-                    <div style="font-weight: 600; color: #333; font-size: 14px;">Deployment</div>
-                    <div style="font-size: 12px; color: #666;">Streamlit web app</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div>  
- <h2>📁 GitHub Repository</h2>
-    <p>Access the complete source code of the project:</p>
-
-    <a href="https://github.com/ldongmon/ldongmon.github.io" class="button" target="_blank" rel="noopener">
-        Notebook, Report &amp; Data (GitHub)
-    </a>
-    <a href="https://github.com/ldongmon/churn_proba_apps" class="button" target="_blank" rel="noopener">
-        App Source Code (GitHub)
-    </a>
-    <a href="https://churnprobaapps-ftuk5k4wd7umfmm5angxsk.streamlit.app/" class="button" target="_blank" rel="noopener" style="background: #28a745;">
-        Streamlit App
-    </a>
-
-    <h2>📞 Contact</h2>
+    <h2>Power BI Customer Analytics Dashboard</h2>
     <p>
-        Created by <strong>Leprince Dongmo Nanda</strong> &mdash; Dendermonde, Belgium.<br>
-        <a href="mailto:leprince.dongmo@yahoo.fr">leprince.dongmo@yahoo.fr</a> &nbsp;&middot;&nbsp;
-        <a href="https://www.linkedin.com/in/leprince-dongmo-nanda/" target="_blank" rel="noopener">LinkedIn</a> &nbsp;&middot;&nbsp;
+        One-page customer value and churn-risk report built with Power BI on synthetic bank data:
+        headline KPIs, value segments, churn exposure by relationship manager and by city.
+    </p>
+
+    <div class="preview">
+        <a href="powerbi-dashboard-preview.png" target="_blank" rel="noopener" title="Open the dashboard at full size">
+            <img src="powerbi-dashboard-preview.png" alt="Power BI Customer Value and Risk Analytics dashboard">
+        </a>
+        <p class="caption">Report page shown with the "High Value" customer segment selected in the slicer. Click to enlarge.</p>
+    </div>
+
+    <div class="panel">
+        <h3>Dashboard Features</h3>
+        <div class="grid cols-250">
+            <div class="card c-blue">
+                <h4>Customer Segmentation</h4>
+                <p>Rule-based segments (High Value, Mid Value, At Risk, Other) from income, tenure and churn probability.</p>
+            </div>
+            <div class="card c-green">
+                <h4>Churn Risk Analysis</h4>
+                <p>Average churn probability and count of customers above the 0.6 risk threshold.</p>
+            </div>
+            <div class="card c-purple">
+                <h4>Portfolio Management</h4>
+                <p>Churn exposure compared across relationship managers, with the income profile of each segment.</p>
+            </div>
+            <div class="card c-orange">
+                <h4>Geographic View</h4>
+                <p>Average churn probability by city on a map, and tenure by occupation.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel blue">
+        <h3>Data Model</h3>
+        <p style="margin: 0; color: #555;">
+            <strong>Relational model:</strong> Customers → Accounts → Transactions, and Customers → Products
+            (one-to-many relationships, single-direction filters).
+        </p>
+        <div class="flow">
+            <div class="node">
+                <div class="label" style="background: #0066cc;">Customers</div>
+                <p class="desc">Demographics, income, churn probability</p>
+            </div>
+            <div class="arrow">→</div>
+            <div class="node">
+                <div class="label" style="background: #28a745;">Accounts</div>
+                <p class="desc">Balances, credit scores, account types</p>
+            </div>
+            <div class="arrow">→</div>
+            <div class="node">
+                <div class="label" style="background: #6f42c1;">Transactions</div>
+                <p class="desc">Deposits, withdrawals, payments</p>
+            </div>
+            <div class="node">
+                <div class="label" style="background: #fd7e14;">Products</div>
+                <p class="desc">Mortgage, personal loan, credit card, mutual fund, ETF (linked to Customers)</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h3>Project Datasets</h3>
+        <p style="margin: 0; color: #666; font-size: 14px;">Synthetic relational tables used in the Power BI data model.</p>
+        <div class="grid cols-200">
+            <a class="file" href="customers.csv" download><strong>customers.csv</strong><span>200 customer profiles</span></a>
+            <a class="file" href="accounts.csv" download><strong>accounts.csv</strong><span>407 accounts</span></a>
+            <a class="file" href="transactions.csv" download><strong>transactions.csv</strong><span>8,758 transactions</span></a>
+            <a class="file" href="products.csv" download><strong>products.csv</strong><span>309 product holdings</span></a>
+        </div>
+    </div>
+
+    <div class="panel blue">
+        <h3>Key Figures</h3>
+        <div class="grid cols-180">
+            <div class="stat">
+                <div class="value" style="color: #0066cc;">10,000</div>
+                <div class="name">Customers in the model dataset</div>
+                <div class="detail">Kaggle Bank Customer Churn (8,000 train / 2,000 test)</div>
+            </div>
+            <div class="stat">
+                <div class="value" style="color: #28a745;">0.80 / 0.47</div>
+                <div class="name">Precision / recall (churn)</div>
+                <div class="detail">Random Forest, accuracy 86.9% (baseline 79.6%)</div>
+            </div>
+            <div class="stat">
+                <div class="value" style="color: #6f42c1;">4</div>
+                <div class="name">Risk bands</div>
+                <div class="detail">Low / Moderate / High / Critical</div>
+            </div>
+            <div class="stat">
+                <div class="value" style="color: #fd7e14;">5</div>
+                <div class="name">Data sources</div>
+                <div class="detail">1 public dataset + 4 synthetic tables</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="actions">
+        <a href="powerbi-dashboard-preview.png" class="button" target="_blank" rel="noopener">View Dashboard</a>
+        <a href="MY_Dashboard.pbix" class="button green" download>Download PBIX File</a>
+        <a href="DOCUMENTATION.pdf" class="button purple" target="_blank" rel="noopener">View Documentation</a>
+    </div>
+
+    <h2>Technical Implementation</h2>
+    <div class="grid cols-250">
+        <div class="card c-teal">
+            <h4>ML Pipeline</h4>
+            <p>Scikit-learn pipeline with scaling, one-hot encoding and a Random Forest of 300 trees
+               (precision 0.80, recall 0.47 on churners).</p>
+        </div>
+        <div class="card c-green">
+            <h4>Streamlit App</h4>
+            <p>Web application: upload a customer CSV and get a churn probability and a risk band for each customer.</p>
+        </div>
+        <div class="card c-orange">
+            <h4>Data Preparation</h4>
+            <p>Power Query steps: header promotion, explicit data types, column renaming and
+               handling of customers without a relationship manager.</p>
+        </div>
+        <div class="card c-purple">
+            <h4>Data Model</h4>
+            <p>Power BI relational model linking customers, accounts, transactions and products,
+               with a churn score on the customer table.</p>
+        </div>
+        <div class="card c-red">
+            <h4>DAX Measures</h4>
+            <p>11 DAX measures (customers at risk, average churn by manager, product penetration, KPIs)
+               and a calculated segment column.</p>
+        </div>
+        <div class="card c-mint">
+            <h4>Risk Segmentation</h4>
+            <p>4 risk bands with fixed cut-offs (0.20 / 0.40 / 0.70) so that retention teams can
+               prioritise the Critical and High bands.</p>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h4 style="color: #003366;">Tools</h4>
+        <div class="tags">
+            <span>Python</span><span>scikit-learn</span><span>pandas</span><span>Streamlit</span>
+            <span>Power BI</span><span>Power Query</span><span>DAX</span><span>Quarto</span><span>Git</span>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h4 style="color: #003366;">Workflow</h4>
+        <div class="steps">
+            <div><b>1</b><strong>Data collection</strong><small>CSV sources</small></div>
+            <div><b>2</b><strong>Preparation</strong><small>Cleaning and transformation</small></div>
+            <div><b>3</b><strong>Modelling</strong><small>Random Forest training</small></div>
+            <div><b>4</b><strong>BI layer</strong><small>Power BI dashboard</small></div>
+            <div><b>5</b><strong>Deployment</strong><small>Streamlit web app</small></div>
+        </div>
+    </div>
+
+    <h2>Source Code</h2>
+    <a href="https://github.com/ldongmon/ldongmon.github.io" class="button" target="_blank" rel="noopener">Notebook, Report and Data (GitHub)</a>
+    <a href="https://github.com/ldongmon/churn_proba_apps" class="button" target="_blank" rel="noopener">App Source Code (GitHub)</a>
+
+    <h2>Contact</h2>
+    <p>
+        <strong>Leprince Dongmo Nanda</strong>, Dendermonde, Belgium<br>
+        <a href="mailto:leprince.dongmo@yahoo.fr">leprince.dongmo@yahoo.fr</a> &nbsp;·&nbsp;
+        <a href="https://www.linkedin.com/in/leprince-dongmo-nanda/" target="_blank" rel="noopener">LinkedIn</a> &nbsp;·&nbsp;
         <a href="https://github.com/ldongmon" target="_blank" rel="noopener">GitHub</a>
     </p>
 
-</div>
+</main>
 
 <footer>
-    © 2026 — Churn Prediction Project by Leprince Dongmo Nanda
+    © 2026 Leprince Dongmo Nanda · Customer Churn Prediction Project
 </footer>
 
 </body>
