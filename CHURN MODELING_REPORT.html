@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="LEPRINCE DONGMO NANDA">
-<meta name="dcterms.date" content="2026-10-13">
+<meta name="dcterms.date" content="2026-11-17">
 
 <title>Churn Prediction Modeling</title>
 <style>
@@ -105,7 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 13, 2026</p>
+      <p class="date">November 17, 2026</p>
     </div>
   </div>
   
@@ -117,58 +117,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>📘 Introduction &amp; Business Context</p>
-<p>Customer churn—defined as the rate at which clients end their relationship with a company—is a critical performance indicator across subscription-based and service-driven industries. In the banking sector in particular, churn leads not only to lost revenue but also significant acquisition costs, as winning a new customer often requires 5 to 10 times more investment than retaining an existing one. For a multinational bank, maintaining long-term customer relationships is therefore essential for ensuring financial stability, sustaining growth, and maximizing customer lifetime value (CLV).</p>
-<p>This project is built using an anonymized Multinational Bank Customer dataset obtained from Kaggle, containing demographic details, customer behavior, product usage, and account status information. The goal is to develop a predictive machine learning model that estimates the probability of customer churn, enabling the organization to:</p>
-<p>Detect at-risk customers early</p>
-<p>Prioritize retention strategies and allocate marketing budgets effectively</p>
-<p>Personalize offers and services</p>
-<p>Strengthen customer loyalty and improve CLV</p>
-<p>Support evidence-based, data-driven decision-making</p>
-<p>📂 Project Scope &amp; End-to-End Workflow</p>
-<p>This end-to-end data science and business analytics project covers the complete pipeline from raw data to actionable insights:</p>
+<section id="introduction-and-business-context" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-and-business-context">Introduction and business context</h2>
+<p>Customer churn is the share of clients who end their relationship with a company. For a bank it means lost revenue and a high replacement cost, since acquiring a new customer usually costs several times more than keeping an existing one. Spotting customers at risk early lets retention teams act before they leave.</p>
+<p>This project uses the anonymised <em>Bank Customer Churn</em> dataset from Kaggle (10,000 customers): demographics, account and product usage, and whether the customer left the bank. The goal is a model that estimates a churn probability for each customer, so that the bank can:</p>
+<ul>
+<li>detect at-risk customers early;</li>
+<li>focus retention actions and budget on the customers most likely to leave;</li>
+<li>feed a churn score into a BI dashboard for managers.</li>
+</ul>
+</section>
+<section id="scope-and-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="scope-and-workflow">Scope and workflow</h2>
 <ol type="1">
-<li>Data Acquisition</li>
+<li><strong>Data</strong>: Kaggle dataset loaded in a Jupyter notebook.</li>
+<li><strong>Exploration</strong>: missing values, class balance (20.4% churners), correlation of each feature with the target, detection of a leakage column.</li>
+<li><strong>Preprocessing</strong>: removal of identifier and leakage columns, one-hot encoding of categorical features, scaling of numerical features, stratified 80/20 train/test split.</li>
+<li><strong>Modelling</strong>: Logistic Regression and Random Forest, compared on the test set with accuracy, precision, recall, F1 on the churn class and ROC-AUC; feature importance of the selected model.</li>
+<li><strong>Scoring</strong>: churn probability and risk band per customer, exported to CSV and Excel; the selected pipeline is saved for the Streamlit app.</li>
+<li><strong>Power BI</strong>: a one-page report with headline KPIs, value and risk segments, and churn exposure by relationship manager and by city.</li>
 </ol>
-<p>Dataset sourced from Kaggle (Bank Churn / Customer Churn dataset).</p>
-<p>Imported into Jupyter Notebook for preprocessing and modeling.</p>
-<ol start="2" type="1">
-<li>Exploratory Data Analysis (EDA)</li>
-</ol>
-<p>Statistical description and distribution analysis</p>
-<p>Correlation scan of every feature against the churn target</p>
-<p>Identification of data quality issues (missing values, target leakage, class imbalance)</p>
-<ol start="3" type="1">
-<li>Data Preprocessing</li>
-</ol>
-<p>Checking for missing values (none found) and removing identifier and leakage columns</p>
-<p>Encoding categorical features</p>
-<p>Scaling numerical variables</p>
-<p>Measuring class imbalance and choosing evaluation metrics that account for it (precision, recall, F1 on the minority class)</p>
-<p>Splitting into stratified training and test sets (80 / 20)</p>
-<ol start="4" type="1">
-<li>Machine Learning Modeling</li>
-</ol>
-<p>Training two models (Logistic Regression, Random Forest)</p>
-<p>Model comparison on a stratified hold-out set</p>
-<p>Model evaluation using accuracy, precision, recall, F1-score and ROC-AUC</p>
-<p>Feature importance analysis to identify key churn drivers</p>
-<ol start="5" type="1">
-<li>Prediction &amp; Deployment Preparation</li>
-</ol>
-<p>Generating customer-level churn probability scores</p>
-<p>Exporting results for operational teams</p>
-<p>Preparing a clean dataset for BI dashboards</p>
-<ol start="6" type="1">
-<li>Business Intelligence &amp; Visualization (Power BI)</li>
-</ol>
-<p>A one-page Power BI report that consumes a churn score per customer:</p>
-<p>Headline KPIs (customers, accounts, transactions, average churn probability, customers at risk)</p>
-<p>Value and risk segmentation of the customer base</p>
-<p>Churn exposure by relationship manager and by city</p>
-<p>Note: the Power BI report runs on synthetic relational tables (customers, accounts, transactions, products). Its churn score column is simulated; it shows how a model score is consumed in a decision-support layer.</p>
+<p><em>Note: the Power BI report runs on synthetic relational tables (customers, accounts, transactions, products). Its churn score column is simulated; it shows how a model score is consumed in a decision-support layer.</em></p>
 <div id="f3369f4e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-10-13T19:02:04.438829Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T19:02:04.438214Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T19:02:06.895708Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T19:02:06.894670Z&quot;}}" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#📌 SECTION 1 — Import Required Libraries</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Section 1: Import Required Libraries</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Pandas is used to load and manipulate data tables</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -194,7 +165,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="936da294" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-10-13T19:02:06.899598Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T19:02:06.899113Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T19:02:06.931068Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T19:02:06.930081Z&quot;}}" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#📌 SECTION 2 — Load Dataset</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Section 2: Load Dataset</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Loads the CSV file into a pandas DataFrame.</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># The file sits next to this notebook (Kaggle - Bank Customer Churn dataset).</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"Customer-Churn-Records.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -752,7 +723,7 @@ Name: proportion, dtype: float64</code></pre>
 </div>
 </div>
 <div id="3db1f0ba" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-10-13T19:02:07.119027Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T19:02:07.118746Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T19:02:07.126584Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T19:02:07.124573Z&quot;}}" data-execution_count="11">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#📌 SECTION 3 — Separate Features and Target</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Section 3: Separate Features and Target</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># X contains all independent features (all columns except 'churn')</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df.drop(<span class="st">"churn"</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -760,7 +731,7 @@ Name: proportion, dtype: float64</code></pre>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df[<span class="st">"churn"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="a2b99681" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-10-13T19:02:07.129142Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T19:02:07.128864Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T19:02:07.137145Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T19:02:07.136037Z&quot;}}" data-execution_count="12">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#📌 SECTION 4 — Identify Numeric and Categorical Columns</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Section 4: Identify Numeric and Categorical Columns</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove identifier columns (the real CustomerId stays available in df for the final export)</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># RowNumber is a positional index with no business meaning: it must not reach the models</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>cols_to_remove <span class="op">=</span> [<span class="st">"RowNumber"</span>, <span class="st">"Surname"</span>, <span class="st">"CustomerId"</span>]</span>
@@ -1188,7 +1159,7 @@ Name: churn, dtype: int64</code></pre>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>numeric_cols <span class="op">=</span> X.select_dtypes(include<span class="op">=</span>[<span class="st">"int64"</span>, <span class="st">"float64"</span>]).columns</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="2438d98a" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-10-13T19:02:07.273738Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T19:02:07.273310Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T19:02:07.281571Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T19:02:07.280027Z&quot;}}" data-execution_count="21">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#📌 SECTION 5 — Preprocessing Step (ColumnTransformer)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Section 5: Preprocessing Step (ColumnTransformer)</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Preprocessing steps applied before sending data to machine learning models:</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># - numeric columns → scaled (mean=0, std=1)</span></span>
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># - categorical columns → one-hot encoded (converted to binary format)</span></span>
@@ -1200,15 +1171,15 @@ Name: churn, dtype: int64</code></pre>
 <span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="e385eee5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-10-13T19:02:07.284640Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T19:02:07.284323Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T19:02:07.292802Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T19:02:07.290637Z&quot;}}" data-execution_count="22">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#📌 SECTION 6 — Build Pipelines for Each Model</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co">#🔵 Logistic Regression Pipeline</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Section 6: Build Pipelines for Each Model</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Logistic Regression Pipeline</span></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Combines preprocessing + logistic regression into a single workflow</span></span>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>log_reg_pipeline <span class="op">=</span> Pipeline(steps<span class="op">=</span>[</span>
 <span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"preprocessing"</span>, preprocessor),                      <span class="co"># Step 1: apply all transformations</span></span>
 <span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"model"</span>, LogisticRegression(max_iter<span class="op">=</span><span class="dv">10000</span>))          <span class="co"># Step 2: train classifier</span></span>
 <span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>])</span>
 <span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="co">#🟢 Random Forest Pipeline</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Random Forest Pipeline</span></span>
 <span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Random Forest pipeline: same preprocessing, but a different model at the end.</span></span>
 <span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>rf_pipeline <span class="op">=</span> Pipeline(steps<span class="op">=</span>[</span>
 <span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>    (<span class="st">"preprocessing"</span>, preprocessor),</span>
@@ -1220,7 +1191,7 @@ Name: churn, dtype: int64</code></pre>
 <span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="d0470ed1" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-10-13T19:02:07.297405Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T19:02:07.297084Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T19:02:07.314455Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T19:02:07.313038Z&quot;}}" data-execution_count="23">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#📌 SECTION 7 — Split Train vs. Test Data</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Section 7: Split Train vs. Test Data</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Divide data into 80% training, 20% testing.</span></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Stratify ensures the target class distribution is preserved.</span></span>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
@@ -1231,7 +1202,7 @@ Name: churn, dtype: int64</code></pre>
 <span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="1fc87cc2" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-10-13T19:02:07.318720Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T19:02:07.318203Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T19:02:14.338104Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T19:02:14.336230Z&quot;}}" data-execution_count="24">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">#📌 SECTION 8 — Train Models</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Section 8: Train Models</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Fits the logistic regression pipeline to training data</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>log_reg_pipeline.fit(X_train, y_train)</span>
 <span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -1685,6 +1656,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
       dtype='object')</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox"><label for="sk-estimator-id-4" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>StandardScaler</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></div></label><div class="sk-toggleable__content fitted"><pre>StandardScaler()</pre></div> </div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox"><label for="sk-estimator-id-5" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>cat</div></div></label><div class="sk-toggleable__content fitted"><pre>Index(['Geography', 'Gender', 'Card Type'], dtype='object')</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox"><label for="sk-estimator-id-6" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>OneHotEncoder</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.preprocessing.OneHotEncoder.html">?<span>Documentation for OneHotEncoder</span></a></div></label><div class="sk-toggleable__content fitted"><pre>OneHotEncoder(drop='first')</pre></div> </div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox"><label for="sk-estimator-id-7" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>RandomForestClassifier</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.ensemble.RandomForestClassifier.html">?<span>Documentation for RandomForestClassifier</span></a></div></label><div class="sk-toggleable__content fitted"><pre>RandomForestClassifier(n_estimators=300, random_state=42)</pre></div> </div></div></div></div></div></div>
 </div>
 </div>
+</section>
 <section id="pipeline-overview-business-view" class="level2">
 <h2 class="anchored" data-anchor-id="pipeline-overview-business-view">Pipeline overview (business view)</h2>
 <div id="39cbb7f6" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-10-13T19:02:14.343733Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T19:02:14.343085Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T19:02:18.684442Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T19:02:18.682955Z&quot;}}" data-execution_count="25">
@@ -1779,31 +1751,31 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <div id="53849a4e" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-10-13T19:02:18.688480Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T19:02:18.688055Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T19:02:18.879972Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T19:02:18.878313Z&quot;}}" data-execution_count="26">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#📌 SECTION 9 — Predictions</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Section 9: Predictions</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Produces predicted class labels (0 or 1)</span></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>log_reg_pred <span class="op">=</span> log_reg_pipeline.predict(X_test)</span>
 <span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>rf_pred <span class="op">=</span> rf_pipeline.predict(X_test)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="989e634d" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-10-13T19:02:18.883279Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T19:02:18.882857Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T19:02:19.103104Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T19:02:19.101938Z&quot;}}" data-execution_count="27">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#📌 SECTION 10 — Evaluate Each Model</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Section 10: Evaluate Each Model</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> roc_auc_score</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co">#🔵 Logistic Regression</span></span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"🔵 Logistic Regression Results"</span>)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Logistic Regression</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Logistic Regression results"</span>)</span>
 <span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Accuracy:"</span>, accuracy_score(y_test, log_reg_pred))  <span class="co"># proportion of correct predictions</span></span>
 <span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(confusion_matrix(y_test, log_reg_pred))             <span class="co"># matrix of TP, FP, FN, TN</span></span>
 <span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, log_reg_pred))        <span class="co"># precision, recall, F1 score</span></span>
 <span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"ROC-AUC:"</span>, <span class="bu">round</span>(roc_auc_score(y_test, log_reg_pipeline.predict_proba(X_test)[:, <span class="dv">1</span>]), <span class="dv">3</span>))</span>
 <span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a><span class="co">#🟢 Random Forest</span></span>
-<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"🟢 Random Forest Results"</span>)</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Random Forest</span></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Random Forest results"</span>)</span>
 <span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Accuracy:"</span>, accuracy_score(y_test, rf_pred))</span>
 <span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(confusion_matrix(y_test, rf_pred))</span>
 <span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, rf_pred))</span>
 <span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"ROC-AUC:"</span>, <span class="bu">round</span>(roc_auc_score(y_test, rf_pipeline.predict_proba(X_test)[:, <span class="dv">1</span>]), <span class="dv">3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>🔵 Logistic Regression Results
+<pre><code>Logistic Regression results
 Accuracy: 0.813
 [[1540   52]
  [ 322   86]]
@@ -1817,7 +1789,7 @@ Accuracy: 0.813
 weighted avg       0.79      0.81      0.77      2000
 
 ROC-AUC: 0.778
-🟢 Random Forest Results
+Random Forest results
 Accuracy: 0.8685
 [[1544   48]
  [ 215  193]]
@@ -1863,7 +1835,7 @@ ROC-AUC: 0.867</code></pre>
 <h2 class="anchored" data-anchor-id="understanding-the-results">Understanding the results</h2>
 <p>The test set holds 2,000 customers, of whom 408 churned. The churn base rate is 20.4%, so a model that always answers “no churn” would already reach 79.6% accuracy. Accuracy alone therefore says little: the model must be judged on the churn class.</p>
 <section id="logistic-regression" class="level3">
-<h3 class="anchored" data-anchor-id="logistic-regression">🔵 Logistic Regression</h3>
+<h3 class="anchored" data-anchor-id="logistic-regression">Logistic Regression</h3>
 <p>Accuracy 0.813, confusion matrix <code>[[1540 52] [322 86]]</code>.</p>
 <ul>
 <li>Very good on class 0 (non-churn), but only because it mostly predicts “no churn”.</li>
@@ -1872,7 +1844,7 @@ ROC-AUC: 0.867</code></pre>
 </ul>
 </section>
 <section id="random-forest" class="level3">
-<h3 class="anchored" data-anchor-id="random-forest">🟢 Random Forest</h3>
+<h3 class="anchored" data-anchor-id="random-forest">Random Forest</h3>
 <p>Accuracy 0.869, confusion matrix <code>[[1544 48] [215 193]]</code>.</p>
 <ul>
 <li>Precision on churn = 0.80: when the model flags a customer, it is right about 4 times out of 5.</li>
@@ -1881,7 +1853,7 @@ ROC-AUC: 0.867</code></pre>
 </ul>
 </section>
 <section id="which-model-is-better" class="level3">
-<h3 class="anchored" data-anchor-id="which-model-is-better">🎯 Which model is better?</h3>
+<h3 class="anchored" data-anchor-id="which-model-is-better">Which model is better?</h3>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -1921,26 +1893,26 @@ ROC-AUC: 0.867</code></pre>
 <p>Random Forest is the better choice: it more than doubles recall on the churn class while also raising precision. It is a prioritisation tool rather than an exhaustive early-warning system, because about half of the churners are still missed.</p>
 </section>
 <section id="why-is-churn-hard-to-predict-here" class="level3">
-<h3 class="anchored" data-anchor-id="why-is-churn-hard-to-predict-here">🤔 Why is churn hard to predict here?</h3>
+<h3 class="anchored" data-anchor-id="why-is-churn-hard-to-predict-here">Why is churn hard to predict here?</h3>
 <p>Once the leakage column <code>Complain</code> is removed, the remaining linear signals are weak. The strongest correlations with the target are Age (+0.285), IsActiveMember (-0.156), Geography (+0.154) and Balance (+0.119); salary, card type, credit card ownership, tenure and satisfaction score are close to zero. Part of the signal is non-linear (for example the number of products), which Random Forest captures and Logistic Regression does not.</p>
 <div id="657a42bd" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-10-13T19:02:19.131008Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T19:02:19.130701Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T19:02:19.140132Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T19:02:19.138729Z&quot;}}" data-execution_count="29">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#📌 SECTION 11 — Compare Models Automatically</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Section 11: Compare Models Automatically</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>log_acc <span class="op">=</span> accuracy_score(y_test, log_reg_pred)</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>rf_acc <span class="op">=</span> accuracy_score(y_test, rf_pred)</span>
 <span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"📊 Model Comparison"</span>)</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Model comparison"</span>)</span>
 <span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Logistic Regression Accuracy: </span><span class="sc">{</span>log_acc<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
 <span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Random Forest Accuracy:       </span><span class="sc">{</span>rf_acc<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
 <span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>best_model <span class="op">=</span> <span class="st">"Random Forest"</span> <span class="cf">if</span> rf_acc <span class="op">&gt;</span> log_acc <span class="cf">else</span> <span class="st">"Logistic Regression"</span></span>
-<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">🏆 Best Model:"</span>, best_model)</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Best model:"</span>, best_model)</span>
 <span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>📊 Model Comparison
+<pre><code>Model comparison
 Logistic Regression Accuracy: 0.8130
 Random Forest Accuracy:       0.8685
 
-🏆 Best Model: Random Forest</code></pre>
+Best model: Random Forest</code></pre>
 </div>
 </div>
 <div id="12e1552a" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-10-13T19:02:19.145721Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T19:02:19.145198Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T19:02:19.196027Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T19:02:19.194366Z&quot;}}" data-execution_count="30">
@@ -1965,7 +1937,7 @@ dtype: float64</code></pre>
 </section>
 </section>
 <section id="individual-probabilities-customer-level-view" class="level2">
-<h2 class="anchored" data-anchor-id="individual-probabilities-customer-level-view">1. Individual probabilities (customer-level view)</h2>
+<h2 class="anchored" data-anchor-id="individual-probabilities-customer-level-view">Individual probabilities (customer-level view)</h2>
 <div id="81e627ba" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-10-13T19:02:19.199551Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T19:02:19.199064Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T19:02:19.370216Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T19:02:19.368609Z&quot;}}" data-execution_count="31">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Predict probabilities for the test set</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>y_proba <span class="op">=</span> rf_pipeline.predict_proba(X_test)[:, <span class="dv">1</span>]</span>
@@ -2053,7 +2025,7 @@ dtype: float64</code></pre>
 </div>
 </section>
 <section id="segment-probabilities-into-risk-bands" class="level2">
-<h2 class="anchored" data-anchor-id="segment-probabilities-into-risk-bands">2. Segment probabilities into risk bands</h2>
+<h2 class="anchored" data-anchor-id="segment-probabilities-into-risk-bands">Segment probabilities into risk bands</h2>
 <div id="fd522e51" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-10-13T19:02:19.373154Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T19:02:19.372806Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T19:02:19.389304Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T19:02:19.388113Z&quot;}}" data-execution_count="32">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Single reference definition of the risk bands (used everywhere below)</span></span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>RISK_BANDS <span class="op">=</span> [(<span class="fl">0.20</span>, <span class="st">"Low risk (0-20%)"</span>),</span>
@@ -2158,7 +2130,7 @@ dtype: float64</code></pre>
 </div>
 </section>
 <section id="distribution-of-the-predicted-probabilities" class="level2">
-<h2 class="anchored" data-anchor-id="distribution-of-the-predicted-probabilities">3. Distribution of the predicted probabilities</h2>
+<h2 class="anchored" data-anchor-id="distribution-of-the-predicted-probabilities">Distribution of the predicted probabilities</h2>
 <div id="036b6d63" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-10-13T19:02:19.394830Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T19:02:19.394528Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T19:02:19.649491Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T19:02:19.647976Z&quot;}}" data-execution_count="33">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -2178,7 +2150,7 @@ dtype: float64</code></pre>
 </div>
 </section>
 <section id="example-customers-by-probability-level" class="level2">
-<h2 class="anchored" data-anchor-id="example-customers-by-probability-level">4. Example customers by probability level</h2>
+<h2 class="anchored" data-anchor-id="example-customers-by-probability-level">Example customers by probability level</h2>
 <div id="7f0599d7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-10-13T19:02:19.652867Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T19:02:19.652334Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T19:02:19.666164Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T19:02:19.664821Z&quot;}}" data-execution_count="34">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -2238,7 +2210,7 @@ dtype: float64</code></pre>
 </div>
 </section>
 <section id="share-of-customers-in-each-risk-band" class="level2">
-<h2 class="anchored" data-anchor-id="share-of-customers-in-each-risk-band">5. Share of customers in each risk band</h2>
+<h2 class="anchored" data-anchor-id="share-of-customers-in-each-risk-band">Share of customers in each risk band</h2>
 <div id="c75741a4" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-10-13T19:02:19.669946Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T19:02:19.669632Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T19:02:19.680934Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T19:02:19.679549Z&quot;}}" data-execution_count="35">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Share of scored customers in each risk band (%)</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>risk_summary <span class="op">=</span> (customer_scores[<span class="st">"Risk_Level"</span>].value_counts(normalize<span class="op">=</span><span class="va">True</span>) <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>(<span class="dv">1</span>)</span>
@@ -2254,7 +2226,7 @@ Name: proportion, dtype: float64</code></pre>
 </div>
 </section>
 <section id="export-the-customer-churn-probabilities-csv-excel" class="level2">
-<h2 class="anchored" data-anchor-id="export-the-customer-churn-probabilities-csv-excel">6. Export the customer churn probabilities (CSV / Excel)</h2>
+<h2 class="anchored" data-anchor-id="export-the-customer-churn-probabilities-csv-excel">Export the customer churn probabilities (CSV / Excel)</h2>
 <div id="3e484a76" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;execution&quot;,&quot;value&quot;:{&quot;iopub.execute_input&quot;:&quot;2026-10-13T19:02:19.684736Z&quot;,&quot;iopub.status.busy&quot;:&quot;2026-10-13T19:02:19.684438Z&quot;,&quot;iopub.status.idle&quot;:&quot;2026-10-13T19:02:22.197141Z&quot;,&quot;shell.execute_reply&quot;:&quot;2026-10-13T19:02:22.195481Z&quot;}}" data-execution_count="36">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Step 1 — Build an exportable table (real CustomerId + probability + risk band)</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>customer_export <span class="op">=</span> customer_scores[[<span class="st">"CustomerId"</span>, <span class="st">"Churn_Probability"</span>, <span class="st">"Risk_Level"</span>]].copy()</span>

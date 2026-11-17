@@ -47,85 +47,30 @@ execute:
 ---
 
 
-📘 Introduction & Business Context
+## Introduction and business context
 
-Customer churn—defined as the rate at which clients end their relationship with a company—is a critical performance indicator across subscription-based and service-driven industries. In the banking sector in particular, churn leads not only to lost revenue but also significant acquisition costs, as winning a new customer often requires 5 to 10 times more investment than retaining an existing one. For a multinational bank, maintaining long-term customer relationships is therefore essential for ensuring financial stability, sustaining growth, and maximizing customer lifetime value (CLV).
+Customer churn is the share of clients who end their relationship with a company. For a bank it means lost revenue and a high replacement cost, since acquiring a new customer usually costs several times more than keeping an existing one. Spotting customers at risk early lets retention teams act before they leave.
 
-This project is built using an anonymized Multinational Bank Customer dataset obtained from Kaggle, containing demographic details, customer behavior, product usage, and account status information. The goal is to develop a predictive machine learning model that estimates the probability of customer churn, enabling the organization to:
+This project uses the anonymised *Bank Customer Churn* dataset from Kaggle (10,000 customers): demographics, account and product usage, and whether the customer left the bank. The goal is a model that estimates a churn probability for each customer, so that the bank can:
 
-Detect at-risk customers early
+- detect at-risk customers early;
+- focus retention actions and budget on the customers most likely to leave;
+- feed a churn score into a BI dashboard for managers.
 
-Prioritize retention strategies and allocate marketing budgets effectively
+## Scope and workflow
 
-Personalize offers and services
+1. **Data**: Kaggle dataset loaded in a Jupyter notebook.
+2. **Exploration**: missing values, class balance (20.4% churners), correlation of each feature with the target, detection of a leakage column.
+3. **Preprocessing**: removal of identifier and leakage columns, one-hot encoding of categorical features, scaling of numerical features, stratified 80/20 train/test split.
+4. **Modelling**: Logistic Regression and Random Forest, compared on the test set with accuracy, precision, recall, F1 on the churn class and ROC-AUC; feature importance of the selected model.
+5. **Scoring**: churn probability and risk band per customer, exported to CSV and Excel; the selected pipeline is saved for the Streamlit app.
+6. **Power BI**: a one-page report with headline KPIs, value and risk segments, and churn exposure by relationship manager and by city.
 
-Strengthen customer loyalty and improve CLV
-
-Support evidence-based, data-driven decision-making
-
-📂 Project Scope & End-to-End Workflow
-
-This end-to-end data science and business analytics project covers the complete pipeline from raw data to actionable insights:
-
-1. Data Acquisition
-
-Dataset sourced from Kaggle (Bank Churn / Customer Churn dataset).
-
-Imported into Jupyter Notebook for preprocessing and modeling.
-
-2. Exploratory Data Analysis (EDA)
-
-Statistical description and distribution analysis
-
-Correlation scan of every feature against the churn target
-
-Identification of data quality issues (missing values, target leakage, class imbalance)
-
-3. Data Preprocessing
-
-Checking for missing values (none found) and removing identifier and leakage columns
-
-Encoding categorical features
-
-Scaling numerical variables
-
-Measuring class imbalance and choosing evaluation metrics that account for it (precision, recall, F1 on the minority class)
-
-Splitting into stratified training and test sets (80 / 20)
-
-4. Machine Learning Modeling
-
-Training two models (Logistic Regression, Random Forest)
-
-Model comparison on a stratified hold-out set
-
-Model evaluation using accuracy, precision, recall, F1-score and ROC-AUC
-
-Feature importance analysis to identify key churn drivers
-
-5. Prediction & Deployment Preparation
-
-Generating customer-level churn probability scores
-
-Exporting results for operational teams
-
-Preparing a clean dataset for BI dashboards
-
-6. Business Intelligence & Visualization (Power BI)
-
-A one-page Power BI report that consumes a churn score per customer:
-
-Headline KPIs (customers, accounts, transactions, average churn probability, customers at risk)
-
-Value and risk segmentation of the customer base
-
-Churn exposure by relationship manager and by city
-
-Note: the Power BI report runs on synthetic relational tables (customers, accounts, transactions, products). Its churn score column is simulated; it shows how a model score is consumed in a decision-support layer.
+*Note: the Power BI report runs on synthetic relational tables (customers, accounts, transactions, products). Its churn score column is simulated; it shows how a model score is consumed in a decision-support layer.*
 
 ```{python}
 #| execution: {iopub.execute_input: '2026-10-13T19:02:04.438829Z', iopub.status.busy: '2026-10-13T19:02:04.438214Z', iopub.status.idle: '2026-10-13T19:02:06.895708Z', shell.execute_reply: '2026-10-13T19:02:06.894670Z'}
-#📌 SECTION 1 — Import Required Libraries
+# Section 1: Import Required Libraries
 # Pandas is used to load and manipulate data tables
 import pandas as pd
 
@@ -153,7 +98,7 @@ from sklearn.ensemble import RandomForestClassifier
 
 ```{python}
 #| execution: {iopub.execute_input: '2026-10-13T19:02:06.899598Z', iopub.status.busy: '2026-10-13T19:02:06.899113Z', iopub.status.idle: '2026-10-13T19:02:06.931068Z', shell.execute_reply: '2026-10-13T19:02:06.930081Z'}
-#📌 SECTION 2 — Load Dataset
+# Section 2: Load Dataset
 # Loads the CSV file into a pandas DataFrame.
 # The file sits next to this notebook (Kaggle - Bank Customer Churn dataset).
 df = pd.read_csv("Customer-Churn-Records.csv")
@@ -209,7 +154,7 @@ df["churn"].value_counts(normalize=True).round(3)
 
 ```{python}
 #| execution: {iopub.execute_input: '2026-10-13T19:02:07.119027Z', iopub.status.busy: '2026-10-13T19:02:07.118746Z', iopub.status.idle: '2026-10-13T19:02:07.126584Z', shell.execute_reply: '2026-10-13T19:02:07.124573Z'}
-#📌 SECTION 3 — Separate Features and Target
+# Section 3: Separate Features and Target
 # X contains all independent features (all columns except 'churn')
 X = df.drop("churn", axis=1)
 
@@ -219,7 +164,7 @@ y = df["churn"]
 
 ```{python}
 #| execution: {iopub.execute_input: '2026-10-13T19:02:07.129142Z', iopub.status.busy: '2026-10-13T19:02:07.128864Z', iopub.status.idle: '2026-10-13T19:02:07.137145Z', shell.execute_reply: '2026-10-13T19:02:07.136037Z'}
-#📌 SECTION 4 — Identify Numeric and Categorical Columns
+# Section 4: Identify Numeric and Categorical Columns
 # Remove identifier columns (the real CustomerId stays available in df for the final export)
 # RowNumber is a positional index with no business meaning: it must not reach the models
 cols_to_remove = ["RowNumber", "Surname", "CustomerId"]
@@ -297,7 +242,7 @@ numeric_cols = X.select_dtypes(include=["int64", "float64"]).columns
 
 ```{python}
 #| execution: {iopub.execute_input: '2026-10-13T19:02:07.273738Z', iopub.status.busy: '2026-10-13T19:02:07.273310Z', iopub.status.idle: '2026-10-13T19:02:07.281571Z', shell.execute_reply: '2026-10-13T19:02:07.280027Z'}
-#📌 SECTION 5 — Preprocessing Step (ColumnTransformer)
+# Section 5: Preprocessing Step (ColumnTransformer)
 # Preprocessing steps applied before sending data to machine learning models:
 # - numeric columns → scaled (mean=0, std=1)
 # - categorical columns → one-hot encoded (converted to binary format)
@@ -311,15 +256,15 @@ preprocessor = ColumnTransformer(
 
 ```{python}
 #| execution: {iopub.execute_input: '2026-10-13T19:02:07.284640Z', iopub.status.busy: '2026-10-13T19:02:07.284323Z', iopub.status.idle: '2026-10-13T19:02:07.292802Z', shell.execute_reply: '2026-10-13T19:02:07.290637Z'}
-#📌 SECTION 6 — Build Pipelines for Each Model
-#🔵 Logistic Regression Pipeline
+# Section 6: Build Pipelines for Each Model
+# Logistic Regression Pipeline
 # Combines preprocessing + logistic regression into a single workflow
 log_reg_pipeline = Pipeline(steps=[
     ("preprocessing", preprocessor),                      # Step 1: apply all transformations
     ("model", LogisticRegression(max_iter=10000))          # Step 2: train classifier
 ])
 
-#🟢 Random Forest Pipeline
+# Random Forest Pipeline
 # Random Forest pipeline: same preprocessing, but a different model at the end.
 rf_pipeline = Pipeline(steps=[
     ("preprocessing", preprocessor),
@@ -333,7 +278,7 @@ rf_pipeline = Pipeline(steps=[
 
 ```{python}
 #| execution: {iopub.execute_input: '2026-10-13T19:02:07.297405Z', iopub.status.busy: '2026-10-13T19:02:07.297084Z', iopub.status.idle: '2026-10-13T19:02:07.314455Z', shell.execute_reply: '2026-10-13T19:02:07.313038Z'}
-#📌 SECTION 7 — Split Train vs. Test Data
+# Section 7: Split Train vs. Test Data
 # Divide data into 80% training, 20% testing.
 # Stratify ensures the target class distribution is preserved.
 X_train, X_test, y_train, y_test = train_test_split(
@@ -346,7 +291,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 
 ```{python}
 #| execution: {iopub.execute_input: '2026-10-13T19:02:07.318720Z', iopub.status.busy: '2026-10-13T19:02:07.318203Z', iopub.status.idle: '2026-10-13T19:02:14.338104Z', shell.execute_reply: '2026-10-13T19:02:14.336230Z'}
-#📌 SECTION 8 — Train Models
+# Section 8: Train Models
 # Fits the logistic regression pipeline to training data
 log_reg_pipeline.fit(X_train, y_train)
 
@@ -444,7 +389,7 @@ create_business_pipeline_diagram()
 
 ```{python}
 #| execution: {iopub.execute_input: '2026-10-13T19:02:18.688480Z', iopub.status.busy: '2026-10-13T19:02:18.688055Z', iopub.status.idle: '2026-10-13T19:02:18.879972Z', shell.execute_reply: '2026-10-13T19:02:18.878313Z'}
-#📌 SECTION 9 — Predictions
+# Section 9: Predictions
 # Produces predicted class labels (0 or 1)
 log_reg_pred = log_reg_pipeline.predict(X_test)
 rf_pred = rf_pipeline.predict(X_test)
@@ -452,18 +397,18 @@ rf_pred = rf_pipeline.predict(X_test)
 
 ```{python}
 #| execution: {iopub.execute_input: '2026-10-13T19:02:18.883279Z', iopub.status.busy: '2026-10-13T19:02:18.882857Z', iopub.status.idle: '2026-10-13T19:02:19.103104Z', shell.execute_reply: '2026-10-13T19:02:19.101938Z'}
-#📌 SECTION 10 — Evaluate Each Model
+# Section 10: Evaluate Each Model
 from sklearn.metrics import roc_auc_score
 
-#🔵 Logistic Regression
-print("🔵 Logistic Regression Results")
+# Logistic Regression
+print("Logistic Regression results")
 print("Accuracy:", accuracy_score(y_test, log_reg_pred))  # proportion of correct predictions
 print(confusion_matrix(y_test, log_reg_pred))             # matrix of TP, FP, FN, TN
 print(classification_report(y_test, log_reg_pred))        # precision, recall, F1 score
 print("ROC-AUC:", round(roc_auc_score(y_test, log_reg_pipeline.predict_proba(X_test)[:, 1]), 3))
 
-#🟢 Random Forest
-print("🟢 Random Forest Results")
+# Random Forest
+print("Random Forest results")
 print("Accuracy:", accuracy_score(y_test, rf_pred))
 print(confusion_matrix(y_test, rf_pred))
 print(classification_report(y_test, rf_pred))
@@ -494,7 +439,7 @@ for metric, value in business_metrics.items():
 
 The test set holds 2,000 customers, of whom 408 churned. The churn base rate is 20.4%, so a model that always answers "no churn" would already reach 79.6% accuracy. Accuracy alone therefore says little: the model must be judged on the churn class.
 
-### 🔵 Logistic Regression
+### Logistic Regression
 
 Accuracy 0.813, confusion matrix `[[1540 52] [322 86]]`.
 
@@ -502,7 +447,7 @@ Accuracy 0.813, confusion matrix `[[1540 52] [322 86]]`.
 - Recall on churn = 0.21: it finds 86 of the 408 churners. F1 = 0.32.
 - Its accuracy is barely above the 0.796 trivial baseline.
 
-### 🟢 Random Forest
+### Random Forest
 
 Accuracy 0.869, confusion matrix `[[1544 48] [215 193]]`.
 
@@ -510,7 +455,7 @@ Accuracy 0.869, confusion matrix `[[1544 48] [215 193]]`.
 - Recall on churn = 0.47: it finds 193 of the 408 churners and still misses 215.
 - F1 = 0.59, false-positive rate = 3.0% (48 of 1,592 non-churners flagged).
 
-### 🎯 Which model is better?
+### Which model is better?
 
 | Metric | Logistic Regression | Random Forest |
 |---|---|---|
@@ -522,22 +467,22 @@ Accuracy 0.869, confusion matrix `[[1544 48] [215 193]]`.
 
 Random Forest is the better choice: it more than doubles recall on the churn class while also raising precision. It is a prioritisation tool rather than an exhaustive early-warning system, because about half of the churners are still missed.
 
-### 🤔 Why is churn hard to predict here?
+### Why is churn hard to predict here?
 
 Once the leakage column `Complain` is removed, the remaining linear signals are weak. The strongest correlations with the target are Age (+0.285), IsActiveMember (-0.156), Geography (+0.154) and Balance (+0.119); salary, card type, credit card ownership, tenure and satisfaction score are close to zero. Part of the signal is non-linear (for example the number of products), which Random Forest captures and Logistic Regression does not.
 
 ```{python}
 #| execution: {iopub.execute_input: '2026-10-13T19:02:19.131008Z', iopub.status.busy: '2026-10-13T19:02:19.130701Z', iopub.status.idle: '2026-10-13T19:02:19.140132Z', shell.execute_reply: '2026-10-13T19:02:19.138729Z'}
-#📌 SECTION 11 — Compare Models Automatically
+# Section 11: Compare Models Automatically
 log_acc = accuracy_score(y_test, log_reg_pred)
 rf_acc = accuracy_score(y_test, rf_pred)
 
-print("📊 Model Comparison")
+print("Model comparison")
 print(f"Logistic Regression Accuracy: {log_acc:.4f}")
 print(f"Random Forest Accuracy:       {rf_acc:.4f}")
 
 best_model = "Random Forest" if rf_acc > log_acc else "Logistic Regression"
-print("\n🏆 Best Model:", best_model)
+print("\nBest model:", best_model)
 
 ```
 
@@ -549,7 +494,7 @@ importances = pd.Series(rf_pipeline.named_steps["model"].feature_importances_, i
 importances.sort_values(ascending=False).head(10).round(3)
 ```
 
-## 1. Individual probabilities (customer-level view)
+## Individual probabilities (customer-level view)
 
 ```{python}
 #| execution: {iopub.execute_input: '2026-10-13T19:02:19.199551Z', iopub.status.busy: '2026-10-13T19:02:19.199064Z', iopub.status.idle: '2026-10-13T19:02:19.370216Z', shell.execute_reply: '2026-10-13T19:02:19.368609Z'}
@@ -570,7 +515,7 @@ customer_scores = customer_scores.sort_values("Churn_Probability", ascending=Fal
 customer_scores.head(10)
 ```
 
-## 2. Segment probabilities into risk bands
+## Segment probabilities into risk bands
 
 ```{python}
 #| execution: {iopub.execute_input: '2026-10-13T19:02:19.373154Z', iopub.status.busy: '2026-10-13T19:02:19.372806Z', iopub.status.idle: '2026-10-13T19:02:19.389304Z', shell.execute_reply: '2026-10-13T19:02:19.388113Z'}
@@ -590,7 +535,7 @@ customer_scores["Risk_Level"] = customer_scores["Churn_Probability"].apply(risk_
 customer_scores.head(1500)
 ```
 
-## 3. Distribution of the predicted probabilities
+## Distribution of the predicted probabilities
 
 ```{python}
 #| execution: {iopub.execute_input: '2026-10-13T19:02:19.394830Z', iopub.status.busy: '2026-10-13T19:02:19.394528Z', iopub.status.idle: '2026-10-13T19:02:19.649491Z', shell.execute_reply: '2026-10-13T19:02:19.647976Z'}
@@ -604,7 +549,7 @@ plt.ylabel("Number of Customers")
 plt.show()
 ```
 
-## 4. Example customers by probability level
+## Example customers by probability level
 
 ```{python}
 #| execution: {iopub.execute_input: '2026-10-13T19:02:19.652867Z', iopub.status.busy: '2026-10-13T19:02:19.652334Z', iopub.status.idle: '2026-10-13T19:02:19.666164Z', shell.execute_reply: '2026-10-13T19:02:19.664821Z'}
@@ -616,7 +561,7 @@ examples = customer_scores.sample(5, random_state=42)
 examples
 ```
 
-## 5. Share of customers in each risk band
+## Share of customers in each risk band
 
 ```{python}
 #| execution: {iopub.execute_input: '2026-10-13T19:02:19.669946Z', iopub.status.busy: '2026-10-13T19:02:19.669632Z', iopub.status.idle: '2026-10-13T19:02:19.680934Z', shell.execute_reply: '2026-10-13T19:02:19.679549Z'}
@@ -625,7 +570,7 @@ risk_summary = (customer_scores["Risk_Level"].value_counts(normalize=True) * 100
 risk_summary
 ```
 
-## 6. Export the customer churn probabilities (CSV / Excel)
+## Export the customer churn probabilities (CSV / Excel)
 
 ```{python}
 #| execution: {iopub.execute_input: '2026-10-13T19:02:19.684736Z', iopub.status.busy: '2026-10-13T19:02:19.684438Z', iopub.status.idle: '2026-10-13T19:02:22.197141Z', shell.execute_reply: '2026-10-13T19:02:22.195481Z'}
